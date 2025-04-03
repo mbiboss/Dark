@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DARK - Cyberpunk Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@300;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="cursor"></div>
+    
+    <!-- Theme Toggle -->
+    <button class="theme-toggle">🌓</button>
+    
+    <!-- Profile Picture -->
+    <img src="profile.jpg" alt="Profile" class="profile-pic">
+    
+    <!-- Navigation -->
+    <nav class="cyber-nav">
+        <ul>
+            <li data-target="about">About</li>
+            <li data-target="skills">Skills</li>
+            <li data-target="contact">Contact</li>
+            <li><a href="cv.pdf" download class="cyber-button">Download CV</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        <section class="glass-container">
+            <div id="about" class="content active">
+                <h1 class="cyber-text">SYSTEM_OPERATOR</h1>
+                <p class="glow-text">// INITIALIZING PORTFOLIO...</p>
+                <div class="cyber-line"></div>
+                <p>Neon-lit code warrior specializing in digital frontiers...</p>
+            </div>
+
+            <div id="skills" class="content">
+                <h2 class="cyber-text">SKILL_MATRIX</h2>
+                <ul class="cyber-list">
+                    <li>Neural Hacking</li>
+                    <li>Augmented Reality Design</li>
+                    <li>Quantum Encryption</li>
+                </ul>
+            </div>
+
+            <div id="contact" class="content">
+                <h2 class="cyber-text">CONTACT_NODE</h2>
+                <form class="cyber-form">
+                    <input type="text" placeholder="NAME" class="cyber-input">
+                    <input type="email" placeholder="EMAIL" class="cyber-input">
+                    <textarea class="cyber-input" placeholder="MESSAGE"></textarea>
+                    <button class="cyber-button">TRANSMIT</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -63,10 +63,9 @@
             pointer-events: none;
             transform: translate(-50%, -50%);
             z-index: 9999;
-            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path fill="%2300f3ff" d="M16 2C8.27 2 2 8.27 2 16s6.27 14 14 14 14-6.27 14-14S23.73 2 16 2zm0 26C9.37 28 4 22.63 4 16S9.37 4 16 4s12 5.37 12 12-5.37 12-12 12z"/><circle cx="16" cy="16" r="6" fill="%2300f3ff"/><path fill="%2300f3ff" d="M16 10a6 6 0 1 0 0 12 6 6 0 0 0 0-12zm0 10a4 4 0 1 1 0-8 4 4 0 0 1 0 8z"/></svg>');
+            background-image: url('https://i.imgur.com/your-cursor-image.png'); /* REPLACE WITH YOUR CURSOR IMAGE */
             background-size: contain;
             background-repeat: no-repeat;
-            mix-blend-mode: difference;
             transition: transform 0.1s ease-out;
         }
 
@@ -76,7 +75,7 @@
 
         .cursor.hover-active {
             transform: translate(-50%, -50%) scale(1.2);
-            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path fill="%23ff00ff" d="M16 2C8.27 2 2 8.27 2 16s6.27 14 14 14 14-6.27 14-14S23.73 2 16 2zm0 26C9.37 28 4 22.63 4 16S9.37 4 16 4s12 5.37 12 12-5.37 12-12 12z"/><circle cx="16" cy="16" r="6" fill="%23ff00ff"/><path fill="%23ff00ff" d="M16 10a6 6 0 1 0 0 12 6 6 0 0 0 0-12zm0 10a4 4 0 1 1 0-8 4 4 0 0 1 0 8z"/></svg>');
+            filter: hue-rotate(90deg);
         }
         
         /* Particle Effects */
@@ -471,42 +470,6 @@
                 0 0 60px var(--neon-blue),
                 inset 0 0 40px var(--neon-blue);
             filter: grayscale(0%) contrast(120%);
-        }
-
-        .profile-pic::after {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(0, 243, 255, 0.1), rgba(157, 0, 255, 0.1));
-            border-radius: 25px;
-            border: 2px solid var(--neon-blue);
-            box-shadow: 
-                0 0 40px var(--neon-blue),
-                inset 0 0 30px var(--neon-blue);
-            opacity: 0;
-            transform: rotateY(180deg);
-            transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-            backface-visibility: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--neon-blue);
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.5rem;
-            font-weight: 700;
-            letter-spacing: 3px;
-            text-align: center;
-            padding: 20px;
-            box-sizing: border-box;
-        }
-
-        .profile-pic:hover::after {
-            opacity: 1;
-            content: "CYBERSECURITY SPECIALIST\AQUANTUM DEVELOPER\A\A> ACCESS LEVEL: TOP SECRET";
-            white-space: pre;
         }
 
         /* Content Sections */

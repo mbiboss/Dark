@@ -1668,7 +1668,7 @@
             const updateTime = () => {
                 const now = new Date();
                 const timeString = now.toUTCString().split(' ')[4];
-                document.getElementById('current-time').textContent = `${timeString} UTC`;
+                document.getElementById('current-time').textContent = `${timeString} UTC +6`;
             };
             
             setInterval(updateTime, 1000);

@@ -8,6 +8,15 @@
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@300;500&display=swap" rel="stylesheet">
 </head>
 <body>
+    <!-- Background Elements -->
+    <canvas id="matrixRain" class="matrix-rain"></canvas>
+    <div class="hologram-1"></div>
+    <div class="hologram-2"></div>
+    <div class="hologram-3"></div>
+    <div class="connection-line" style="top: 30%; left: 5%; width: 15%;"></div>
+    <div class="connection-line" style="top: 70%; right: 5%; width: 15%; transform: rotate(180deg);"></div>
+
+    <!-- UI Elements -->
     <div class="cursor"></div>
     
     <!-- Theme Toggle -->
@@ -22,7 +31,12 @@
             <li data-target="about">About</li>
             <li data-target="skills">Skills</li>
             <li data-target="contact">Contact</li>
-            <li><a href="cv.pdf" download class="cyber-button">Download CV</a></li>
+            <li>
+                <a href="cv.pdf" download class="cyber-button">
+                    Download CV
+                    <div class="notification-badge">3</div>
+                </a>
+            </li>
         </ul>
     </nav>
 
@@ -30,14 +44,14 @@
     <main>
         <section class="glass-container">
             <div id="about" class="content active">
-                <h1 class="cyber-text">SYSTEM_OPERATOR</h1>
+                <h1 class="cyber-text holographic-text">SYSTEM_OPERATOR</h1>
                 <p class="glow-text">// INITIALIZING PORTFOLIO...</p>
                 <div class="cyber-line"></div>
                 <p>Neon-lit code warrior specializing in digital frontiers...</p>
             </div>
 
             <div id="skills" class="content">
-                <h2 class="cyber-text">SKILL_MATRIX</h2>
+                <h2 class="cyber-text holographic-text">SKILL_MATRIX</h2>
                 <ul class="cyber-list">
                     <li>Neural Hacking</li>
                     <li>Augmented Reality Design</li>
@@ -46,7 +60,7 @@
             </div>
 
             <div id="contact" class="content">
-                <h2 class="cyber-text">CONTACT_NODE</h2>
+                <h2 class="cyber-text holographic-text">CONTACT_NODE</h2>
                 <form class="cyber-form">
                     <input type="text" placeholder="NAME" class="cyber-input">
                     <input type="email" placeholder="EMAIL" class="cyber-input">

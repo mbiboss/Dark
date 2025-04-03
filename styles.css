@@ -1,178 +1,139 @@
-/* styles.css */
-:root {
-    --neon-blue: #00f3ff;
-    --neon-pink: #ff00ff;
-    --bg-dark: #0a0a12;
-    --bg-light: #f0f0f5;
-    --glass-dark: rgba(10, 10, 18, 0.8);
-    --glass-light: rgba(240, 240, 245, 0.8);
-}
+/* ===== CYBERPUNK UI ENHANCEMENTS ===== */
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    cursor: none;
-}
-
-body {
-    font-family: 'Rajdhani', sans-serif;
-    background: var(--bg-dark);
-    color: var(--neon-blue);
-    transition: all 0.3s ease;
-    min-height: 100vh;
-    overflow-x: hidden;
-}
-
-body.light-mode {
-    background: var(--bg-light);
-    color: #333;
-}
-
-/* Custom Cursor */
-.cursor {
-    position: fixed;
-    width: 20px;
-    height: 20px;
-    border: 2px solid var(--neon-pink);
-    border-radius: 50%;
-    pointer-events: none;
-    transform: translate(-50%, -50%);
-    mix-blend-mode: difference;
-    transition: transform 0.3s, width 0.3s, height 0.3s;
-    z-index: 999;
-}
-
-.cursor.active {
-    transform: translate(-50%, -50%) scale(1.5);
-    background: var(--neon-pink);
-}
-
-/* Profile Picture */
-.profile-pic {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    border: 2px solid var(--neon-blue);
-    box-shadow: 0 0 15px var(--neon-blue);
-    transition: transform 0.3s;
-}
-
-.profile-pic:hover {
-    transform: rotate(360deg) scale(1.1);
-}
-
-/* Cyber Navigation */
-.cyber-nav {
-    position: fixed;
-    top: 30px;
-    left: 50%;
-    transform: translateX(-50%);
-}
-
-.cyber-nav ul {
-    display: flex;
-    gap: 2rem;
-    list-style: none;
-}
-
-.cyber-nav li {
-    color: var(--neon-blue);
-    padding: 10px 20px;
-    border: 1px solid var(--neon-blue);
-    clip-path: polygon(10% 0, 100% 0, 90% 100%, 0 100%);
-    transition: all 0.3s;
-}
-
-.cyber-nav li:hover {
-    background: var(--neon-blue);
-    color: var(--bg-dark);
-    box-shadow: 0 0 15px var(--neon-blue);
-}
-
-/* Glass Container */
+/* 1. Pulsing Neon Border Effect */
 .glass-container {
     position: relative;
-    width: 80%;
-    min-height: 70vh;
-    margin: 100px auto;
-    background: var(--glass-dark);
-    backdrop-filter: blur(10px);
-    border-radius: 20px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 2rem;
-    box-shadow: 0 0 30px rgba(0, 243, 255, 0.2);
-}
-
-.light-mode .glass-container {
-    background: var(--glass-light);
-}
-
-/* Cyber Text Effects */
-.cyber-text {
-    font-family: 'Orbitron', sans-serif;
-    text-transform: uppercase;
-    position: relative;
-    animation: glitch 1s infinite;
-}
-
-@keyframes glitch {
-    0% { text-shadow: 2px 2px var(--neon-pink); }
-    25% { transform: translate(-2px, 1px); }
-    50% { text-shadow: -2px -1px var(--neon-pink); }
-    75% { transform: translate(1px, -2px); }
-    100% { text-shadow: 2px -1px var(--neon-pink); }
-}
-
-/* Theme Toggle */
-.theme-toggle {
+    overflow: hidden;
+  }
+  
+  .glass-container::after {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+      to bottom right,
+      transparent 45%,
+      var(--neon-blue) 50%,
+      transparent 55%
+    );
+    animation: pulseBorder 8s linear infinite;
+    opacity: 0.3;
+    z-index: -1;
+  }
+  
+  @keyframes pulseBorder {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
+  /* 2. Data Matrix Rain Effect */
+  .matrix-rain {
     position: fixed;
-    bottom: 30px;
-    right: 30px;
-    width: 50px;
-    height: 50px;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+    opacity: 0.15;
+    pointer-events: none;
+  }
+  
+  /* 3. Enhanced Button Effects */
+  .cyber-button {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .cyber-button::before {
+    content: "";
+    position: absolute;
+    top: -100%;
+    left: -100%;
+    width: 300%;
+    height: 300%;
+    background: linear-gradient(
+      to bottom right,
+      transparent 45%,
+      var(--neon-pink) 50%,
+      transparent 55%
+    );
+    transform: rotate(45deg);
+    transition: all 0.5s;
+    opacity: 0;
+  }
+  
+  .cyber-button:hover::before {
+    opacity: 0.3;
+    animation: buttonShine 1.5s;
+  }
+  
+  @keyframes buttonShine {
+    0% { left: -100%; top: -100%; }
+    100% { left: 100%; top: 100%; }
+  }
+  
+  /* 4. Cyberpunk Notification Badges */
+  .notification-badge {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    width: 25px;
+    height: 25px;
+    background: var(--neon-pink);
     border-radius: 50%;
-    background: var(--neon-blue);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
     color: var(--bg-dark);
-    border: none;
-    font-size: 1.5rem;
-    cursor: none;
-    transition: transform 0.3s;
-}
-
-.theme-toggle:hover {
-    transform: rotate(180deg) scale(1.1);
-}
-
-/* Interactive Elements */
-.cyber-button {
-    padding: 10px 30px;
-    background: transparent;
-    border: 2px solid var(--neon-blue);
-    color: var(--neon-blue);
-    clip-path: polygon(10% 0, 100% 0, 90% 100%, 0 100%);
-    transition: all 0.3s;
-}
-
-.cyber-button:hover {
-    background: var(--neon-blue);
-    color: var(--bg-dark);
-    box-shadow: 0 0 15px var(--neon-blue);
-}
-
-.content {
-    display: none;
-    animation: slideIn 0.5s forwards;
-}
-
-.content.active {
-    display: block;
-}
-
-@keyframes slideIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
+    animation: pulse 2s infinite;
+  }
+  
+  @keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+  }
+  
+  /* 5. Holographic Text Effect */
+  .holographic-text {
+    text-shadow: 
+      0 0 5px var(--neon-blue),
+      0 0 10px var(--neon-blue),
+      0 0 20px var(--neon-pink),
+      0 0 40px var(--neon-pink);
+    animation: hologramPulse 3s infinite alternate;
+  }
+  
+  @keyframes hologramPulse {
+    from { opacity: 0.8; }
+    to { opacity: 1; }
+  }
+  
+  /* 6. Circuit Board Connection Lines */
+  .connection-line {
+    position: absolute;
+    background: linear-gradient(to right, var(--neon-blue), transparent);
+    height: 2px;
+    transform-origin: left center;
+    animation: circuitPulse 3s infinite;
+  }
+  
+  @keyframes circuitPulse {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 0.8; }
+  }
+  
+  /* 7. Blinking Cursor Effect */
+  .blinking-cursor {
+    animation: blink 1s infinite;
+    opacity: 1;
+  }
+  
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }

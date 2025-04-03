@@ -3,74 +3,264 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DARK - Cyberpunk Portfolio</title>
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@300;500&display=swap" rel="stylesheet">
+    <title>DARK | Cyberpunk Portfolio</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@300;500&display=swap">
+    <style>
+        :root {
+            --neon-blue: #00f3ff;
+            --neon-pink: #ff00ff;
+            --bg-dark: #0a0a12;
+            --glass-dark: rgba(10, 10, 18, 0.7);
+            --glass-border: rgba(0, 243, 255, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Rajdhani', sans-serif;
+            background: var(--bg-dark);
+            color: var(--neon-blue);
+            min-height: 100vh;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+        }
+
+        /* Navigation Bar */
+        .cyber-nav {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+
+        .cyber-nav ul {
+            display: flex;
+            gap: 1rem;
+            list-style: none;
+        }
+
+        .cyber-nav li {
+            color: var(--neon-blue);
+            padding: 10px 20px;
+            border: 1px solid var(--neon-blue);
+            border-radius: 5px;
+            transition: all 0.3s;
+            cursor: pointer;
+            font-weight: 500;
+        }
+
+        .cyber-nav li:hover {
+            background: var(--neon-blue);
+            color: var(--bg-dark);
+            box-shadow: 0 0 15px var(--neon-blue);
+        }
+
+        /* Main Content Container */
+        .content-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 30px;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Glass Box */
+        .glass-box {
+            flex: 1;
+            background: var(--glass-dark);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 1px solid var(--glass-border);
+            padding: 30px;
+            box-shadow: 0 0 30px rgba(0, 243, 255, 0.2);
+            min-height: 500px;
+            transition: all 0.3s;
+        }
+
+        /* Profile Picture */
+        .profile-pic {
+            width: 200px;
+            height: 200px;
+            border-radius: 20px;
+            border: 2px solid var(--neon-blue);
+            box-shadow: 0 0 20px var(--neon-blue);
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+
+        .profile-pic:hover {
+            transform: scale(1.05);
+        }
+
+        /* Content Sections */
+        .content-section {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .content-section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Section Styles */
+        h1 {
+            font-family: 'Orbitron', sans-serif;
+            margin-bottom: 20px;
+            text-shadow: 0 0 10px var(--neon-blue);
+        }
+
+        .about-text {
+            line-height: 1.6;
+            font-size: 1.1rem;
+        }
+
+        .skills-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .skill-item {
+            background: rgba(0, 243, 255, 0.1);
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 3px solid var(--neon-pink);
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            background: rgba(0, 243, 255, 0.1);
+            border: 1px solid var(--neon-blue);
+            padding: 12px;
+            border-radius: 5px;
+            color: white;
+            font-family: 'Rajdhani', sans-serif;
+        }
+
+        .contact-form button {
+            background: transparent;
+            border: 1px solid var(--neon-pink);
+            color: var(--neon-pink);
+            padding: 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: bold;
+        }
+
+        .contact-form button:hover {
+            background: var(--neon-pink);
+            color: var(--bg-dark);
+        }
+    </style>
 </head>
 <body>
-    <!-- Background Elements -->
-    <canvas id="matrixRain" class="matrix-rain"></canvas>
-    <div class="hologram-1"></div>
-    <div class="hologram-2"></div>
-    <div class="hologram-3"></div>
-    <div class="connection-line" style="top: 30%; left: 5%; width: 15%;"></div>
-    <div class="connection-line" style="top: 70%; right: 5%; width: 15%; transform: rotate(180deg);"></div>
-
-    <!-- UI Elements -->
-    <div class="cursor"></div>
-    
-    <!-- Theme Toggle -->
-    <button class="theme-toggle">🌓</button>
-    
-    <!-- Profile Picture -->
-    <img src="profile.jpg" alt="Profile" class="profile-pic">
-    
-    <!-- Navigation -->
+    <!-- Navigation Bar -->
     <nav class="cyber-nav">
         <ul>
-            <li data-target="about">About</li>
-            <li data-target="skills">Skills</li>
-            <li data-target="contact">Contact</li>
-            <li>
-                <a href="cv.pdf" download class="cyber-button">
-                    Download CV
-                    <div class="notification-badge">3</div>
-                </a>
-            </li>
+            <li data-section="about">About</li>
+            <li data-section="skills">Skills</li>
+            <li data-section="projects">Projects</li>
+            <li data-section="contact">Contact</li>
         </ul>
     </nav>
 
     <!-- Main Content -->
-    <main>
-        <section class="glass-container">
-            <div id="about" class="content active">
-                <h1 class="cyber-text holographic-text">SYSTEM_OPERATOR</h1>
-                <p class="glow-text">// INITIALIZING PORTFOLIO...</p>
-                <div class="cyber-line"></div>
-                <p>Neon-lit code warrior specializing in digital frontiers...</p>
+    <div class="content-container">
+        <!-- Glass Box (Left) -->
+        <div class="glass-box">
+            <!-- About Section -->
+            <div id="about" class="content-section active">
+                <h1>ABOUT_ME</h1>
+                <div class="about-text">
+                    <p>Neon-lit code warrior specializing in digital frontiers. With years of experience in cyber systems and neural interfaces, I bridge the gap between human and machine.</p>
+                    <p>My expertise lies in quantum encryption, augmented reality design, and neural hacking. When I'm not coding, you can find me exploring the datascape or tuning cybernetic enhancements.</p>
+                </div>
             </div>
 
-            <div id="skills" class="content">
-                <h2 class="cyber-text holographic-text">SKILL_MATRIX</h2>
-                <ul class="cyber-list">
-                    <li>Neural Hacking</li>
-                    <li>Augmented Reality Design</li>
-                    <li>Quantum Encryption</li>
-                </ul>
+            <!-- Skills Section -->
+            <div id="skills" class="content-section">
+                <h1>SKILL_MATRIX</h1>
+                <div class="skills-list">
+                    <div class="skill-item">Neural Interface Design</div>
+                    <div class="skill-item">Quantum Encryption</div>
+                    <div class="skill-item">Augmented Reality</div>
+                    <div class="skill-item">Cyber Security</div>
+                    <div class="skill-item">Data Visualization</div>
+                    <div class="skill-item">AI Integration</div>
+                </div>
             </div>
 
-            <div id="contact" class="content">
-                <h2 class="cyber-text holographic-text">CONTACT_NODE</h2>
-                <form class="cyber-form">
-                    <input type="text" placeholder="NAME" class="cyber-input">
-                    <input type="email" placeholder="EMAIL" class="cyber-input">
-                    <textarea class="cyber-input" placeholder="MESSAGE"></textarea>
-                    <button class="cyber-button">TRANSMIT</button>
+            <!-- Projects Section -->
+            <div id="projects" class="content-section">
+                <h1>PROJECTS</h1>
+                <div class="skills-list">
+                    <div class="skill-item">
+                        <h3>Neural Link API</h3>
+                        <p>Direct brain-computer interface framework</p>
+                    </div>
+                    <div class="skill-item">
+                        <h3>Quantum Encrypt</h3>
+                        <p>Unhackable communication protocol</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Section -->
+            <div id="contact" class="content-section">
+                <h1>CONTACT_NODE</h1>
+                <form class="contact-form">
+                    <input type="text" placeholder="NAME" required>
+                    <input type="email" placeholder="EMAIL" required>
+                    <textarea placeholder="MESSAGE" rows="5" required></textarea>
+                    <button type="submit">SEND TRANSMISSION</button>
                 </form>
             </div>
-        </section>
-    </main>
+        </div>
 
-    <script src="script.js"></script>
+        <!-- Profile Picture (Right) -->
+        <img src="https://via.placeholder.com/200" alt="Profile" class="profile-pic">
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Section switching
+            const navItems = document.querySelectorAll('.cyber-nav li');
+            const sections = document.querySelectorAll('.content-section');
+
+            navItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    // Remove active class from all
+                    navItems.forEach(nav => nav.classList.remove('active'));
+                    sections.forEach(sec => sec.classList.remove('active'));
+                    
+                    // Add active class to clicked
+                    item.classList.add('active');
+                    const sectionId = item.getAttribute('data-section');
+                    document.getElementById(sectionId).classList.add('active');
+                });
+            });
+        });
+    </script>
 </body>
 </html>

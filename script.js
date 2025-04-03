@@ -16,6 +16,17 @@ document.addEventListener('DOMContentLoaded', () => {
         document.addEventListener('mouseup', () => {
             cursor.classList.remove('active');
         });
+
+        // Interactive elements cursor effect
+        const interactiveElements = document.querySelectorAll('a, button, .cyber-nav li, .skill-item, .project-card');
+        interactiveElements.forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                cursor.style.transform = 'translate(-50%, -50%) scale(1.5)';
+            });
+            el.addEventListener('mouseleave', () => {
+                cursor.style.transform = 'translate(-50%, -50%) scale(1)';
+            });
+        });
     };
 
     // Theme Toggle
@@ -30,24 +41,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Navigation System
     const initNavigation = () => {
-        const navItems = document.querySelectorAll('.cyber-nav li[data-target]');
-        const contents = document.querySelectorAll('.content');
+        const navItems = document.querySelectorAll('.cyber-nav li[data-section]');
+        const contents = document.querySelectorAll('.content-section');
 
         navItems.forEach(item => {
             item.addEventListener('click', function() {
-                const target = this.dataset.target;
+                // Remove active class from all
+                navItems.forEach(nav => nav.classList.remove('active'));
+                contents.forEach(sec => sec.classList.remove('active'));
                 
-                // Click animation
-                this.style.animation = 'clickEffect 0.3s';
-                setTimeout(() => this.style.animation = '', 300);
-
-                // Content switching
-                contents.forEach(content => {
-                    content.classList.remove('active');
-                    if(content.id === target) {
-                        content.classList.add('active');
-                    }
-                });
+                // Add active class to clicked
+                item.classList.add('active');
+                const sectionId = item.getAttribute('data-section');
+                document.getElementById(sectionId).classList.add('active');
             });
         });
     };
@@ -81,44 +87,71 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
-    // Matrix Rain Effect
+    // Matrix Rain Effect (Enhanced Version)
     const initMatrixRain = () => {
         const canvas = document.getElementById('matrixRain');
         if (!canvas) return;
 
         const ctx = canvas.getContext('2d');
-        const chars = "01";
-        const fontSize = 18;
-        let columns, drops;
+        const katakana = 'アァカサタナハマヤャラワガザダバパイィキシチニヒミリヰギジヂビピウゥクスツヌフムユュルグズブヅプエェケセテネヘメレヱゲゼデベペオォコソトノホモヨョロヲゴゾドボポヴッン';
+        const latin = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        const nums = '0123456789';
+        const alphabet = katakana + latin + nums;
+        const fontSize = 16;
+        let columns, rainDrops;
 
         const resizeCanvas = () => {
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
             columns = Math.floor(canvas.width / fontSize);
-            drops = Array(columns).fill(1);
+            rainDrops = Array(columns).fill(1);
         };
 
-        const draw = () => {
-            ctx.fillStyle = 'rgba(0, 10, 20, 0.05)';
+        const drawMatrixRain = () => {
+            // More transparent background for better visibility of other elements
+            ctx.fillStyle = 'rgba(5, 5, 8, 0.03)';
             ctx.fillRect(0, 0, canvas.width, canvas.height);
             
-            ctx.fillStyle = '#0F0';
+            // Classic matrix green with slight variation
+            ctx.fillStyle = '#0f0';
             ctx.font = `${fontSize}px monospace`;
-            
-            for (let i = 0; i < drops.length; i++) {
-                const text = chars[Math.floor(Math.random() * chars.length)];
-                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+            for (let i = 0; i < rainDrops.length; i++) {
+                // Random character from the combined set
+                const text = alphabet.charAt(Math.floor(Math.random() * alphabet.length));
+                ctx.fillText(text, i * fontSize, rainDrops[i] * fontSize);
                 
-                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
-                    drops[i] = 0;
+                // Reset drop to top when it reaches bottom with random chance
+                if (rainDrops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                    rainDrops[i] = 0;
                 }
-                drops[i]++;
+                rainDrops[i]++;
             }
         };
 
-        window.addEventListener('resize', resizeCanvas);
+        // Handle window resize
+        window.addEventListener('resize', () => {
+            columns = resizeCanvas();
+            rainDrops = Array(columns).fill(1);
+        });
+
+        // Initialize and start animation
         resizeCanvas();
-        setInterval(draw, 33);
+        
+        // Use requestAnimationFrame for smoother animation
+        let lastTime = 0;
+        const frameRate = 30; // frames per second
+        const interval = 1000 / frameRate;
+        
+        const animate = (timestamp) => {
+            if (timestamp - lastTime > interval) {
+                drawMatrixRain();
+                lastTime = timestamp;
+            }
+            requestAnimationFrame(animate);
+        };
+        
+        animate();
     };
 
     // Initialize all components
@@ -129,54 +162,3 @@ document.addEventListener('DOMContentLoaded', () => {
     initTerminalTyping();
     initMatrixRain();
 });
-
-// Matrix Rain Effect
-document.addEventListener('DOMContentLoaded', () => {
-    const initMatrixRain = () => {
-      const canvas = document.getElementById('matrixRain');
-      if (!canvas) return;
-  
-      const ctx = canvas.getContext('2d');
-      const katakana = 'アァカサタナハマヤャラワガザダバパイィキシチニヒミリヰギジヂビピウゥクスツヌフムユュルグズブヅプエェケセテネヘメレヱゲゼデベペオォコソトノホモヨョロヲゴゾドボポヴッン';
-      const latin = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-      const nums = '0123456789';
-      const alphabet = katakana + latin + nums;
-      const fontSize = 16;
-      
-      const resizeCanvas = () => {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-        return Math.floor(canvas.width / fontSize);
-      };
-  
-      let columns = resizeCanvas();
-      let rainDrops = Array(columns).fill(1);
-  
-      const drawMatrixRain = () => {
-        ctx.fillStyle = 'rgba(0, 10, 20, 0.05)';
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-        
-        ctx.fillStyle = '#0F0';
-        ctx.font = `${fontSize}px monospace`;
-  
-        for (let i = 0; i < rainDrops.length; i++) {
-          const text = alphabet.charAt(Math.floor(Math.random() * alphabet.length));
-          ctx.fillText(text, i * fontSize, rainDrops[i] * fontSize);
-          
-          if (rainDrops[i] * fontSize > canvas.height && Math.random() > 0.975) {
-            rainDrops[i] = 0;
-          }
-          rainDrops[i]++;
-        }
-      };
-  
-      window.addEventListener('resize', () => {
-        columns = resizeCanvas();
-        rainDrops = Array(columns).fill(1);
-      });
-  
-      setInterval(drawMatrixRain, 30);
-    };
-  
-    initMatrixRain();
-  });

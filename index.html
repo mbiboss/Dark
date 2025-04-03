@@ -3,15 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DARK | Cyberpunk Portfolio</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@300;500&display=swap">
+    <title>NEON | Cyberpunk Developer</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@300;500;700&display=swap">
     <style>
         :root {
             --neon-blue: #00f3ff;
             --neon-pink: #ff00ff;
-            --bg-dark: #0a0a12;
-            --glass-dark: rgba(10, 10, 18, 0.7);
+            --neon-purple: #9d00ff;
+            --neon-green: #00ff88;
+            --bg-dark: #050508;
+            --bg-darker: #020203;
+            --glass-dark: rgba(10, 10, 18, 0.9);
             --glass-border: rgba(0, 243, 255, 0.3);
+            --nav-height: 80px;
+            --glow-intensity: 0.8;
         }
 
         * {
@@ -22,42 +27,147 @@
 
         body {
             font-family: 'Rajdhani', sans-serif;
-            background: var(--bg-dark);
+            background: var(--bg-darker);
             color: var(--neon-blue);
             min-height: 100vh;
             overflow-x: hidden;
-            display: flex;
-            flex-direction: column;
-            padding: 20px;
+            cursor: none;
+            line-height: 1.6;
+        }
+
+        /* Custom Cursor */
+        .cursor {
+            position: fixed;
+            width: 24px;
+            height: 24px;
+            border: 2px solid var(--neon-pink);
+            border-radius: 50%;
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+            mix-blend-mode: difference;
+            transition: 
+                transform 0.15s ease-out,
+                width 0.15s ease-out,
+                height 0.15s ease-out,
+                background 0.15s ease-out;
+            z-index: 9999;
+            filter: drop-shadow(0 0 5px var(--neon-pink));
+        }
+
+        .cursor.active {
+            transform: translate(-50%, -50%) scale(0.7);
+            background: var(--neon-pink);
+        }
+
+        .cursor.click {
+            animation: cursorClick 0.5s forwards;
+        }
+
+        @keyframes cursorClick {
+            0% { transform: translate(-50%, -50%) scale(1); }
+            50% { transform: translate(-50%, -50%) scale(0.5); }
+            100% { transform: translate(-50%, -50%) scale(1); }
+        }
+
+        /* Animated Background */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                linear-gradient(rgba(0, 243, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 243, 255, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+            z-index: -3;
+            animation: gridScroll 40s linear infinite;
+        }
+
+        @keyframes gridScroll {
+            from { background-position: 0 0; }
+            to { background-position: 80px 80px; }
+        }
+
+        /* Matrix Rain */
+        .matrix-rain {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            opacity: 0.15;
+            pointer-events: none;
         }
 
         /* Navigation Bar */
         .cyber-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: var(--nav-height);
+            background: rgba(5, 5, 8, 0.95);
+            backdrop-filter: blur(12px);
             display: flex;
             justify-content: center;
-            margin-bottom: 30px;
+            align-items: center;
+            z-index: 1000;
+            border-bottom: 1px solid var(--glass-border);
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.7);
         }
 
         .cyber-nav ul {
             display: flex;
-            gap: 1rem;
+            gap: 2rem;
             list-style: none;
         }
 
         .cyber-nav li {
             color: var(--neon-blue);
-            padding: 10px 20px;
-            border: 1px solid var(--neon-blue);
-            border-radius: 5px;
-            transition: all 0.3s;
-            cursor: pointer;
+            padding: 15px 30px;
+            position: relative;
+            overflow: hidden;
             font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.9rem;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .cyber-nav li::before {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--neon-pink);
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .cyber-nav li:hover {
-            background: var(--neon-blue);
-            color: var(--bg-dark);
-            box-shadow: 0 0 15px var(--neon-blue);
+            color: var(--neon-pink);
+            text-shadow: 0 0 10px var(--neon-pink);
+        }
+
+        .cyber-nav li:hover::before {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        .cyber-nav li.active {
+            color: var(--neon-green);
+            text-shadow: 0 0 15px var(--neon-green);
+        }
+
+        .cyber-nav li.active::before {
+            background: var(--neon-green);
+            transform: scaleX(1);
         }
 
         /* Main Content Container */
@@ -65,44 +175,88 @@
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
-            gap: 30px;
+            gap: 50px;
             width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
+            max-width: 1400px;
+            margin: calc(var(--nav-height) + 40px) auto 40px;
+            padding: 0 40px;
+            position: relative;
         }
 
         /* Glass Box */
         .glass-box {
             flex: 1;
             background: var(--glass-dark);
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(12px);
             border-radius: 20px;
             border: 1px solid var(--glass-border);
-            padding: 30px;
-            box-shadow: 0 0 30px rgba(0, 243, 255, 0.2);
-            min-height: 500px;
-            transition: all 0.3s;
+            padding: 50px;
+            box-shadow: 
+                0 0 30px rgba(0, 243, 255, 0.2),
+                inset 0 0 20px rgba(0, 243, 255, 0.1);
+            min-height: 600px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s;
+        }
+
+        .glass-box::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                to bottom right,
+                transparent 45%,
+                var(--neon-blue) 50%,
+                transparent 55%
+            );
+            animation: pulseBorder 12s linear infinite;
+            opacity: 0.1;
+            z-index: -1;
+        }
+
+        @keyframes pulseBorder {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
 
         /* Profile Picture */
+        .profile-container {
+            position: sticky;
+            top: calc(var(--nav-height) + 50px);
+            width: 300px;
+            flex-shrink: 0;
+            perspective: 1000px;
+        }
+
         .profile-pic {
-            width: 200px;
-            height: 200px;
+            width: 100%;
+            height: 300px;
             border-radius: 20px;
             border: 2px solid var(--neon-blue);
-            box-shadow: 0 0 20px var(--neon-blue);
+            box-shadow: 
+                0 0 30px var(--neon-blue),
+                inset 0 0 20px var(--neon-blue);
             object-fit: cover;
-            transition: transform 0.3s;
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            transform-style: preserve-3d;
+            background: linear-gradient(45deg, var(--neon-blue), var(--neon-purple));
         }
 
         .profile-pic:hover {
-            transform: scale(1.05);
+            transform: scale(1.03) rotateY(10deg);
+            box-shadow: 
+                0 0 50px var(--neon-blue),
+                inset 0 0 30px var(--neon-blue);
         }
 
         /* Content Sections */
         .content-section {
             display: none;
-            animation: fadeIn 0.5s ease;
+            animation: fadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
 
         .content-section.active {
@@ -110,75 +264,553 @@
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
+            from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Section Styles */
+        /* Section Headers */
         h1 {
             font-family: 'Orbitron', sans-serif;
-            margin-bottom: 20px;
-            text-shadow: 0 0 10px var(--neon-blue);
+            margin-bottom: 30px;
+            font-size: 2.5rem;
+            letter-spacing: 3px;
+            position: relative;
+            display: inline-block;
+            text-shadow: 
+                0 0 10px var(--neon-blue),
+                0 0 20px rgba(0, 243, 255, 0.3);
         }
 
+        h1::after {
+            content: "";
+            position: absolute;
+            bottom: -15px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--neon-blue), transparent);
+        }
+
+        h2 {
+            font-family: 'Orbitron', sans-serif;
+            color: var(--neon-pink);
+            margin: 25px 0 15px;
+            font-size: 1.5rem;
+            letter-spacing: 2px;
+        }
+
+        /* About Section */
         .about-text {
-            line-height: 1.6;
             font-size: 1.1rem;
+            line-height: 1.8;
         }
 
-        .skills-list {
+        .about-text p {
+            margin-bottom: 20px;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .about-text p::before {
+            content: ">";
+            position: absolute;
+            left: 0;
+            color: var(--neon-green);
+        }
+
+        /* Skills Section */
+        .skills-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
-            margin-top: 20px;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
         }
 
-        .skill-item {
+        .skill-card {
+            background: rgba(0, 243, 255, 0.05);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            padding: 25px;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                135deg,
+                rgba(0, 243, 255, 0.1),
+                transparent
+            );
+            z-index: -1;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 
+                0 10px 30px rgba(0, 243, 255, 0.2),
+                inset 0 0 20px rgba(0, 243, 255, 0.1);
+            border-color: var(--neon-pink);
+        }
+
+        .skill-card h3 {
+            color: var(--neon-green);
+            margin-bottom: 10px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.2rem;
+        }
+
+        .skill-level {
+            height: 5px;
             background: rgba(0, 243, 255, 0.1);
-            padding: 15px;
-            border-radius: 8px;
-            border-left: 3px solid var(--neon-pink);
+            border-radius: 5px;
+            margin-top: 15px;
+            overflow: hidden;
         }
 
+        .skill-level-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--neon-blue), var(--neon-purple));
+            border-radius: 5px;
+            transition: width 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .project-card {
+            background: rgba(0, 243, 255, 0.05);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            padding: 30px;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                135deg,
+                rgba(157, 0, 255, 0.1),
+                transparent
+            );
+            z-index: -1;
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 
+                0 15px 40px rgba(157, 0, 255, 0.2),
+                inset 0 0 20px rgba(157, 0, 255, 0.1);
+            border-color: var(--neon-purple);
+        }
+
+        .project-card h3 {
+            color: var(--neon-pink);
+            margin-bottom: 15px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.3rem;
+        }
+
+        .project-card .tech {
+            display: inline-block;
+            background: rgba(0, 243, 255, 0.1);
+            color: var(--neon-blue);
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 0.8rem;
+            margin: 5px 5px 0 0;
+        }
+
+        /* Contact Section */
         .contact-form {
             display: flex;
             flex-direction: column;
-            gap: 15px;
-            margin-top: 20px;
+            gap: 25px;
+            margin-top: 40px;
+            max-width: 700px;
+        }
+
+        .input-group {
+            position: relative;
         }
 
         .contact-form input,
         .contact-form textarea {
-            background: rgba(0, 243, 255, 0.1);
-            border: 1px solid var(--neon-blue);
-            padding: 12px;
-            border-radius: 5px;
+            width: 100%;
+            background: rgba(0, 243, 255, 0.05);
+            border: 1px solid var(--glass-border);
+            padding: 18px;
+            border-radius: 10px;
             color: white;
             font-family: 'Rajdhani', sans-serif;
+            font-size: 1rem;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        .contact-form button {
-            background: transparent;
-            border: 1px solid var(--neon-pink);
+        .contact-form textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            outline: none;
+            border-color: var(--neon-pink);
+            box-shadow: 0 0 20px var(--neon-pink);
+            background: rgba(255, 0, 255, 0.05);
+        }
+
+        .input-label {
+            position: absolute;
+            left: 20px;
+            top: 18px;
+            color: var(--neon-blue);
+            transition: all 0.3s ease;
+            pointer-events: none;
+        }
+
+        .contact-form input:focus + .input-label,
+        .contact-form textarea:focus + .input-label,
+        .contact-form input:not(:placeholder-shown) + .input-label,
+        .contact-form textarea:not(:placeholder-shown) + .input-label {
+            top: -10px;
+            left: 15px;
+            font-size: 0.8rem;
+            background: var(--glass-dark);
+            padding: 0 5px;
             color: var(--neon-pink);
-            padding: 12px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: all 0.3s;
-            font-weight: bold;
         }
 
-        .contact-form button:hover {
+        .submit-btn {
+            background: transparent;
+            border: 2px solid var(--neon-pink);
+            color: var(--neon-pink);
+            padding: 18px;
+            border-radius: 10px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 1rem;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            overflow: hidden;
+            cursor: none;
+            margin-top: 10px;
+        }
+
+        .submit-btn::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(255, 0, 255, 0.3),
+                transparent
+            );
+            transition: all 0.6s ease;
+        }
+
+        .submit-btn:hover {
             background: var(--neon-pink);
             color: var(--bg-dark);
+            box-shadow: 
+                0 0 30px var(--neon-pink),
+                inset 0 0 20px rgba(255, 255, 255, 0.3);
+            transform: translateY(-3px);
+        }
+
+        .submit-btn:hover::before {
+            left: 100%;
+        }
+
+        /* Floating Holograms */
+        .hologram {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.1;
+            z-index: -1;
+            animation: float 20s infinite ease-in-out;
+        }
+
+        .hologram-1 {
+            width: 400px;
+            height: 400px;
+            background: var(--neon-pink);
+            top: 20%;
+            left: 10%;
+        }
+
+        .hologram-2 {
+            width: 300px;
+            height: 300px;
+            background: var(--neon-blue);
+            bottom: 30%;
+            right: 15%;
+            animation-delay: 5s;
+            animation-duration: 25s;
+        }
+
+        .hologram-3 {
+            width: 250px;
+            height: 250px;
+            background: var(--neon-purple);
+            top: 60%;
+            left: 70%;
+            animation-delay: 10s;
+            animation-duration: 30s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            20% { transform: translate(50px, -50px) rotate(5deg); }
+            40% { transform: translate(-40px, 60px) rotate(-5deg); }
+            60% { transform: translate(-70px, -30px) rotate(8deg); }
+            80% { transform: translate(30px, 40px) rotate(-3deg); }
+        }
+
+        /* Particle Effects */
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 10;
+            background: var(--neon-blue);
+            animation: particleFade 1s forwards;
+        }
+
+        @keyframes particleFade {
+            0% { 
+                transform: translate(-50%, -50%) scale(0);
+                opacity: 1;
+            }
+            100% { 
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 0;
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .content-container {
+                flex-direction: column;
+                padding: 0 30px;
+            }
+
+            .profile-container {
+                width: 100%;
+                position: static;
+                margin-bottom: 40px;
+                display: flex;
+                justify-content: center;
+            }
+
+            .profile-pic {
+                width: 250px;
+                height: 250px;
+            }
+
+            .glass-box {
+                padding: 40px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .cyber-nav ul {
+                gap: 0.8rem;
+                padding: 0 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .cyber-nav li {
+                padding: 12px 20px;
+                font-size: 0.8rem;
+            }
+
+            .content-container {
+                padding: 0 20px;
+                margin-top: calc(var(--nav-height) + 30px);
+            }
+
+            .glass-box {
+                padding: 30px;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .cyber-nav li {
+                padding: 10px 15px;
+                font-size: 0.7rem;
+            }
+
+            .glass-box {
+                padding: 25px;
+            }
+
+            .skills-grid,
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Terminal Typing Effect */
+        .typing-text {
+            display: inline-block;
+            position: relative;
+        }
+
+        .blinking-cursor {
+            animation: blink 1s infinite;
+            opacity: 1;
+            color: var(--neon-green);
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        /* Glitch Effect */
+        .glitch {
+            position: relative;
+        }
+
+        .glitch::before,
+        .glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.8;
+        }
+
+        .glitch::before {
+            color: var(--neon-pink);
+            animation: glitch-effect 3s infinite linear alternate-reverse;
+            clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
+        }
+
+        .glitch::after {
+            color: var(--neon-green);
+            animation: glitch-effect 2s infinite linear alternate-reverse;
+            clip-path: polygon(0 60%, 100% 60%, 100% 100%, 0 100%);
+        }
+
+        @keyframes glitch-effect {
+            0% { transform: translate(0); }
+            20% { transform: translate(-3px, 3px); }
+            40% { transform: translate(-3px, -3px); }
+            60% { transform: translate(3px, 3px); }
+            80% { transform: translate(3px, -3px); }
+            100% { transform: translate(0); }
+        }
+
+        /* Scanline Effect */
+        .scanlines {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                to bottom,
+                transparent 95%,
+                rgba(0, 243, 255, 0.03) 96%,
+                transparent 100%
+            );
+            background-size: 100% 8px;
+            animation: scanline 6s linear infinite;
+            pointer-events: none;
+            z-index: 999;
+            opacity: 0.3;
+        }
+
+        @keyframes scanline {
+            from { transform: translateY(-100%); }
+            to { transform: translateY(100vh); }
+        }
+
+        /* Binary Rain Effect */
+        .binary-rain {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.05;
+            pointer-events: none;
+            font-family: monospace;
+            font-size: 16px;
+            color: var(--neon-green);
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .binary-column {
+            display: flex;
+            flex-direction: column;
+            animation: binaryFall linear infinite;
+        }
+
+        @keyframes binaryFall {
+            from { transform: translateY(-100%); }
+            to { transform: translateY(100vh); }
         }
     </style>
 </head>
 <body>
+    <!-- Custom Cursor -->
+    <div class="cursor"></div>
+
+    <!-- Matrix Rain Canvas -->
+    <canvas id="matrixRain" class="matrix-rain"></canvas>
+
+    <!-- Floating Holograms -->
+    <div class="hologram hologram-1"></div>
+    <div class="hologram hologram-2"></div>
+    <div class="hologram hologram-3"></div>
+
+    <!-- Scanline Effect -->
+    <div class="scanlines"></div>
+
     <!-- Navigation Bar -->
     <nav class="cyber-nav">
         <ul>
-            <li data-section="about">About</li>
+            <li class="active" data-section="about">About</li>
             <li data-section="skills">Skills</li>
             <li data-section="projects">Projects</li>
             <li data-section="contact">Contact</li>
@@ -187,79 +819,333 @@
 
     <!-- Main Content -->
     <div class="content-container">
-        <!-- Glass Box (Left) -->
+        <!-- Glass Box -->
         <div class="glass-box">
             <!-- About Section -->
             <div id="about" class="content-section active">
-                <h1>ABOUT_ME</h1>
+                <h1 class="glitch" data-text="SYSTEM_OPERATOR">SYSTEM_OPERATOR</h1>
                 <div class="about-text">
-                    <p>Neon-lit code warrior specializing in digital frontiers. With years of experience in cyber systems and neural interfaces, I bridge the gap between human and machine.</p>
-                    <p>My expertise lies in quantum encryption, augmented reality design, and neural hacking. When I'm not coding, you can find me exploring the datascape or tuning cybernetic enhancements.</p>
+                    <p>Welcome to my neural interface. I am a cybernetic developer specializing in quantum encryption and augmented reality systems.</p>
+                    <p>With over a decade of experience in the digital frontier, I bridge the gap between human cognition and machine intelligence.</p>
+                    <p>My current research focuses on neural network optimization and quantum-resistant security protocols for next-generation cyber systems.</p>
                 </div>
             </div>
 
             <!-- Skills Section -->
             <div id="skills" class="content-section">
-                <h1>SKILL_MATRIX</h1>
-                <div class="skills-list">
-                    <div class="skill-item">Neural Interface Design</div>
-                    <div class="skill-item">Quantum Encryption</div>
-                    <div class="skill-item">Augmented Reality</div>
-                    <div class="skill-item">Cyber Security</div>
-                    <div class="skill-item">Data Visualization</div>
-                    <div class="skill-item">AI Integration</div>
+                <h1 class="glitch" data-text="CORE_COMPETENCIES">CORE_COMPETENCIES</h1>
+                <div class="skills-grid">
+                    <div class="skill-card">
+                        <h3>Quantum Encryption</h3>
+                        <p>Developing unbreakable security protocols using quantum key distribution and post-quantum cryptography</p>
+                        <div class="skill-level">
+                            <div class="skill-level-bar" style="width: 95%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-card">
+                        <h3>Neural Interface Design</h3>
+                        <p>Creating direct brain-computer interfaces for enhanced human-machine symbiosis</p>
+                        <div class="skill-level">
+                            <div class="skill-level-bar" style="width: 90%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-card">
+                        <h3>Augmented Reality</h3>
+                        <p>Building immersive AR experiences that blend digital and physical realities</p>
+                        <div class="skill-level">
+                            <div class="skill-level-bar" style="width: 88%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-card">
+                        <h3>Cyber Security</h3>
+                        <p>Protecting systems from neural hacks and zero-day exploits</p>
+                        <div class="skill-level">
+                            <div class="skill-level-bar" style="width: 92%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-card">
+                        <h3>Data Visualization</h3>
+                        <p>Transforming complex datasets into interactive neural landscapes</p>
+                        <div class="skill-level">
+                            <div class="skill-level-bar" style="width: 85%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-card">
+                        <h3>AI Integration</h3>
+                        <p>Implementing adaptive neural networks into legacy systems</p>
+                        <div class="skill-level">
+                            <div class="skill-level-bar" style="width: 87%"></div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
             <!-- Projects Section -->
             <div id="projects" class="content-section">
-                <h1>PROJECTS</h1>
-                <div class="skills-list">
-                    <div class="skill-item">
-                        <h3>Neural Link API</h3>
-                        <p>Direct brain-computer interface framework</p>
+                <h1 class="glitch" data-text="RECENT_PROJECTS">RECENT_PROJECTS</h1>
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <h3>QUANTUM ENCRYPT PROTOCOL</h3>
+                        <p>A quantum-resistant encryption framework using lattice-based cryptography and neural key generation</p>
+                        <span class="tech">Quantum Computing</span>
+                        <span class="tech">Node.js</span>
+                        <span class="tech">WebAssembly</span>
                     </div>
-                    <div class="skill-item">
-                        <h3>Quantum Encrypt</h3>
-                        <p>Unhackable communication protocol</p>
+                    <div class="project-card">
+                        <h3>NEURAL LINK API</h3>
+                        <p>Direct brain-computer interface framework enabling thought-controlled applications and devices</p>
+                        <span class="tech">EEG</span>
+                        <span class="tech">Python</span>
+                        <span class="tech">TensorFlow</span>
+                    </div>
+                    <div class="project-card">
+                        <h3>CYBERSCAPE AR</h3>
+                        <p>Augmented reality operating system that overlays digital information onto the physical world</p>
+                        <span class="tech">ARKit</span>
+                        <span class="tech">LiDAR</span>
+                        <span class="tech">Unity</span>
                     </div>
                 </div>
             </div>
 
             <!-- Contact Section -->
             <div id="contact" class="content-section">
-                <h1>CONTACT_NODE</h1>
+                <h1 class="glitch" data-text="CONTACT_NODE">CONTACT_NODE</h1>
                 <form class="contact-form">
-                    <input type="text" placeholder="NAME" required>
-                    <input type="email" placeholder="EMAIL" required>
-                    <textarea placeholder="MESSAGE" rows="5" required></textarea>
-                    <button type="submit">SEND TRANSMISSION</button>
+                    <div class="input-group">
+                        <input type="text" id="name" placeholder=" " required>
+                        <label for="name" class="input-label">YOUR_NAME</label>
+                    </div>
+                    <div class="input-group">
+                        <input type="email" id="email" placeholder=" " required>
+                        <label for="email" class="input-label">NEURAL_LINK_ID</label>
+                    </div>
+                    <div class="input-group">
+                        <textarea id="message" placeholder=" " required></textarea>
+                        <label for="message" class="input-label">MESSAGE_ENCRYPTED</label>
+                    </div>
+                    <button type="submit" class="submit-btn">INITIATE_CONNECTION</button>
                 </form>
             </div>
         </div>
 
-        <!-- Profile Picture (Right) -->
-        <img src="https://via.placeholder.com/200" alt="Profile" class="profile-pic">
+        <!-- Profile Picture -->
+        <div class="profile-container">
+            <img src="https://i.postimg.cc/Rh4B24Dk/Mbi-dark.png" alt="Profile" class="profile-pic">
+        </div>
     </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // Section switching
+            // Custom Cursor
+            const cursor = document.querySelector('.cursor');
+            
+            document.addEventListener('mousemove', e => {
+                cursor.style.left = `${e.clientX}px`;
+                cursor.style.top = `${e.clientY}px`;
+            });
+
+            document.addEventListener('mousedown', () => {
+                cursor.classList.add('active');
+            });
+
+            document.addEventListener('mouseup', () => {
+                cursor.classList.remove('active');
+            });
+
+            // Click animation and particles
+            document.addEventListener('click', (e) => {
+                cursor.classList.add('click');
+                setTimeout(() => cursor.classList.remove('click'), 500);
+                
+                // Create particles
+                for (let i = 0; i < 8; i++) {
+                    createParticle(e.clientX, e.clientY);
+                }
+            });
+
+            function createParticle(x, y) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                document.body.appendChild(particle);
+                
+                const size = Math.random() * 15 + 5;
+                const color = `hsl(${Math.random() * 60 + 180}, 100%, 50%)`;
+                
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                particle.style.background = color;
+                particle.style.left = `${x}px`;
+                particle.style.top = `${y}px`;
+                
+                // Random direction
+                const angle = Math.random() * Math.PI * 2;
+                const distance = Math.random() * 50 + 50;
+                
+                const xEnd = x + Math.cos(angle) * distance;
+                const yEnd = y + Math.sin(angle) * distance;
+                
+                particle.style.setProperty('--x-end', `${xEnd}px`);
+                particle.style.setProperty('--y-end', `${yEnd}px`);
+                
+                // Remove after animation
+                setTimeout(() => {
+                    particle.remove();
+                }, 1000);
+            }
+
+            // Navigation System
             const navItems = document.querySelectorAll('.cyber-nav li');
             const sections = document.querySelectorAll('.content-section');
 
             navItems.forEach(item => {
-                item.addEventListener('click', () => {
+                item.addEventListener('click', function() {
                     // Remove active class from all
                     navItems.forEach(nav => nav.classList.remove('active'));
                     sections.forEach(sec => sec.classList.remove('active'));
                     
                     // Add active class to clicked
-                    item.classList.add('active');
-                    const sectionId = item.getAttribute('data-section');
+                    this.classList.add('active');
+                    const sectionId = this.getAttribute('data-section');
                     document.getElementById(sectionId).classList.add('active');
                 });
             });
+
+            // Animate skill bars when skills section becomes active
+            const skillsSection = document.getElementById('skills');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const skillBars = document.querySelectorAll('.skill-level-bar');
+                        skillBars.forEach(bar => {
+                            bar.style.width = bar.style.width; // Trigger animation
+                        });
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            observer.observe(skillsSection);
+
+            // Matrix Rain Effect
+            const initMatrixRain = () => {
+                const canvas = document.getElementById('matrixRain');
+                if (!canvas) return;
+
+                const ctx = canvas.getContext('2d');
+                const katakana = 'アァカサタナハマヤャラワガザダバパイィキシチニヒミリヰギジヂビピウゥクスツヌフムユュルグズブヅプエェケセテネヘメレヱゲゼデベペオォコソトノホモヨョロヲゴゾドボポヴッン';
+                const latin = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+                const nums = '0123456789';
+                const alphabet = katakana + latin + nums;
+                const fontSize = 16;
+                let columns, rainDrops;
+
+                const resizeCanvas = () => {
+                    canvas.width = window.innerWidth;
+                    canvas.height = window.innerHeight;
+                    columns = Math.floor(canvas.width / fontSize);
+                    rainDrops = Array(columns).fill(1);
+                };
+
+                const drawMatrixRain = () => {
+                    ctx.fillStyle = 'rgba(5, 5, 8, 0.03)';
+                    ctx.fillRect(0, 0, canvas.width, canvas.height);
+                    
+                    ctx.fillStyle = '#0f0';
+                    ctx.font = `${fontSize}px monospace`;
+
+                    for (let i = 0; i < rainDrops.length; i++) {
+                        const text = alphabet.charAt(Math.floor(Math.random() * alphabet.length));
+                        ctx.fillText(text, i * fontSize, rainDrops[i] * fontSize);
+                        
+                        if (rainDrops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                            rainDrops[i] = 0;
+                        }
+                        rainDrops[i]++;
+                    }
+                };
+
+                window.addEventListener('resize', () => {
+                    columns = resizeCanvas();
+                    rainDrops = Array(columns).fill(1);
+                });
+
+                // Initialize and start animation
+                resizeCanvas();
+                
+                // Use requestAnimationFrame for smoother animation
+                let lastTime = 0;
+                const frameRate = 30; // frames per second
+                const interval = 1000 / frameRate;
+                
+                const animate = (timestamp) => {
+                    if (timestamp - lastTime > interval) {
+                        drawMatrixRain();
+                        lastTime = timestamp;
+                    }
+                    requestAnimationFrame(animate);
+                };
+                
+                animate();
+            };
+
+            // Initialize Matrix Rain
+            initMatrixRain();
+
+            // Terminal Typing Effect
+            const initTerminalTyping = () => {
+                document.querySelectorAll('.typing-text').forEach(el => {
+                    const text = el.textContent;
+                    el.textContent = '';
+                    
+                    let i = 0;
+                    const typing = setInterval(() => {
+                        if (i < text.length) {
+                            el.textContent += text.charAt(i++);
+                        } else {
+                            clearInterval(typing);
+                            el.innerHTML += '<span class="blinking-cursor">_</span>';
+                        }
+                    }, 100);
+                });
+            };
+
+            // Initialize typing effect
+            initTerminalTyping();
+
+            // Binary Rain Effect
+            const initBinaryRain = () => {
+                const container = document.createElement('div');
+                container.className = 'binary-rain';
+                document.body.appendChild(container);
+
+                const columnCount = Math.floor(window.innerWidth / 30);
+                
+                for (let i = 0; i < columnCount; i++) {
+                    const column = document.createElement('div');
+                    column.className = 'binary-column';
+                    
+                    // Random delay and duration
+                    const delay = Math.random() * 5;
+                    const duration = 10 + Math.random() * 20;
+                    
+                    column.style.animationDelay = `${delay}s`;
+                    column.style.animationDuration = `${duration}s`;
+                    
+                    // Create binary characters
+                    const charCount = Math.floor(window.innerHeight / 20);
+                    for (let j = 0; j < charCount; j++) {
+                        const char = document.createElement('div');
+                        char.textContent = Math.random() > 0.5 ? '1' : '0';
+                        char.style.opacity = Math.random() * 0.5 + 0.1;
+                        column.appendChild(char);
+                    }
+                    
+                    container.appendChild(column);
+                }
+            };
+
+            // Initialize binary rain
+            initBinaryRain();
         });
     </script>
 </body>

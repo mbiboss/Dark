@@ -1,1 +1,178 @@
-2
+/* styles.css */
+:root {
+    --neon-blue: #00f3ff;
+    --neon-pink: #ff00ff;
+    --bg-dark: #0a0a12;
+    --bg-light: #f0f0f5;
+    --glass-dark: rgba(10, 10, 18, 0.8);
+    --glass-light: rgba(240, 240, 245, 0.8);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    cursor: none;
+}
+
+body {
+    font-family: 'Rajdhani', sans-serif;
+    background: var(--bg-dark);
+    color: var(--neon-blue);
+    transition: all 0.3s ease;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+body.light-mode {
+    background: var(--bg-light);
+    color: #333;
+}
+
+/* Custom Cursor */
+.cursor {
+    position: fixed;
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--neon-pink);
+    border-radius: 50%;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    mix-blend-mode: difference;
+    transition: transform 0.3s, width 0.3s, height 0.3s;
+    z-index: 999;
+}
+
+.cursor.active {
+    transform: translate(-50%, -50%) scale(1.5);
+    background: var(--neon-pink);
+}
+
+/* Profile Picture */
+.profile-pic {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 2px solid var(--neon-blue);
+    box-shadow: 0 0 15px var(--neon-blue);
+    transition: transform 0.3s;
+}
+
+.profile-pic:hover {
+    transform: rotate(360deg) scale(1.1);
+}
+
+/* Cyber Navigation */
+.cyber-nav {
+    position: fixed;
+    top: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.cyber-nav ul {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+}
+
+.cyber-nav li {
+    color: var(--neon-blue);
+    padding: 10px 20px;
+    border: 1px solid var(--neon-blue);
+    clip-path: polygon(10% 0, 100% 0, 90% 100%, 0 100%);
+    transition: all 0.3s;
+}
+
+.cyber-nav li:hover {
+    background: var(--neon-blue);
+    color: var(--bg-dark);
+    box-shadow: 0 0 15px var(--neon-blue);
+}
+
+/* Glass Container */
+.glass-container {
+    position: relative;
+    width: 80%;
+    min-height: 70vh;
+    margin: 100px auto;
+    background: var(--glass-dark);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 2rem;
+    box-shadow: 0 0 30px rgba(0, 243, 255, 0.2);
+}
+
+.light-mode .glass-container {
+    background: var(--glass-light);
+}
+
+/* Cyber Text Effects */
+.cyber-text {
+    font-family: 'Orbitron', sans-serif;
+    text-transform: uppercase;
+    position: relative;
+    animation: glitch 1s infinite;
+}
+
+@keyframes glitch {
+    0% { text-shadow: 2px 2px var(--neon-pink); }
+    25% { transform: translate(-2px, 1px); }
+    50% { text-shadow: -2px -1px var(--neon-pink); }
+    75% { transform: translate(1px, -2px); }
+    100% { text-shadow: 2px -1px var(--neon-pink); }
+}
+
+/* Theme Toggle */
+.theme-toggle {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: var(--neon-blue);
+    color: var(--bg-dark);
+    border: none;
+    font-size: 1.5rem;
+    cursor: none;
+    transition: transform 0.3s;
+}
+
+.theme-toggle:hover {
+    transform: rotate(180deg) scale(1.1);
+}
+
+/* Interactive Elements */
+.cyber-button {
+    padding: 10px 30px;
+    background: transparent;
+    border: 2px solid var(--neon-blue);
+    color: var(--neon-blue);
+    clip-path: polygon(10% 0, 100% 0, 90% 100%, 0 100%);
+    transition: all 0.3s;
+}
+
+.cyber-button:hover {
+    background: var(--neon-blue);
+    color: var(--bg-dark);
+    box-shadow: 0 0 15px var(--neon-blue);
+}
+
+.content {
+    display: none;
+    animation: slideIn 0.5s forwards;
+}
+
+.content.active {
+    display: block;
+}
+
+@keyframes slideIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}

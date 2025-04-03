@@ -1664,15 +1664,21 @@
                 particlesToggle.querySelector('i').classList.toggle('fa-times');
             });
 
-            // Current time in status bar
-            const updateTime = () => {
-                const now = new Date();
-                const timeString = now.toUTCString().split(' ')[4];
-                document.getElementById('current-time').textContent = `${timeString} UTC +6`;
-            };
-            
-            setInterval(updateTime, 1000);
-            updateTime();
+// Current time in status bar with Bangladesh time (UTC+6)
+const updateTime = () => {
+    const now = new Date();
+    
+    // Get UTC time and add 6 hours for Bangladesh time
+    const bangladeshOffset = 6 * 60 * 60 * 1000; // 6 hours in milliseconds
+    const bangladeshTime = new Date(now.getTime() + bangladeshOffset);
+    
+    // Format as HH:MM:SS
+    const hours = String(bangladeshTime.getUTCHours()).padStart(2, '0');
+    const minutes = String(bangladeshTime.getUTCMinutes()).padStart(2, '0');
+    const seconds = String(bangladeshTime.getUTCSeconds()).padStart(2, '0');
+    
+    document.getElementById('current-time').textContent = `${hours}:${minutes}:${seconds} BST (UTC+6)`;
+};
 
             // Initialize effects
             initMatrixRain();

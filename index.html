@@ -1664,21 +1664,24 @@
                 particlesToggle.querySelector('i').classList.toggle('fa-times');
             });
 
-// Current time in status bar with Bangladesh time (UTC+6)
-const updateTime = () => {
-    const now = new Date();
+    const updateTime = () => {
+        const now = new Date();
+        const bangladeshTime = new Date(now.getTime() + (6 * 60 * 60 * 1000));
     
-    // Get UTC time and add 6 hours for Bangladesh time
-    const bangladeshOffset = 6 * 60 * 60 * 1000; // 6 hours in milliseconds
-    const bangladeshTime = new Date(now.getTime() + bangladeshOffset);
-    
-    // Format as HH:MM:SS
-    const hours = String(bangladeshTime.getUTCHours()).padStart(2, '0');
-    const minutes = String(bangladeshTime.getUTCMinutes()).padStart(2, '0');
-    const seconds = String(bangladeshTime.getUTCSeconds()).padStart(2, '0');
-    
-    document.getElementById('current-time').textContent = `${hours}:${minutes}:${seconds} BST (UTC+6)`;
-};
+        let hours = bangladeshTime.getUTCHours();
+        const ampm = hours >= 12 ? 'PM' : 'AM';
+        hours = hours % 12;
+        hours = hours || 12; // Convert 0 to 12
+        
+        const minutes = String(bangladeshTime.getUTCMinutes()).padStart(2, '0');
+        const seconds = String(bangladeshTime.getUTCSeconds()).padStart(2, '0');
+        
+        document.getElementById('current-time').textContent = 
+            `${hours}:${minutes}:${seconds} ${ampm} BST (UTC+6)`;
+        
+        setTimeout(updateTime, 1000);
+    };
+    updateTime();
 
             // Initialize effects
             initMatrixRain();

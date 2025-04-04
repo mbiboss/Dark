@@ -1,164 +1,142 @@
+// script.js - Additional Functionality
+// 8. Holographic Modal System
+const initHolographicModal = () => {
+    const modalTriggers = document.querySelectorAll('[data-modal]');
+    const modals = document.querySelectorAll('.holographic-modal');
+
+    modalTriggers.forEach(trigger => {
+        trigger.addEventListener('click', () => {
+            const modalId = trigger.dataset.modal;
+            const modal = document.getElementById(modalId);
+            modals.forEach(m => m.classList.remove('active'));
+            modal.classList.add('active');
+        });
+    });
+
+    document.addEventListener('click', (e) => {
+        if (e.target.classList.contains('holographic-modal')) {
+            modals.forEach(m => m.classList.remove('active'));
+        }
+    });
+};
+
+// 9. Voice Command Interface
+const initVoiceCommands = () => {
+    const voiceButton = document.querySelector('.voice-interface');
+    if (!voiceButton) return;
+
+    const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+    recognition.lang = 'en-US';
+    recognition.interimResults = false;
+
+    voiceButton.addEventListener('click', () => {
+        recognition.start();
+        voiceButton.style.animation = 'voiceActive 1s infinite';
+    });
+
+    recognition.onresult = (event) => {
+        const command = event.results[0][0].transcript.toLowerCase();
+        handleVoiceCommand(command);
+    };
+
+    recognition.onend = () => {
+        voiceButton.style.animation = 'voicePulse 2s infinite';
+    };
+};
+
+// 10. Dynamic Neural Connections
+const createNeuralConnections = () => {
+    const connectionPoints = document.querySelectorAll('.neural-node');
+    connectionPoints.forEach(point => {
+        const rect = point.getBoundingClientRect();
+        const connections = point.dataset.connections.split(',');
+        
+        connections.forEach(targetId => {
+            const target = document.getElementById(targetId);
+            if (target) {
+                const targetRect = target.getBoundingClientRect();
+                const connection = document.createElement('div');
+                connection.className = 'neural-connection';
+                
+                const length = Math.hypot(
+                    targetRect.left - rect.left,
+                    targetRect.top - rect.top
+                );
+                
+                connection.style.width = `${length}px`;
+                connection.style.transform = `rotate(${Math.atan2(
+                    targetRect.top - rect.top,
+                    targetRect.left - rect.left
+                )}rad)`;
+                
+                connection.style.left = `${rect.left + rect.width/2}px`;
+                connection.style.top = `${rect.top + rect.height/2}px`;
+                
+                document.body.appendChild(connection);
+            }
+        });
+    });
+};
+
+// 11. AI Chat Assistant
+const initAIAssistant = () => {
+    const aiButton = document.querySelector('.ai-assistant');
+    const aiChat = document.querySelector('.ai-chat');
+
+    aiButton.addEventListener('click', () => {
+        aiChat.style.display = aiChat.style.display === 'block' ? 'none' : 'block';
+    });
+
+    // Sample AI Responses
+    const aiResponses = [
+        "SYSTEM: Processing request...",
+        "NETWORK: Secure connection established",
+        "AI: How can I assist you today?",
+        "WARNING: Unauthorized access attempt detected",
+        "DATA: Retrieving encrypted information..."
+    ];
+
+    setInterval(() => {
+        if (aiChat.style.display === 'block') {
+            const message = document.createElement('div');
+            message.className = 'ai-message';
+            message.textContent = aiResponses[Math.floor(Math.random() * aiResponses.length)];
+            aiChat.appendChild(message);
+            aiChat.scrollTop = aiChat.scrollHeight;
+        }
+    }, 5000);
+};
+
+// Initialize All Components
 document.addEventListener('DOMContentLoaded', () => {
-    // Custom Cursor
-    const initCursor = () => {
-        const cursor = document.querySelector('.cursor');
-        if (!cursor) return;
-
-        document.addEventListener('mousemove', e => {
-            cursor.style.left = `${e.clientX}px`;
-            cursor.style.top = `${e.clientY}px`;
-        });
-
-        document.addEventListener('mousedown', () => {
-            cursor.classList.add('active');
-        });
-
-        document.addEventListener('mouseup', () => {
-            cursor.classList.remove('active');
-        });
-
-        // Interactive elements cursor effect
-        const interactiveElements = document.querySelectorAll('a, button, .cyber-nav li, .skill-item, .project-card');
-        interactiveElements.forEach(el => {
-            el.addEventListener('mouseenter', () => {
-                cursor.style.transform = 'translate(-50%, -50%) scale(1.5)';
-            });
-            el.addEventListener('mouseleave', () => {
-                cursor.style.transform = 'translate(-50%, -50%) scale(1)';
-            });
-        });
-    };
-
-    // Theme Toggle
-    const initThemeToggle = () => {
-        const themeToggle = document.querySelector('.theme-toggle');
-        if (!themeToggle) return;
-
-        themeToggle.addEventListener('click', () => {
-            document.body.classList.toggle('light-mode');
-        });
-    };
-
-    // Navigation System
-    const initNavigation = () => {
-        const navItems = document.querySelectorAll('.cyber-nav li[data-section]');
-        const contents = document.querySelectorAll('.content-section');
-
-        navItems.forEach(item => {
-            item.addEventListener('click', function() {
-                // Remove active class from all
-                navItems.forEach(nav => nav.classList.remove('active'));
-                contents.forEach(sec => sec.classList.remove('active'));
-                
-                // Add active class to clicked
-                item.classList.add('active');
-                const sectionId = item.getAttribute('data-section');
-                document.getElementById(sectionId).classList.add('active');
-            });
-        });
-    };
-
-    // Button Effects
-    const initButtonEffects = () => {
-        document.querySelectorAll('.cyber-button').forEach(button => {
-            button.addEventListener('mousemove', function(e) {
-                const rect = this.getBoundingClientRect();
-                this.style.setProperty('--x', `${e.clientX - rect.left}px`);
-                this.style.setProperty('--y', `${e.clientY - rect.top}px`);
-            });
-        });
-    };
-
-    // Terminal Typing Effect
-    const initTerminalTyping = () => {
-        document.querySelectorAll('.cyber-text').forEach(el => {
-            const text = el.textContent;
-            el.textContent = '';
-            
-            let i = 0;
-            const typing = setInterval(() => {
-                if (i < text.length) {
-                    el.textContent += text.charAt(i++);
-                } else {
-                    clearInterval(typing);
-                    el.innerHTML += '<span class="blinking-cursor">_</span>';
-                }
-            }, 100);
-        });
-    };
-
-    // Matrix Rain Effect (Enhanced Version)
-    const initMatrixRain = () => {
-        const canvas = document.getElementById('matrixRain');
-        if (!canvas) return;
-
-        const ctx = canvas.getContext('2d');
-        const katakana = 'アァカサタナハマヤャラワガザダバパイィキシチニヒミリヰギジヂビピウゥクスツヌフムユュルグズブヅプエェケセテネヘメレヱゲゼデベペオォコソトノホモヨョロヲゴゾドボポヴッン';
-        const latin = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-        const nums = '0123456789';
-        const alphabet = katakana + latin + nums;
-        const fontSize = 16;
-        let columns, rainDrops;
-
-        const resizeCanvas = () => {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-            columns = Math.floor(canvas.width / fontSize);
-            rainDrops = Array(columns).fill(1);
-        };
-
-        const drawMatrixRain = () => {
-            // More transparent background for better visibility of other elements
-            ctx.fillStyle = 'rgba(5, 5, 8, 0.03)';
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-            
-            // Classic matrix green with slight variation
-            ctx.fillStyle = '#0f0';
-            ctx.font = `${fontSize}px monospace`;
-
-            for (let i = 0; i < rainDrops.length; i++) {
-                // Random character from the combined set
-                const text = alphabet.charAt(Math.floor(Math.random() * alphabet.length));
-                ctx.fillText(text, i * fontSize, rainDrops[i] * fontSize);
-                
-                // Reset drop to top when it reaches bottom with random chance
-                if (rainDrops[i] * fontSize > canvas.height && Math.random() > 0.975) {
-                    rainDrops[i] = 0;
-                }
-                rainDrops[i]++;
-            }
-        };
-
-        // Handle window resize
-        window.addEventListener('resize', () => {
-            columns = resizeCanvas();
-            rainDrops = Array(columns).fill(1);
-        });
-
-        // Initialize and start animation
-        resizeCanvas();
-        
-        // Use requestAnimationFrame for smoother animation
-        let lastTime = 0;
-        const frameRate = 30; // frames per second
-        const interval = 1000 / frameRate;
-        
-        const animate = (timestamp) => {
-            if (timestamp - lastTime > interval) {
-                drawMatrixRain();
-                lastTime = timestamp;
-            }
-            requestAnimationFrame(animate);
-        };
-        
-        animate();
-    };
-
-    // Initialize all components
+    // Existing initializations
     initCursor();
     initThemeToggle();
     initNavigation();
     initButtonEffects();
     initTerminalTyping();
     initMatrixRain();
+    
+    // New initializations
+    initHolographicModal();
+    initVoiceCommands();
+    createNeuralConnections();
+    initAIAssistant();
 });
+
+// Voice Command Handler
+function handleVoiceCommand(command) {
+    const actions = {
+        'open projects': () => document.getElementById('projects').click(),
+        'toggle theme': () => document.querySelector('.theme-toggle').click(),
+        'enable security': () => console.log('Security protocols activated'),
+        'contact mode': () => document.getElementById('contact').click(),
+        'download cv': () => document.querySelector('.download-cv').click()
+    };
+
+    if (actions[command]) {
+        actions[command]();
+    } else {
+        console.log(`Command not recognized: ${command}`);
+    }
+}

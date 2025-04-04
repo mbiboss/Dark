@@ -1,139 +1,123 @@
+/* styles.css - Additional Enhancements */
 /* ===== CYBERPUNK UI ENHANCEMENTS ===== */
 
-/* 1. Pulsing Neon Border Effect */
-.glass-container {
-    position: relative;
-    overflow: hidden;
-  }
-  
-  .glass-container::after {
-    content: "";
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: linear-gradient(
-      to bottom right,
-      transparent 45%,
-      var(--neon-blue) 50%,
-      transparent 55%
-    );
-    animation: pulseBorder 8s linear infinite;
-    opacity: 0.3;
-    z-index: -1;
-  }
-  
-  @keyframes pulseBorder {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-  }
-  
-  /* 2. Data Matrix Rain Effect */
-  .matrix-rain {
+/* 8. Holographic Modal System */
+.holographic-modal {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -2;
-    opacity: 0.15;
-    pointer-events: none;
-  }
-  
-  /* 3. Enhanced Button Effects */
-  .cyber-button {
-    position: relative;
-    overflow: hidden;
-  }
-  
-  .cyber-button::before {
-    content: "";
-    position: absolute;
-    top: -100%;
-    left: -100%;
-    width: 300%;
-    height: 300%;
-    background: linear-gradient(
-      to bottom right,
-      transparent 45%,
-      var(--neon-pink) 50%,
-      transparent 55%
-    );
-    transform: rotate(45deg);
-    transition: all 0.5s;
-    opacity: 0;
-  }
-  
-  .cyber-button:hover::before {
-    opacity: 0.3;
-    animation: buttonShine 1.5s;
-  }
-  
-  @keyframes buttonShine {
-    0% { left: -100%; top: -100%; }
-    100% { left: 100%; top: 100%; }
-  }
-  
-  /* 4. Cyberpunk Notification Badges */
-  .notification-badge {
-    position: absolute;
-    top: -10px;
-    right: -10px;
-    width: 25px;
-    height: 25px;
-    background: var(--neon-pink);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--glass-dark);
+    border: 2px solid var(--neon-blue);
+    border-radius: 15px;
+    padding: 2rem;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 50px rgba(0, 243, 255, 0.3);
+    z-index: 9999;
+    display: none;
+}
+
+.holographic-modal.active {
+    display: block;
+    animation: hologramAppear 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes hologramAppear {
+    from { opacity: 0; transform: translate(-50%, -60%); }
+    to { opacity: 1; transform: translate(-50%, -50%); }
+}
+
+/* 9. Voice Command Interface */
+.voice-interface {
+    position: fixed;
+    bottom: 100px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
     border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 12px;
-    color: var(--bg-dark);
-    animation: pulse 2s infinite;
-  }
-  
-  @keyframes pulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.2); }
-    100% { transform: scale(1); }
-  }
-  
-  /* 5. Holographic Text Effect */
-  .holographic-text {
-    text-shadow: 
-      0 0 5px var(--neon-blue),
-      0 0 10px var(--neon-blue),
-      0 0 20px var(--neon-pink),
-      0 0 40px var(--neon-pink);
-    animation: hologramPulse 3s infinite alternate;
-  }
-  
-  @keyframes hologramPulse {
-    from { opacity: 0.8; }
-    to { opacity: 1; }
-  }
-  
-  /* 6. Circuit Board Connection Lines */
-  .connection-line {
+    background: var(--neon-pink);
+    cursor: pointer;
+    animation: voicePulse 2s infinite;
+}
+
+@keyframes voicePulse {
+    0% { box-shadow: 0 0 0 0 rgba(255, 0, 255, 0.5); }
+    100% { box-shadow: 0 0 0 20px rgba(255, 0, 255, 0); }
+}
+
+/* 10. Neural Network Connection Visualization */
+.neural-connection {
     position: absolute;
-    background: linear-gradient(to right, var(--neon-blue), transparent);
+    background: linear-gradient(to right, var(--neon-blue), var(--neon-pink));
     height: 2px;
     transform-origin: left center;
-    animation: circuitPulse 3s infinite;
-  }
-  
-  @keyframes circuitPulse {
-    0%, 100% { opacity: 0.3; }
-    50% { opacity: 0.8; }
-  }
-  
-  /* 7. Blinking Cursor Effect */
-  .blinking-cursor {
-    animation: blink 1s infinite;
-    opacity: 1;
-  }
-  
-  @keyframes blink {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0; }
-  }
+    animation: neuralFlow 3s infinite linear;
+}
+
+@keyframes neuralFlow {
+    0% { opacity: 0; transform: scaleX(0); }
+    50% { opacity: 1; transform: scaleX(1); }
+    100% { opacity: 0; transform: scaleX(0); }
+}
+
+/* 11. Cyberpunk Progress Rings */
+.progress-ring {
+    position: relative;
+    width: 120px;
+    height: 120px;
+}
+
+.progress-ring circle {
+    fill: none;
+    stroke-width: 8;
+    stroke-linecap: round;
+    transform: rotate(-90deg);
+    transform-origin: 50% 50%;
+}
+
+.progress-ring-back {
+    stroke: var(--bg-dark);
+}
+
+.progress-ring-front {
+    stroke: var(--neon-blue);
+    animation: progressPulse 2s infinite;
+}
+
+@keyframes progressPulse {
+    0%, 100% { stroke-width: 8; }
+    50% { stroke-width: 12; }
+}
+
+/* 12. AI Assistant Chat Bot */
+.ai-assistant {
+    position: fixed;
+    bottom: 30px;
+    left: 30px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: var(--neon-green);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.ai-chat {
+    position: fixed;
+    bottom: 100px;
+    left: 30px;
+    width: 300px;
+    background: var(--glass-dark);
+    border: 2px solid var(--neon-green);
+    border-radius: 15px;
+    padding: 1rem;
+    display: none;
+}
+
+.ai-message {
+    background: rgba(0, 243, 255, 0.1);
+    padding: 0.8rem;
+    margin: 0.5rem 0;
+    border-radius: 10px;
+    animation: messageAppear 0.3s ease;
+}

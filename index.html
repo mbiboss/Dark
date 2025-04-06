@@ -58,75 +58,72 @@
         /* Enhanced Custom Cursor */
         .cursor {
             position: fixed;
-            width: 24px;
-            height: 24px;
+            width: 32px;
+            height: 32px;
             pointer-events: none;
             transform: translate(-50%, -50%);
             z-index: 9999;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="%2300f3ff"><path d="M16 2C8.2 2 2 8.2 2 16s6.2 14 14 14 14-6.2 14-14S23.8 2 16 2zm0 26C9.4 28 4 22.6 4 16S9.4 4 16 4s12 5.4 12 12-5.4 12-12 12z"/><circle cx="16" cy="16" r="4"/></svg>');
+            background-size: contain;
+            background-repeat: no-repeat;
+            transition: transform 0.1s ease-out, width 0.2s ease, height 0.2s ease;
             mix-blend-mode: difference;
-            transition: transform 0.15s ease-out, width 0.2s ease, height 0.2s ease;
-        }
-
-        .cursor::before,
-        .cursor::after {
-            content: "";
-            position: absolute;
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-        }
-
-        .cursor::before {
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle, var(--neon-blue) 0%, transparent 70%);
-            box-shadow: 0 0 15px var(--neon-blue), 0 0 30px var(--neon-blue);
-            opacity: 0.7;
-        }
-
-        .cursor::after {
-            width: 6px;
-            height: 6px;
-            background: var(--neon-blue);
-            box-shadow: 0 0 10px var(--neon-blue);
-            opacity: 0.9;
         }
 
         .cursor.active {
-            transform: translate(-50%, -50%) scale(0.7);
+            transform: translate(-50%, -50%) scale(0.8);
         }
 
         .cursor.hover-active {
-            width: 40px;
-            height: 40px;
-            filter: hue-rotate(45deg);
+            transform: translate(-50%, -50%) scale(1.5);
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="%23ff00ff"><path d="M16 2C8.2 2 2 8.2 2 16s6.2 14 14 14 14-6.2 14-14S23.8 2 16 2zm0 26C9.4 28 4 22.6 4 16S9.4 4 16 4s12 5.4 12 12-5.4 12-12 12z"/><circle cx="16" cy="16" r="6"/></svg>');
+            filter: drop-shadow(0 0 10px var(--neon-pink));
         }
 
-        .cursor.hover-active::after {
-            width: 10px;
-            height: 10px;
-        }
-        
-        /* Enhanced Particle Effect */
-        .particle {
-            position: fixed;
-            pointer-events: none;
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: var(--neon-blue);
-            box-shadow: 0 0 20px var(--neon-blue);
-            transform: translate(-50%, -50%) scale(1);
-            animation: particleExplode 1.2s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
-            z-index: 9998;
-            mix-blend-mode: screen;
+        /* Profile Picture with Hover Rotation */
+        .profile-container {
+            position: sticky;
+            top: calc(var(--nav-height) + 60px);
+            width: 350px;
+            flex-shrink: 0;
+            perspective: 1000px;
+            z-index: 10;
         }
 
-        @keyframes particleExplode {
-            0% { transform: translate(-50%, -50%) scale(0); opacity: 1; }
-            50% { transform: translate(-50%, -50%) scale(1.5); opacity: 0.8; }
-            100% { transform: translate(-50%, -50%) scale(2.5); opacity: 0; }
+        .profile-pic {
+            width: 100%;
+            height: 350px;
+            border-radius: 25px;
+            border: 2px solid var(--neon-blue);
+            box-shadow: 0 0 40px var(--neon-blue), inset 0 0 30px var(--neon-blue);
+            object-fit: cover;
+            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-style: preserve-3d;
+            position: relative;
         }
 
+        .profile-pic::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://i.postimg.cc/Rh4B24Dk/Mbi-dark.png');
+            background-size: cover;
+            background-position: center;
+            border-radius: 25px;
+            border: 2px solid var(--neon-pink);
+            box-shadow: 0 0 40px var(--neon-pink), inset 0 0 30px var(--neon-pink);
+            transform: rotateY(180deg);
+            backface-visibility: hidden;
+        }
+
+        .profile-container:hover .profile-pic {
+            transform: rotateY(180deg);
+        }
+
+        /* Rest of your existing styles... */
         /* Animated Background */
         body::before {
             content: "";
@@ -135,18 +132,16 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: 
-                linear-gradient(rgba(0, 243, 255, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0, 243, 255, 0.03) 1px, transparent 1px);
+            background: linear-gradient(rgba(0, 243, 255, 0.03) 1px, transparent 1px),
+                        linear-gradient(90deg, rgba(0, 243, 255, 0.03) 1px, transparent 1px);
             background-size: 60px 60px;
             z-index: -3;
             animation: gridScroll 60s linear infinite;
         }
 
         .light-mode body::before {
-            background: 
-                linear-gradient(rgba(0, 102, 204, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0, 102, 204, 0.03) 1px, transparent 1px);
+            background: linear-gradient(rgba(0, 102, 204, 0.03) 1px, transparent 1px),
+                        linear-gradient(90deg, rgba(0, 102, 204, 0.03) 1px, transparent 1px);
         }
 
         @keyframes gridScroll {
@@ -403,9 +398,7 @@
             border-radius: 25px;
             border: 1px solid var(--glass-border);
             padding: 60px;
-            box-shadow: 
-                0 0 40px rgba(0, 243, 255, 0.3),
-                inset 0 0 30px rgba(0, 243, 255, 0.15);
+            box-shadow: 0 0 40px rgba(0, 243, 255, 0.3), inset 0 0 30px rgba(0, 243, 255, 0.15);
             min-height: 700px;
             position: relative;
             overflow: hidden;
@@ -413,9 +406,7 @@
         }
 
         .light-mode .glass-box {
-            box-shadow: 
-                0 0 40px rgba(0, 102, 204, 0.2),
-                inset 0 0 30px rgba(0, 102, 204, 0.1);
+            box-shadow: 0 0 40px rgba(0, 102, 204, 0.2), inset 0 0 30px rgba(0, 102, 204, 0.1);
         }
 
         .glass-box::before {
@@ -425,12 +416,7 @@
             left: -50%;
             width: 200%;
             height: 200%;
-            background: linear-gradient(
-                to bottom right,
-                transparent 45%,
-                var(--neon-blue) 50%,
-                transparent 55%
-            );
+            background: linear-gradient(to bottom right, transparent 45%, var(--neon-blue) 50%, transparent 55%);
             animation: pulseBorder 15s linear infinite;
             opacity: 0.1;
             z-index: -1;
@@ -443,51 +429,13 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(
-                135deg,
-                rgba(0, 243, 255, 0.03) 0%,
-                rgba(157, 0, 255, 0.03) 50%,
-                rgba(0, 243, 255, 0.03) 100%
-            );
+            background: linear-gradient(135deg, rgba(0, 243, 255, 0.03) 0%, rgba(157, 0, 255, 0.03) 50%, rgba(0, 243, 255, 0.03) 100%);
             z-index: -1;
         }
 
         @keyframes pulseBorder {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
-        }
-
-        /* Profile Picture */
-        .profile-container {
-            position: sticky;
-            top: calc(var(--nav-height) + 60px);
-            width: 350px;
-            flex-shrink: 0;
-            perspective: 1000px;
-            z-index: 10;
-        }
-
-        .profile-pic {
-            width: 100%;
-            height: 350px;
-            border-radius: 25px;
-            border: 2px solid var(--neon-blue);
-            box-shadow: 
-                0 0 40px var(--neon-blue),
-                inset 0 0 30px var(--neon-blue);
-            object-fit: cover;
-            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-            transform-style: preserve-3d;
-            filter: grayscale(20%) contrast(110%);
-            position: relative;
-        }
-
-        .profile-pic:hover {
-            transform: scale(1.05) rotateY(180deg);
-            box-shadow: 
-                0 0 60px var(--neon-blue),
-                inset 0 0 40px var(--neon-blue);
-            filter: grayscale(0%) contrast(120%);
         }
 
         /* Content Sections */
@@ -517,9 +465,7 @@
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-            text-shadow: 
-                0 0 15px rgba(0, 243, 255, 0.3),
-                0 0 30px rgba(0, 243, 255, 0.1);
+            text-shadow: 0 0 15px rgba(0, 243, 255, 0.3), 0 0 30px rgba(0, 243, 255, 0.1);
         }
 
         h1::after {
@@ -618,11 +564,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(
-                135deg,
-                rgba(0, 243, 255, 0.05) 0%,
-                transparent 100%
-            );
+            background: linear-gradient(135deg, rgba(0, 243, 255, 0.05) 0%, transparent 100%);
             z-index: -1;
         }
 
@@ -655,11 +597,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(
-                90deg,
-                rgba(255, 255, 255, 0.8) 0%,
-                rgba(255, 255, 255, 0) 100%
-            );
+            background: linear-gradient(90deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0) 100%);
             animation: skillBarShine 2s infinite;
         }
 
@@ -697,11 +635,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(
-                135deg,
-                rgba(0, 243, 255, 0.05) 0%,
-                transparent 100%
-            );
+            background: linear-gradient(135deg, rgba(0, 243, 255, 0.05) 0%, transparent 100%);
             z-index: -1;
         }
 
@@ -921,13 +855,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: repeating-linear-gradient(
-                to bottom,
-                transparent 0%,
-                transparent 98%,
-                rgba(0, 243, 255, 0.03) 99%,
-                transparent 100%
-            );
+            background: repeating-linear-gradient(to bottom, transparent 0%, transparent 98%, rgba(0, 243, 255, 0.03) 99%, transparent 100%);
             background-size: 100% 6px;
             animation: scanline 4s linear infinite;
             pointer-events: none;
@@ -1193,7 +1121,7 @@
     </style>
 </head>
 <body>
-    <!-- Enhanced Custom Cursor -->
+    <!-- Custom Cursor -->
     <div class="cursor"></div>
 
     <!-- Matrix Rain Canvas -->
@@ -1424,7 +1352,7 @@
         document.addEventListener('DOMContentLoaded', () => {
             // Enhanced Custom Cursor
             const cursor = document.querySelector('.cursor');
-            const hoverElements = document.querySelectorAll('a, button, .nav-links li, .skill-card, .project-card, .profile-pic, .particles-toggle');
+            const hoverElements = document.querySelectorAll('a, button, .nav-links li, .skill-card, .project-card, .profile-container, .particles-toggle');
             
             document.addEventListener('mousemove', e => {
                 cursor.style.left = `${e.clientX}px`;
@@ -1448,30 +1376,13 @@
                 });
             });
 
-            // Enhanced Single Particle Effect
-            document.addEventListener('click', (e) => {
-                const particle = document.createElement('div');
-                particle.classList.add('particle');
-                particle.style.left = `${e.clientX}px`;
-                particle.style.top = `${e.clientY}px`;
-                
-                // Random color variation
-                const colors = [
-                    'var(--neon-blue)',
-                    'var(--neon-pink)',
-                    'var(--neon-green)',
-                    'var(--neon-purple)'
-                ];
-                const randomColor = colors[Math.floor(Math.random() * colors.length)];
-                particle.style.background = randomColor;
-                particle.style.boxShadow = `0 0 30px ${randomColor}`;
-                
-                document.body.appendChild(particle);
-                
-                // Remove after animation
-                setTimeout(() => {
-                    particle.remove();
-                }, 1200);
+            // Profile Picture Hover Effect
+            const profilePic = document.querySelector('.profile-pic');
+            profilePic.addEventListener('mouseenter', () => {
+                cursor.style.transform = 'translate(-50%, -50%) scale(1.5)';
+            });
+            profilePic.addEventListener('mouseleave', () => {
+                cursor.style.transform = 'translate(-50%, -50%) scale(1)';
             });
 
             // Theme Toggle

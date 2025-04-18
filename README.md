@@ -1,67 +1,94 @@
-<h1 align="center">Hi 👋, I'm MBI Boss</h1>
-<h3 align="center">A passionate frontend developer from Bangladesh.</h3>
+<h1 align="center">
+  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=28&duration=3000&pause=500&color=00FF00&center=true&vCenter=true&width=500&lines=Hey+there+👋;I'm+MBI+Boss;Frontend+Sorcerer;Engineering+Student;Pixel+Perfectionist" alt="Typing Animation" />
+</h1>
 
-<p align="left"> <img src="https://komarev.com/ghpvc/?username=mbiboss&label=Profile%20views&color=0e75b6&style=flat" alt="mbiboss" /> </p>
+<h3 align="center">🔮 Turning Coffee into Code from Bangladesh 🇧🇩</h3>
 
-<p align="left"> <a href="https://github.com/ryo-ma/github-profile-trophy"><img src="https://github-profile-trophy.vercel.app/?username=mbiboss" alt="mbiboss" /></a> </p>
+---
 
-<p align="left"> <a href="https://twitter.com/mbi_boss" target="blank"><img src="https://img.shields.io/twitter/follow/mbi_boss?logo=twitter&style=for-the-badge" alt="mbi_boss" /></a> </p>
+### 🎯 **About Me in 10 Seconds**
+- 💻 **Frontend Developer** | **UI/UX Enthusiast**  
+- 🎓 **Engineering Student** by day, **Code Wizard** by night  
+- 🐸 **Fun Fact:** I debug code while pretending frogs are my rubber ducks  
+- 🚀 **Mission:** Build tools that make people say *"Wow, how’d you do that?"*  
 
-- 🔭 I’m currently working on **Nothing**
+---
 
-- 🌱 I’m currently learning **Engineering**
+### 🛠️ **My Toolkit**
+#### **Frontend Alchemy**
+![React](https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=black)
+![Next.js](https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=next.js&logoColor=white)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-06B6D4?style=for-the-badge&logo=tailwind-css&logoColor=white)
 
-- 👯 I’m looking to collaborate on **Nothing**
+#### **Backend Magic**
+![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=node.js&logoColor=white)
+![Express](https://img.shields.io/badge/Express-000000?style=for-the-badge&logo=express&logoColor=white)
 
-- 🤝 I’m looking for help with **Nothing**
+#### **Languages I Speak**
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
+![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
 
-- 👨‍💻 All of my projects are available at [GitHub](GitHub)
+#### **DevOps & Tools**
+![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white)
+![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
+![Figma](https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white)
 
-- 📝 I regularly write articles on [Nowhere](Nowhere)
+---
 
-- 💬 Ask me about **Nothing**
-
-- 📫 How to reach me **ooismailforajioo@gmail.com**
-
-- 📄 Know about my experiences [https://mbiboss.github.io/Dark/](https://mbiboss.github.io/Dark/)
-
-- ⚡ Fun fact **🐸**
-
-### Blogs posts
-<!-- BLOG-POST-LIST:START -->
-<!-- BLOG-POST-LIST:END -->
-
-<h3 align="left">Connect with me:</h3>
-<p align="left">
-<a href="https://codepen.io/mbi_boss" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/codepen.svg" alt="mbi_boss" height="30" width="40" /></a>
-<a href="https://dev.to/mbiboss" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/devto.svg" alt="mbiboss" height="30" width="40" /></a>
-<a href="https://twitter.com/mbi_boss" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/twitter.svg" alt="mbi_boss" height="30" width="40" /></a>
-<a href="https://linkedin.com/in/mbi_boss" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/linked-in-alt.svg" alt="mbi_boss" height="30" width="40" /></a>
-<a href="https://stackoverflow.com/users/mbi_boss" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/stack-overflow.svg" alt="mbi_boss" height="30" width="40" /></a>
-<a href="https://codesandbox.com/mbi_boss" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/codesandbox.svg" alt="mbi_boss" height="30" width="40" /></a>
-<a href="https://kaggle.com/mbi_boss" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/kaggle.svg" alt="mbi_boss" height="30" width="40" /></a>
-<a href="https://fb.com/mbi_boss" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/facebook.svg" alt="mbi_boss" height="30" width="40" /></a>
-<a href="https://instagram.com/mbi_boss.1" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/instagram.svg" alt="mbi_boss.1" height="30" width="40" /></a>
-<a href="https://dribbble.com/mbi_boss" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/dribbble.svg" alt="mbi_boss" height="30" width="40" /></a>
-<a href="https://www.behance.net/mbi_boss" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/behance.svg" alt="mbi_boss" height="30" width="40" /></a>
-<a href="https://hashnode.com/@mbi_boss" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/hashnode.svg" alt="@mbi_boss" height="30" width="40" /></a>
-<a href="https://medium.com/@mbi_boss" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/medium.svg" alt="@mbi_boss" height="30" width="40" /></a>
-<a href="https://www.youtube.com/c/@mbi_boss" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/youtube.svg" alt="@mbi_boss" height="30" width="40" /></a>
-<a href="https://www.codechef.com/users/mbi_boss" target="blank"><img align="center" src="https://cdn.jsdelivr.net/npm/simple-icons@3.1.0/icons/codechef.svg" alt="mbi_boss" height="30" width="40" /></a>
-<a href="https://www.hackerrank.com/mbi_boss" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/hackerrank.svg" alt="mbi_boss" height="30" width="40" /></a>
-<a href="https://codeforces.com/profile/mbi_boss" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/codeforces.svg" alt="mbi_boss" height="30" width="40" /></a>
-<a href="https://www.leetcode.com/mbi_boss" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/leet-code.svg" alt="mbi_boss" height="30" width="40" /></a>
-<a href="https://www.hackerearth.com/@mbi_boss" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/hackerearth.svg" alt="@mbi_boss" height="30" width="40" /></a>
-<a href="https://auth.geeksforgeeks.org/user/mbi_boss" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/geeks-for-geeks.svg" alt="mbi_boss" height="30" width="40" /></a>
-<a href="https://www.topcoder.com/members/mbi_boss" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/topcoder.svg" alt="mbi_boss" height="30" width="40" /></a>
-<a href="/mbi_boss" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/rss.svg" alt="mbi_boss" height="30" width="40" /></a>
+### 📊 **GitHub Analytics**
+<p align="center">
+  <img src="https://github-readme-stats.vercel.app/api?username=mbiboss&show_icons=true&theme=nightowl&hide_border=true" width="48%"/>
+  <img src="https://github-readme-streak-stats.herokuapp.com/?user=mbiboss&theme=nightowl&hide_border=true" width="48%"/>
 </p>
 
-<h3 align="left">Languages and Tools:</h3>
-<p align="left"> <a href="https://www.cprogramming.com/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/c/c-original.svg" alt="c" width="40" height="40"/> </a> <a href="https://www.w3schools.com/css/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original-wordmark.svg" alt="css3" width="40" height="40"/> </a> <a href="https://www.w3.org/html/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original-wordmark.svg" alt="html5" width="40" height="40"/> </a> <a href="https://www.java.com" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/java/java-original.svg" alt="java" width="40" height="40"/> </a> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg" alt="javascript" width="40" height="40"/> </a> <a href="https://www.python.org" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg" alt="python" width="40" height="40"/> </a> </p>
+<p align="center">
+  <img src="https://github-readme-activity-graph.vercel.app/graph?username=mbiboss&theme=react-dark&hide_border=true&area=true" width="90%"/>
+</p>
 
-<p><img align="left" src="https://github-readme-stats.vercel.app/api/top-langs?username=mbiboss&show_icons=true&locale=en&layout=compact" alt="mbiboss" /></p>
+---
 
-<p>&nbsp;<img align="center" src="https://github-readme-stats.vercel.app/api?username=mbiboss&show_icons=true&locale=en" alt="mbiboss" /></p>
+### 🏆 **Featured Projects**
+| Project | Description | Tech Stack | Live Demo |
+|---------|-------------|------------|-----------|
+| **[Darkfolio](https://mbiboss.github.io/Dark/)** | A moody developer portfolio | HTML, CSS, JS | [🌐 Visit](https://mbiboss.github.io/Dark/) |
+| **CodeFrogs** *(WIP)* | A coding challenge platform with frog-themed UI | React, Firebase | 🚧 Coming Soon |
 
-<p><img align="center" src="https://github-readme-streak-stats.herokuapp.com/?user=mbiboss&" alt="mbiboss" /></p>
+---
+
+### ✍️ **Latest Blog Posts**
+<!-- BLOG-POST-LIST:START -->
+- [Why Frogs Make Great Debugging Partners](https://example.com) *(April 2024)*  
+- [The Art of Writing Readable CSS](https://example.com) *(March 2024)*  
+<!-- BLOG-POST-LIST:END -->
+
+---
+
+### 🤝 **Let’s Collaborate!**
+I’m open to:  
+- **Open-source contributions**  
+- **Freelance projects**  
+- **Tech discussions over virtual coffee**  
+
+📫 **Reach me at:**  
+[![Email](https://img.shields.io/badge/Email-ooismailforajioo@gmail.com-D14836?style=flat&logo=gmail&logoColor=white)](mailto:ooismailforajioo@gmail.com)  
+[![Twitter](https://img.shields.io/badge/Twitter-@mbi_boss-1DA1F2?style=flat&logo=twitter&logoColor=white)](https://twitter.com/mbi_boss)  
+
+---
+
+### 🔮 **Quote of the Day**
+> *"First, solve the problem. Then, write the code."*  
+> **— John Johnson** *(but probably me debugging at 3AM)*  
+
+---
+
+<p align="center">
+  <img src="https://komarev.com/ghpvc/?username=mbiboss&label=Profile+Views&color=blueviolet&style=flat" alt="Profile views" />  
+  <img src="https://wakatime.com/badge/user/your-wakatime-id.svg" alt="Coding Time" />
+</p>
+
+<p align="center"> 
+  <a href="https://www.buymeacoffee.com/mbiboss" target="_blank">
+    <img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" height="40" />
+  </a>
+</p>

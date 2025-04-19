@@ -802,3 +802,73 @@ h3 {
         grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     }
 }
+
+@media (max-width: 768px) {
+    .cyber-nav {
+        padding: 0 30px;
+        height: 70px;
+    }
+
+    .nav-links {
+        gap: 1.5rem;
+    }
+
+    .nav-links li {
+        font-size: 0.8rem;
+    }
+
+    .content-container {
+        padding: 0 30px;
+    }
+
+    .glass-box {
+        padding: 40px;
+    }
+
+    h1 {
+        font-size: 2.2rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .cyber-nav {
+        padding: 0 20px;
+    }
+
+    .nav-links {
+        gap: 1rem;
+    }
+
+    .nav-logo {
+        font-size: 1.5rem;
+    }
+
+    .content-container {
+        padding: 0 20px;
+    }
+
+    .glass-box {
+        padding: 30px;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    .skills-grid,
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .profile-card {
+        width: 100%;
+        padding: 30px;
+    }
+
+    .status-bar {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+        padding: 10px 20px;
+    }
+}

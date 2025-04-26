@@ -3,304 +3,1051 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dark | Cyber Security Architect</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oxanium:wght@300;400;600;700;800&family=Rajdhani:wght@300;400;500;600;700&display=swap">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
+    <title>NeonDev | Cyberpunk Developer Portfolio</title>
+    <style>
+        :root {
+            --primary: #0f0;
+            --secondary: #ff00ff;
+            --dark-bg: #0a0a0a;
+            --darker-bg: #050505;
+            --light-text: #f0f0f0;
+            --dark-text: #111;
+            --accent: #00ffff;
+            --glow: 0 0 10px var(--primary), 0 0 20px var(--primary);
+            --section-bg: rgba(15, 15, 15, 0.8);
+        }
+
+        [data-theme="light"] {
+            --primary: #ff00aa;
+            --secondary: #6600ff;
+            --dark-bg: #f0f0f0;
+            --darker-bg: #e0e0e0;
+            --light-text: #111;
+            --dark-text: #f0f0f0;
+            --accent: #0066ff;
+            --section-bg: rgba(240, 240, 240, 0.9);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            cursor: none;
+        }
+
+        body {
+            font-family: 'Courier New', monospace;
+            background-color: var(--dark-bg);
+            color: var(--light-text);
+            overflow-x: hidden;
+            position: relative;
+            min-height: 100vh;
+        }
+
+        /* Matrix Rain Background */
+        #matrix {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.15;
+        }
+
+        /* Particle Background */
+        #particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            background-color: var(--primary);
+            border-radius: 50%;
+            opacity: 0.5;
+        }
+
+        /* Layout */
+        .container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Left Side - Content */
+        .content {
+            flex: 1;
+            padding: 2rem;
+            padding-left: 1rem;
+            transition: all 0.5s ease;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Right Side - Profile */
+        .profile {
+            width: 300px;
+            min-width: 300px;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            border-left: 1px solid var(--primary);
+            background-color: rgba(10, 10, 10, 0.7);
+        }
+
+        .profile-pic {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            border: 3px solid var(--primary);
+            box-shadow: var(--glow);
+            object-fit: cover;
+            margin-bottom: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .profile-pic:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px var(--primary), 0 0 40px var(--primary);
+        }
+
+        .name {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+            text-shadow: var(--glow);
+            text-align: center;
+        }
+
+        .title {
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent);
+            text-align: center;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .social-link {
+            color: var(--light-text);
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            color: var(--primary);
+            text-shadow: var(--glow);
+            transform: translateY(-3px);
+        }
+
+        .theme-toggle {
+            background: none;
+            border: 1px solid var(--primary);
+            color: var(--primary);
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: var(--glow);
+            margin-bottom: 2rem;
+        }
+
+        .theme-toggle:hover {
+            background-color: var(--primary);
+            color: var(--dark-bg);
+            box-shadow: 0 0 20px var(--primary);
+        }
+
+        /* Navigation */
+        .nav {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .nav-item {
+            color: var(--light-text);
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-left: 3px solid transparent;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+
+        .nav-item:hover, .nav-item.active {
+            color: var(--primary);
+            border-left: 3px solid var(--primary);
+            text-shadow: var(--glow);
+        }
+
+        /* Sections */
+        .section {
+            display: none;
+            animation: fadeIn 0.5s ease;
+            background-color: var(--section-bg);
+            padding: 2rem;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 255, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+            text-shadow: var(--glow);
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary), transparent);
+        }
+
+        /* About Section */
+        .about-text {
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .highlight {
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        /* Skills Section */
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .skill {
+            background-color: var(--darker-bg);
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            border: 1px solid var(--primary);
+            color: var(--primary);
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .skill:hover {
+            background-color: var(--primary);
+            color: var(--dark-bg);
+            box-shadow: var(--glow);
+            transform: translateY(-3px);
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .project-card {
+            background-color: var(--darker-bg);
+            border-radius: 5px;
+            overflow: hidden;
+            border: 1px solid var(--primary);
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--glow);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-bottom: 1px solid var(--primary);
+        }
+
+        .project-info {
+            padding: 1rem;
+        }
+
+        .project-title {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+
+        .project-description {
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            line-height: 1.5;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .project-link {
+            color: var(--light-text);
+            text-decoration: none;
+            font-size: 0.8rem;
+            padding: 0.3rem 0.8rem;
+            border: 1px solid var(--primary);
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+
+        .project-link:hover {
+            background-color: var(--primary);
+            color: var(--dark-bg);
+        }
+
+        /* Resume Section */
+        .resume-item {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px dashed var(--primary);
+        }
+
+        .resume-item:last-child {
+            border-bottom: none;
+        }
+
+        .resume-title {
+            font-size: 1.2rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .resume-subtitle {
+            font-size: 1rem;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+
+        .resume-date {
+            font-size: 0.8rem;
+            color: var(--light-text);
+            opacity: 0.8;
+            margin-bottom: 0.5rem;
+        }
+
+        .resume-description {
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .download-btn {
+            display: inline-block;
+            background-color: var(--primary);
+            color: var(--dark-bg);
+            padding: 0.7rem 1.5rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 1rem;
+            transition: all 0.3s ease;
+            border: none;
+            font-family: 'Courier New', monospace;
+        }
+
+        .download-btn:hover {
+            box-shadow: var(--glow);
+            transform: translateY(-3px);
+        }
+
+        /* Testimonials Section */
+        .testimonials-container {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .testimonial {
+            background-color: var(--darker-bg);
+            padding: 1.5rem;
+            border-radius: 5px;
+            border: 1px solid var(--primary);
+            margin-bottom: 1rem;
+            display: none;
+        }
+
+        .testimonial.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .testimonial-author {
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        .testimonial-nav {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .testimonial-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: var(--light-text);
+            opacity: 0.5;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .testimonial-dot.active, .testimonial-dot:hover {
+            background-color: var(--primary);
+            opacity: 1;
+            transform: scale(1.2);
+        }
+
+        /* Contact Section */
+        .contact-form {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+
+        .form-input, .form-textarea {
+            width: 100%;
+            padding: 0.8rem;
+            background-color: var(--darker-bg);
+            border: 1px solid var(--primary);
+            border-radius: 5px;
+            color: var(--light-text);
+            font-family: 'Courier New', monospace;
+            transition: all 0.3s ease;
+        }
+
+        .form-input:focus, .form-textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 10px var(--primary);
+        }
+
+        .form-textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            background-color: var(--primary);
+            color: var(--dark-bg);
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            box-shadow: var(--glow);
+            transform: translateY(-3px);
+        }
+
+        .contact-info {
+            margin-top: 2rem;
+            text-align: center;
+        }
+
+        .contact-link {
+            color: var(--primary);
+            text-decoration: none;
+            margin: 0 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .contact-link:hover {
+            text-shadow: var(--glow);
+        }
+
+        /* Custom Cursor */
+        .cursor {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: var(--primary);
+            mix-blend-mode: difference;
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            transition: transform 0.1s ease;
+            opacity: 0.7;
+        }
+
+        .cursor-follower {
+            position: fixed;
+            width: 40px;
+            height: 40px;
+            border: 1px solid var(--primary);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9998;
+            transform: translate(-50%, -50%);
+            transition: transform 0.3s ease, opacity 0.3s ease;
+            opacity: 0.5;
+        }
+
+        /* Glitch Effect */
+        .glitch {
+            position: relative;
+        }
+
+        .glitch::before, .glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.8;
+        }
+
+        .glitch::before {
+            color: #0ff;
+            z-index: -1;
+            animation: glitch-effect 3s infinite;
+        }
+
+        .glitch::after {
+            color: #f0f;
+            z-index: -2;
+            animation: glitch-effect 2s infinite reverse;
+        }
+
+        @keyframes glitch-effect {
+            0% { transform: translate(0); }
+            20% { transform: translate(-3px, 3px); }
+            40% { transform: translate(-3px, -3px); }
+            60% { transform: translate(3px, 3px); }
+            80% { transform: translate(3px, -3px); }
+            100% { transform: translate(0); }
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 1rem;
+            font-size: 0.8rem;
+            color: var(--light-text);
+            opacity: 0.7;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+
+            .profile {
+                width: 100%;
+                border-left: none;
+                border-bottom: 1px solid var(--primary);
+                padding: 1rem;
+            }
+
+            .content {
+                padding: 1rem;
+            }
+
+            .profile-pic {
+                width: 150px;
+                height: 150px;
+            }
+
+            .nav {
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .nav-item {
+                border-left: none;
+                border-bottom: 3px solid transparent;
+            }
+
+            .nav-item:hover, .nav-item.active {
+                border-left: none;
+                border-bottom: 3px solid var(--primary);
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Animations */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .floating {
+            animation: float 3s ease-in-out infinite;
+        }
+    </style>
 </head>
 <body>
+    <!-- Matrix Rain Background -->
+    <canvas id="matrix"></canvas>
+    
+    <!-- Particle Background -->
+    <div id="particles"></div>
+    
     <!-- Custom Cursor -->
     <div class="cursor"></div>
-
-    <!-- Animated Background -->
-    <canvas id="animatedBackground"></canvas>
-
-    <!-- Floating Holograms -->
-    <div class="hologram hologram-1"></div>
-    <div class="hologram hologram-2"></div>
-    <div class="hologram hologram-3"></div>
-
-    <!-- Navigation Bar -->
-    <nav class="cyber-nav">
-        <div class="nav-logo">DARK</div>
-        <ul class="nav-links">
-            <li class="active" data-section="about" data-text="ABOUT">ABOUT</li>
-            <li data-section="skills" data-text="SKILLS">SKILLS</li>
-            <li data-section="projects" data-text="PROJECTS">PROJECTS</li>
-            <li data-section="contact" data-text="CONTACT">CONTACT</li>
-        </ul>
-        <div class="nav-actions">
-            <button class="download-cv" title="Download CV">
-                <i class="fas fa-file-download"></i>
-                <span class="download-text">DOWNLOAD CV</span>
-            </button>
-            <button class="theme-toggle" title="Toggle Theme">
-                <i class="fas fa-moon"></i>
-            </button>
-        </div>
-    </nav>
-
-    <!-- Main Content -->
-    <div class="content-container">
-        <!-- Glass Box -->
-        <div class="glass-box">
-            <!-- About Section -->
-            <div id="about" class="content-section active">
-                <h1>CYBER_SECURITY_ARCHITECT</h1>
-                <div class="about-text">
-                    <p>>_ INITIALIZING SECURE CONNECTION...</p>
-                    <p>>_ SENIOR SECURITY SPECIALIST WITH 12+ YEARS IN CYBERSECURITY</p>
-                    <p>>_ FORMER HEAD OF SECURITY AT CYBERDYNE SYSTEMS</p>
-                    <p>>_ EXPERT IN QUANTUM-RESISTANT CRYPTOGRAPHY</p>
-                    <p>>_ DEVELOPED ENTERPRISE SECURITY SOLUTIONS FOR FORTUNE 500</p>
-                    <p>>_ SPEAKER AT BLACK HAT AND DEF CON</p>
-                </div>
-                
-                <div class="about-highlights">
-                    <div class="highlight-card">
-                        <div class="highlight-icon">
-                            <i class="fas fa-shield-alt"></i>
-                        </div>
-                        <h3 class="highlight-title">PENETRATION TESTING</h3>
-                        <p class="highlight-text">Conducted over 200 successful penetration tests for critical infrastructure and financial systems.</p>
-                    </div>
-                    <div class="highlight-card">
-                        <div class="highlight-icon">
-                            <i class="fas fa-lock"></i>
-                        </div>
-                        <h3 class="highlight-title">CRYPTOGRAPHY</h3>
-                        <p class="highlight-text">Developed post-quantum cryptographic algorithms adopted by major tech firms.</p>
-                    </div>
-                    <div class="highlight-card">
-                        <div class="highlight-icon">
-                            <i class="fas fa-network-wired"></i>
-                        </div>
-                        <h3 class="highlight-title">SECURE ARCHITECTURE</h3>
-                        <p class="highlight-text">Designed zero-trust networks for government and enterprise clients.</p>
-                    </div>
-                </div>
-            </div>
-
+    <div class="cursor-follower"></div>
+    
+    <div class="container">
+        <!-- Left Content Area -->
+        <div class="content">
+            <!-- Home/About Section -->
+            <section id="home" class="section active">
+                <h2 class="section-title glitch" data-text="About Me">About Me</h2>
+                <p class="about-text">
+                    <span class="highlight">Hello, world!</span> I'm <span class="highlight">NeonDev</span>, a cyberpunk-inspired full-stack developer with a passion for creating immersive digital experiences. I specialize in building responsive, performant web applications with cutting-edge technologies.
+                </p>
+                <p class="about-text">
+                    My journey began in the neon-lit streets of the digital underground, where I honed my skills in <span class="highlight">JavaScript</span>, <span class="highlight">React</span>, and <span class="highlight">Node.js</span>. Now, I bring that same rebellious spirit to crafting elegant solutions for complex problems.
+                </p>
+                <p class="about-text">
+                    When I'm not coding, you can find me exploring the latest in <span class="highlight">cybersecurity</span>, contributing to <span class="highlight">open-source</span> projects, or immersed in cyberpunk literature and cinema.
+                </p>
+            </section>
+            
             <!-- Skills Section -->
-            <div id="skills" class="content-section">
-                <h1>CORE_EXPERTISE</h1>
-                <div class="skills-grid">
-                    <div class="skill-card">
-                        <div class="skill-icon">
-                            <i class="fas fa-user-secret"></i>
-                        </div>
-                        <h3>ETHICAL HACKING</h3>
-                        <div class="skill-level">
-                            <div class="skill-level-bar" style="width: 98%"></div>
-                            <span class="skill-percentage">98%</span>
-                        </div>
-                        <p>Advanced penetration testing and vulnerability assessment for critical systems.</p>
-                    </div>
-                    <div class="skill-card">
-                        <div class="skill-icon">
-                            <i class="fas fa-key"></i>
-                        </div>
-                        <h3>CRYPTOGRAPHY</h3>
-                        <div class="skill-level">
-                            <div class="skill-level-bar" style="width: 96%"></div>
-                            <span class="skill-percentage">96%</span>
-                        </div>
-                        <p>Quantum-resistant algorithm development and cryptographic system design.</p>
-                    </div>
-                    <div class="skill-card">
-                        <div class="skill-icon">
-                            <i class="fas fa-robot"></i>
-                        </div>
-                        <h3>AI SECURITY</h3>
-                        <div class="skill-level">
-                            <div class="skill-level-bar" style="width: 94%"></div>
-                            <span class="skill-percentage">94%</span>
-                        </div>
-                        <p>Securing machine learning systems against adversarial attacks.</p>
-                    </div>
-                    <div class="skill-card">
-                        <div class="skill-icon">
-                            <i class="fas fa-cloud"></i>
-                        </div>
-                        <h3>CLOUD SECURITY</h3>
-                        <div class="skill-level">
-                            <div class="skill-level-bar" style="width: 95%"></div>
-                            <span class="skill-percentage">95%</span>
-                        </div>
-                        <p>Architecting secure multi-cloud environments for enterprises.</p>
-                    </div>
-                    <div class="skill-card">
-                        <div class="skill-icon">
-                            <i class="fas fa-code"></i>
-                        </div>
-                        <h3>SECURE CODING</h3>
-                        <div class="skill-level">
-                            <div class="skill-level-bar" style="width: 97%"></div>
-                            <span class="skill-percentage">97%</span>
-                        </div>
-                        <p>Developing hardened applications with OWASP best practices.</p>
-                    </div>
-                    <div class="skill-card">
-                        <div class="skill-icon">
-                            <i class="fas fa-bug"></i>
-                        </div>
-                        <h3>REVERSE ENGINEERING</h3>
-                        <div class="skill-level">
-                            <div class="skill-level-bar" style="width: 93%"></div>
-                            <span class="skill-percentage">93%</span>
-                        </div>
-                        <p>Malware analysis and binary exploitation techniques.</p>
-                    </div>
+            <section id="skills" class="section">
+                <h2 class="section-title glitch" data-text="My Skills">My Skills</h2>
+                <div class="skills-container">
+                    <div class="skill">JavaScript</div>
+                    <div class="skill">TypeScript</div>
+                    <div class="skill">React</div>
+                    <div class="skill">Node.js</div>
+                    <div class="skill">Python</div>
+                    <div class="skill">HTML5</div>
+                    <div class="skill">CSS3</div>
+                    <div class="skill">SASS</div>
+                    <div class="skill">MongoDB</div>
+                    <div class="skill">PostgreSQL</div>
+                    <div class="skill">GraphQL</div>
+                    <div class="skill">REST APIs</div>
+                    <div class="skill">Docker</div>
+                    <div class="skill">Git</div>
+                    <div class="skill">AWS</div>
+                    <div class="skill">Cybersecurity</div>
+                    <div class="skill">Blockchain</div>
+                    <div class="skill">Web3</div>
                 </div>
-            </div>
-
+            </section>
+            
             <!-- Projects Section -->
-            <div id="projects" class="content-section">
-                <h1>SECURITY_PROJECTS</h1>
+            <section id="projects" class="section">
+                <h2 class="section-title glitch" data-text="My Projects">My Projects</h2>
                 <div class="projects-grid">
                     <div class="project-card">
-                        <h3>QUANTUM SHIELD</h3>
-                        <p>Post-quantum cryptographic framework adopted by three Fortune 500 companies for securing their infrastructure.</p>
-                        <div class="project-links">
-                            <a href="#" class="project-link live">
-                                <i class="fas fa-external-link-alt"></i>
-                                CASE STUDY
-                            </a>
-                        </div>
-                        <div class="tech-tags">
-                            <span>QUANTUM</span>
-                            <span>CRYPTO</span>
-                            <span>C++</span>
+                        <img src="https://via.placeholder.com/300x180/0a0a0a/00ff00?text=NeonNet" alt="NeonNet" class="project-image">
+                        <div class="project-info">
+                            <h3 class="project-title">NeonNet Social</h3>
+                            <p class="project-description">A decentralized social media platform with end-to-end encryption and blockchain-based identity verification.</p>
+                            <div class="project-links">
+                                <a href="#" class="project-link">Live Demo</a>
+                                <a href="#" class="project-link">GitHub</a>
+                            </div>
                         </div>
                     </div>
+                    
                     <div class="project-card">
-                        <h3>NIGHTWATCH</h3>
-                        <p>AI-powered intrusion detection system with 99.8% accuracy in identifying zero-day attacks.</p>
-                        <div class="project-links">
-                            <a href="#" class="project-link live">
-                                <i class="fas fa-external-link-alt"></i>
-                                WHITEPAPER
-                            </a>
-                        </div>
-                        <div class="tech-tags">
-                            <span>AI</span>
-                            <span>ML</span>
-                            <span>PYTHON</span>
+                        <img src="https://via.placeholder.com/300x180/0a0a0a/00ff00?text=CryptoDash" alt="CryptoDash" class="project-image">
+                        <div class="project-info">
+                            <h3 class="project-title">CryptoDash</h3>
+                            <p class="project-description">Real-time cryptocurrency dashboard with price tracking, portfolio management, and predictive analytics.</p>
+                            <div class="project-links">
+                                <a href="#" class="project-link">Live Demo</a>
+                                <a href="#" class="project-link">GitHub</a>
+                            </div>
                         </div>
                     </div>
+                    
                     <div class="project-card">
-                        <h3>BLACKBOX</h3>
-                        <p>Secure enclave technology for protecting sensitive computations in untrusted environments.</p>
-                        <div class="project-links">
-                            <a href="#" class="project-link live">
-                                <i class="fas fa-external-link-alt"></i>
-                                DEMO
-                            </a>
-                        </div>
-                        <div class="tech-tags">
-                            <span>SGX</span>
-                            <span>RUST</span>
-                            <span>TEE</span>
-                        </div>
-                    </div>
-                    <div class="project-card">
-                        <h3>PHANTOM</h3>
-                        <p>Advanced persistent threat detection system deployed in critical infrastructure networks.</p>
-                        <div class="project-links">
-                            <a href="#" class="project-link live">
-                                <i class="fas fa-external-link-alt"></i>
-                                DETAILS
-                            </a>
-                        </div>
-                        <div class="tech-tags">
-                            <span>IDS</span>
-                            <span>NETWORK</span>
-                            <span>C</span>
+                        <img src="https://via.placeholder.com/300x180/0a0a0a/00ff00?text=CyberTerm" alt="CyberTerm" class="project-image">
+                        <div class="project-info">
+                            <h3 class="project-title">CyberTerm</h3>
+                            <p class="project-description">A browser-based terminal emulator with built-in cybersecurity tools and hacking challenges.</p>
+                            <div class="project-links">
+                                <a href="#" class="project-link">Live Demo</a>
+                                <a href="#" class="project-link">GitHub</a>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-
+            </section>
+            
+            <!-- Resume Section -->
+            <section id="resume" class="section">
+                <h2 class="section-title glitch" data-text="My Resume">My Resume</h2>
+                
+                <div class="resume-item">
+                    <h3 class="resume-title">Senior Full-Stack Developer</h3>
+                    <h4 class="resume-subtitle">NeonCorp Technologies</h4>
+                    <p class="resume-date">2021 - Present</p>
+                    <p class="resume-description">
+                        Lead development of decentralized applications using React, Node.js, and blockchain technologies. Implemented security protocols that reduced system vulnerabilities by 75%. Mentored junior developers in cybersecurity best practices.
+                    </p>
+                </div>
+                
+                <div class="resume-item">
+                    <h3 class="resume-title">Frontend Developer</h3>
+                    <h4 class="resume-subtitle">CyberDyne Systems</h4>
+                    <p class="resume-date">2018 - 2021</p>
+                    <p class="resume-description">
+                        Developed responsive user interfaces for enterprise cybersecurity dashboards. Optimized frontend performance, reducing load times by 40%. Collaborated with design team to create accessible, user-friendly interfaces.
+                    </p>
+                </div>
+                
+                <div class="resume-item">
+                    <h3 class="resume-title">Education</h3>
+                    <h4 class="resume-subtitle">Neon University</h4>
+                    <p class="resume-date">2014 - 2018</p>
+                    <p class="resume-description">
+                        Bachelor of Science in Computer Science with focus on Cybersecurity and Artificial Intelligence. Graduated with honors. Published research on neural network vulnerabilities in peer-reviewed journal.
+                    </p>
+                </div>
+                
+                <a href="#" class="download-btn">Download Full Resume</a>
+            </section>
+            
+            <!-- Testimonials Section -->
+            <section id="testimonials" class="section">
+                <h2 class="section-title glitch" data-text="Testimonials">Testimonials</h2>
+                
+                <div class="testimonials-container">
+                    <div class="testimonial active">
+                        <p class="testimonial-text">
+                            "NeonDev transformed our cybersecurity dashboard with their innovative approach. The system they built not only looks incredible but has withstood every penetration test we've thrown at it. Their attention to detail is unmatched."
+                        </p>
+                        <p class="testimonial-author">— Sarah K., CTO at NeonCorp</p>
+                    </div>
+                    
+                    <div class="testimonial">
+                        <p class="testimonial-text">
+                            "Working with NeonDev was a game-changer for our project. They implemented blockchain solutions we hadn't even considered and delivered ahead of schedule. Their cyberpunk aesthetic perfectly matched our brand vision."
+                        </p>
+                        <p class="testimonial-author">— Mark T., CEO at CyberDyne</p>
+                    </div>
+                    
+                    <div class="testimonial">
+                        <p class="testimonial-text">
+                            "NeonDev's code is as clean as their designs are striking. They brought our decentralized app to life with flawless functionality and an interface that users can't stop raving about. Simply outstanding work."
+                        </p>
+                        <p class="testimonial-author">— Lisa M., Product Manager at BlockChain Innovations</p>
+                    </div>
+                    
+                    <div class="testimonial-nav">
+                        <div class="testimonial-dot active" data-index="0"></div>
+                        <div class="testimonial-dot" data-index="1"></div>
+                        <div class="testimonial-dot" data-index="2"></div>
+                    </div>
+                </div>
+            </section>
+            
             <!-- Contact Section -->
-            <div id="contact" class="content-section">
-                <h1>SECURE_CHANNEL</h1>
+            <section id="contact" class="section">
+                <h2 class="section-title glitch" data-text="Contact Me">Contact Me</h2>
+                
                 <form class="contact-form">
-                    <div class="input-group">
-                        <input type="text" id="name" required>
-                        <label for="name">IDENTITY</label>
-                        <div class="input-underline"></div>
+                    <div class="form-group">
+                        <label for="name" class="form-label">Name</label>
+                        <input type="text" id="name" class="form-input" required>
                     </div>
-                    <div class="input-group">
-                        <input type="email" id="email" required>
-                        <label for="email">ENCRYPTED CONTACT</label>
-                        <div class="input-underline"></div>
+                    
+                    <div class="form-group">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" id="email" class="form-input" required>
                     </div>
-                    <div class="input-group">
-                        <textarea id="message" required></textarea>
-                        <label for="message">MESSAGE</label>
-                        <div class="input-underline"></div>
+                    
+                    <div class="form-group">
+                        <label for="message" class="form-label">Message</label>
+                        <textarea id="message" class="form-textarea" required></textarea>
                     </div>
-                    <button type="submit" class="submit-btn">
-                        <span>ESTABLISH CONNECTION</span>
-                    </button>
+                    
+                    <button type="submit" class="submit-btn">Send Message</button>
                 </form>
-            </div>
-        </div>
-
-        <!-- Profile Card -->
-        <div class="profile-container">
-            <div class="profile-card">
-                <div class="profile-content">
-                    <img src="https://i.postimg.cc/Rh4B24Dk/Mbi-dark.png" alt="Profile" class="profile-pic">
-                    <h2 class="profile-title">DARK</h2>
-                    <p class="profile-subtitle">Security Architect & Researcher</p>
-                    <div class="profile-stats">
-                        <div class="stat-item">
-                            <div class="stat-value">12+</div>
-                            <div class="stat-label">Years</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-value">200+</div>
-                            <div class="stat-label">Assessments</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-value">100%</div>
-                            <div class="stat-label">Success Rate</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-value">0</div>
-                            <div class="stat-label">Breaches</div>
-                        </div>
-                    </div>
+                
+                <div class="contact-info">
+                    <p>Or reach out directly:</p>
+                    <a href="mailto:neondev@cybermail.io" class="contact-link">neondev@cybermail.io</a>
+                    <a href="https://github.com/neondev" class="contact-link">GitHub</a>
+                    <a href="https://linkedin.com/in/neondev" class="contact-link">LinkedIn</a>
                 </div>
+            </section>
+            
+            <footer class="footer">
+                <p>© 2023 NeonDev | Cyberpunk Developer Portfolio</p>
+            </footer>
+        </div>
+        
+        <!-- Right Profile Area -->
+        <div class="profile">
+            <img src="https://via.placeholder.com/200x200/0a0a0a/00ff00?text=NEON" alt="NeonDev" class="profile-pic floating">
+            <h1 class="name">NEONDEV</h1>
+            <p class="title">Full-Stack Developer | Cybersecurity Specialist</p>
+            
+            <div class="social-links">
+                <a href="#" class="social-link">GitHub</a>
+                <a href="#" class="social-link">LinkedIn</a>
+                <a href="#" class="social-link">Twitter</a>
+                <a href="#" class="social-link">CodePen</a>
             </div>
+            
+            <button class="theme-toggle" id="themeToggle">Toggle Theme</button>
+            
+            <nav class="nav">
+                <a href="#home" class="nav-item active">Home</a>
+                <a href="#skills" class="nav-item">Skills</a>
+                <a href="#projects" class="nav-item">Projects</a>
+                <a href="#resume" class="nav-item">Resume</a>
+                <a href="#testimonials" class="nav-item">Testimonials</a>
+                <a href="#contact" class="nav-item">Contact</a>
+            </nav>
         </div>
     </div>
 
-    <!-- Status Bar -->
-    <div class="status-bar">
-        <div class="status-item">
-            <i class="fas fa-shield-alt"></i>
-            <span>SECURITY: AES-256 + QUANTUM RESISTANT</span>
-        </div>
-        <div class="status-item">
-            <i class="fas fa-network-wired"></i>
-            <span>CONNECTION: TOR + VPN ACTIVE</span>
-        </div>
-        <div class="status-item">
-            <div class="status-indicator"></div>
-            <span>SYSTEM SECURE</span>
-        </div>
-        <div class="status-item">
-            <i class="fas fa-clock"></i>
-            <span id="current-time">00:00:00 UTC</span>
-        </div>
-    </div>
-
-    <!-- Audio Elements -->
-    <audio id="hoverSound" src="https://assets.mixkit.co/sfx/preview/mixkit-sci-fi-positive-interface-beep-257.mp3" preload="auto"></audio>
-    <audio id="clickSound" src="https://assets.mixkit.co/sfx/preview/mixkit-modern-click-box-check-1120.mp3" preload="auto"></audio>
-
-    <script src="main.js"></script>
+    <script>
+        // Matrix Rain Effect
+        const canvas = document.getElementById('matrix');
+        const ctx = canvas.getContext('2d');
+        
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        
+        const katakana = 'アァカサタナハマヤャラワガザダバパイィキシチニヒミリヰギジヂビピウゥクスツヌフムユュルグズブヅプエェケセテネヘメレヱゲゼデベペオォコソトノホモヨョロヲゴゾドボポヴッン';
+        const latin = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        const nums = '0123456789';
+        const symbols = '!"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~';
+        
+        const alphabet = katakana + latin + nums + symbols;
+        
+        const fontSize = 16;
+        const columns = canvas.width / fontSize;
+        
+        const rainDrops = [];
+        
+        for (let x = 0; x < columns; x++) {
+            rainDrops[x] = 1;
+        }
+        
+        const draw = () => {
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            ctx.fillStyle = '#0f0';
+            ctx.font = fontSize + 'px monospace';
+            
+            for (let i = 0; i < rainDrops.length; i++) {
+                const text = alphabet.charAt(Math.floor(Math.random() * alphabet.length));
+                ctx.fillText(text, i * fontSize, rainDrops[i] * fontSize);
+                
+                if (rainDrops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                    rainDrops[i] = 0;
+                }
+                rainDrops[i]++;
+            }
+        };
+        
+        setInterval(draw, 30);
+        
+        // Particle Effect
+        const particlesContainer = document.getElementById('particles');
+        const particleCount = 50;
+        
+        for (let i = 0; i < particleCount; i++) {
+            const particle = document.createElement('div');
+            particle.classList.add('particle');
+            
+            const size = Math.random() * 5 + 1;
+            const posX = Math.random() * window.innerWidth;
+            const posY = Math.random() * window.innerHeight;
+            const delay = Math.random() * 5;
+            const duration = Math.random() * 10 + 10;
+            
+            particle.style.width = `${size}px`;
+            particle.style.height = `${size}px`;
+            particle.style.left = `${posX}px`;
+            particle.style.top = `${posY}px`;
+            particle.style.animationDelay = `${delay}s`;
+            particle.style.animationDuration = `${duration}s`;
+            
+            particlesContainer.appendChild(particle);
+        }
+        
+        // Custom Cursor
+        const cursor = document.querySelector('.cursor');
+        const cursorFollower = document.querySelector('.cursor-follower');
+        
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+            
+            setTimeout(() => {
+                cursorFollower.style.left = e.clientX + 'px';
+                cursorFollower.style.top = e.clientY + 'px';
+            }, 100);
+        });
+        
+        document.addEventListener('mouseenter', () => {
+            cursor.style.opacity = '0.7';
+            cursorFollower.style.opacity = '0.5';
+        });
+        
+        document.addEventListener('mouseleave', () => {
+            cursor.style.opacity = '0';
+            cursorFollower.style.opacity = '0';
+        });
+        
+        // Theme Toggle
+        const themeToggle = document.getElementById('themeToggle');
+        let currentTheme = 'dark';
+        
+        themeToggle.addEventListener('click', () => {
+            if (currentTheme === 'dark') {
+                document.documentElement.setAttribute('data-theme', 'light');
+                currentTheme = 'light';
+                themeToggle.textContent = 'Dark Mode';
+            } else {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                currentTheme = 'dark';
+                themeToggle.textContent = 'Light Mode';
+            }
+        });
+        
+        // Navigation
+        const navItems = document.querySelectorAll('.nav-item');
+        const sections = document.querySelectorAll('.section');
+        
+        navItems.forEach(item => {
+            item.addEventListener('click', (e) => {
+                e.preventDefault();
+                
+                // Remove active class from all nav items and sections
+                navItems.forEach(navItem => navItem.classList.remove('active'));
+                sections.forEach(section => section.classList.remove('active'));
+                
+                // Add active class to clicked nav item
+                item.classList.add('active');
+                
+                // Show corresponding section
+                const target = item.getAttribute('href');
+                document.querySelector(target).classList.add('active');
+            });
+        });
+        
+        // Testimonials Carousel
+        const testimonials = document.querySelectorAll('.testimonial');
+        const testimonialDots = document.querySelectorAll('.testimonial-dot');
+        let currentTestimonial = 0;
+        
+        function showTestimonial(index) {
+            testimonials.forEach(testimonial => testimonial.classList.remove('active'));
+            testimonialDots.forEach(dot => dot.classList.remove('active'));
+            
+            testimonials[index].classList.add('active');
+            testimonialDots[index].classList.add('active');
+            currentTestimonial = index;
+        }
+        
+        testimonialDots.forEach(dot => {
+            dot.addEventListener('click', () => {
+                const index = parseInt(dot.getAttribute('data-index'));
+                showTestimonial(index);
+            });
+        });
+        
+        // Auto-rotate testimonials
+        setInterval(() => {
+            let nextTestimonial = currentTestimonial + 1;
+            if (nextTestimonial >= testimonials.length) {
+                nextTestimonial = 0;
+            }
+            showTestimonial(nextTestimonial);
+        }, 5000);
+        
+        // Form Submission
+        const contactForm = document.querySelector('.contact-form');
+        
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Get form values
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+            
+            // Here you would typically send the form data to a server
+            console.log('Form submitted:', { name, email, message });
+            
+            // Show a confirmation (in a real app, you might want to do something more sophisticated)
+            alert('Message sent! I\'ll get back to you soon.');
+            
+            // Reset the form
+            contactForm.reset();
+        });
+        
+        // Responsive adjustments
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+    </script>
 </body>
 </html>

@@ -3,31 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NeonDev | Cyberpunk Developer Portfolio</title>
+    <title>CYBERNEXUS | Quantum Developer Interface</title>
     <style>
+        /* === QUANTUM DESIGN SYSTEM === */
         :root {
-            --primary: #0f0;
-            --secondary: #ff00ff;
-            --dark-bg: #0a0a0a;
-            --darker-bg: #050505;
-            --light-text: #f0f0f0;
-            --dark-text: #111;
-            --accent: #00ffff;
-            --glow: 0 0 10px var(--primary), 0 0 20px var(--primary);
-            --section-bg: rgba(15, 15, 15, 0.8);
+            /* Core Palette */
+            --quantum-core: #00f7ff;
+            --neon-pink: #ff00f7;
+            --cyber-purple: #7d00ff;
+            --matrix-green: #00ff2a;
+            --void-black: #050510;
+            --deep-space: #0a0a1a;
+            --starlight: #e0e0ff;
+            --static-white: #ffffff;
+            
+            /* Derived Colors */
+            --hud-glow: 0 0 15px var(--quantum-core), 0 0 30px rgba(0, 247, 255, 0.3);
+            --danger-glow: 0 0 15px var(--neon-pink), 0 0 30px rgba(255, 0, 247, 0.3);
+            --success-glow: 0 0 15px var(--matrix-green), 0 0 30px rgba(0, 255, 42, 0.3);
+            
+            /* Typography */
+            --main-font: 'Rajdhani', 'Courier New', monospace;
+            --code-font: 'Fira Code', monospace;
+            
+            /* Dimensions */
+            --quantum-unit: 8px;
+            --hud-thickness: 2px;
         }
 
         [data-theme="light"] {
-            --primary: #ff00aa;
-            --secondary: #6600ff;
-            --dark-bg: #f0f0f0;
-            --darker-bg: #e0e0e0;
-            --light-text: #111;
-            --dark-text: #f0f0f0;
-            --accent: #0066ff;
-            --section-bg: rgba(240, 240, 240, 0.9);
+            --void-black: #f0f0ff;
+            --deep-space: #e0e0f0;
+            --starlight: #050510;
+            --hud-glow: 0 0 10px rgba(0, 0, 255, 0.2);
         }
 
+        /* === QUANTUM RESET === */
         * {
             margin: 0;
             padding: 0;
@@ -35,1018 +46,1491 @@
             cursor: none;
         }
 
+        /* === CORE ELEMENTS === */
+        @font-face {
+            font-family: 'Rajdhani';
+            src: url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap');
+        }
+
+        @font-face {
+            font-family: 'Fira Code';
+            src: url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&display=swap');
+        }
+
         body {
-            font-family: 'Courier New', monospace;
-            background-color: var(--dark-bg);
-            color: var(--light-text);
+            font-family: var(--main-font);
+            background-color: var(--void-black);
+            color: var(--starlight);
             overflow-x: hidden;
             position: relative;
             min-height: 100vh;
+            line-height: 1.6;
+            font-weight: 500;
+            text-rendering: optimizeLegibility;
+            -webkit-font-smoothing: antialiased;
         }
 
-        /* Matrix Rain Background */
-        #matrix {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            opacity: 0.15;
+        /* === QUANTUM INTERFACE COMPONENTS === */
+        
+        /* HUD Elements */
+        .hud-border {
+            position: relative;
+            border: var(--hud-thickness) solid var(--quantum-core);
+            box-shadow: var(--hud-glow);
         }
 
-        /* Particle Background */
-        #particles {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
+        .hud-border::before {
+            content: '';
+            position: absolute;
+            top: -3px;
+            left: -3px;
+            right: -3px;
+            bottom: -3px;
+            border: 1px solid var(--quantum-core);
+            opacity: 0.5;
             pointer-events: none;
         }
 
-        .particle {
-            position: absolute;
-            background-color: var(--primary);
-            border-radius: 50%;
-            opacity: 0.5;
+        .hud-text {
+            text-shadow: 0 0 10px var(--quantum-core);
+            letter-spacing: 1px;
         }
 
-        /* Layout */
-        .container {
-            display: flex;
+        .hud-accent {
+            color: var(--quantum-core);
+            font-weight: 600;
+        }
+
+        /* === QUANTUM LAYOUT === */
+        .quantum-grid {
+            display: grid;
+            grid-template-columns: 300px 1fr;
             min-height: 100vh;
         }
 
-        /* Left Side - Content */
-        .content {
-            flex: 1;
-            padding: 2rem;
-            padding-left: 1rem;
-            transition: all 0.5s ease;
-            position: relative;
-            z-index: 1;
+        @media (max-width: 1024px) {
+            .quantum-grid {
+                grid-template-columns: 1fr;
+            }
         }
 
-        /* Right Side - Profile */
-        .profile {
-            width: 300px;
-            min-width: 300px;
-            padding: 2rem;
+        /* === SIDECORE PROCESSOR UNIT === */
+        .sidecore {
+            background: linear-gradient(135deg, var(--deep-space), var(--void-black));
+            padding: calc(var(--quantum-unit) * 4);
+            position: relative;
+            overflow: hidden;
+            border-right: var(--hud-thickness) solid var(--quantum-core);
+            box-shadow: var(--hud-glow);
+        }
+
+        .sidecore::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                linear-gradient(90deg, transparent 49%, var(--quantum-core) 50%, transparent 51%),
+                linear-gradient(0deg, transparent 49%, var(--quantum-core) 50%, transparent 51%);
+            background-size: 20px 20px;
+            opacity: 0.05;
+            pointer-events: none;
+        }
+
+        .processor-unit {
+            position: relative;
+            z-index: 2;
+            height: 100%;
             display: flex;
             flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            border-left: 1px solid var(--primary);
-            background-color: rgba(10, 10, 10, 0.7);
         }
 
-        .profile-pic {
+        /* === MAINFRAME DISPLAY === */
+        .mainframe {
+            padding: calc(var(--quantum-unit) * 4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .terminal-output {
+            height: 100%;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* === QUANTUM VISUAL ELEMENTS === */
+        
+        /* Avatar Matrix */
+        .avatar-matrix {
             width: 200px;
             height: 200px;
             border-radius: 50%;
-            border: 3px solid var(--primary);
-            box-shadow: var(--glow);
-            object-fit: cover;
-            margin-bottom: 1.5rem;
-            transition: all 0.3s ease;
-        }
-
-        .profile-pic:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 20px var(--primary), 0 0 40px var(--primary);
-        }
-
-        .name {
-            font-size: 2rem;
-            margin-bottom: 0.5rem;
-            color: var(--primary);
-            text-shadow: var(--glow);
-            text-align: center;
-        }
-
-        .title {
-            font-size: 1rem;
-            margin-bottom: 1.5rem;
-            color: var(--accent);
-            text-align: center;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 1rem;
-            margin-bottom: 2rem;
-        }
-
-        .social-link {
-            color: var(--light-text);
-            font-size: 1.5rem;
-            transition: all 0.3s ease;
-        }
-
-        .social-link:hover {
-            color: var(--primary);
-            text-shadow: var(--glow);
-            transform: translateY(-3px);
-        }
-
-        .theme-toggle {
-            background: none;
-            border: 1px solid var(--primary);
-            color: var(--primary);
-            padding: 0.5rem 1rem;
-            border-radius: 5px;
-            font-family: 'Courier New', monospace;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: var(--glow);
-            margin-bottom: 2rem;
-        }
-
-        .theme-toggle:hover {
-            background-color: var(--primary);
-            color: var(--dark-bg);
-            box-shadow: 0 0 20px var(--primary);
-        }
-
-        /* Navigation */
-        .nav {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-
-        .nav-item {
-            color: var(--light-text);
-            text-decoration: none;
-            padding: 0.5rem 1rem;
-            border-left: 3px solid transparent;
-            transition: all 0.3s ease;
-            font-size: 1rem;
-        }
-
-        .nav-item:hover, .nav-item.active {
-            color: var(--primary);
-            border-left: 3px solid var(--primary);
-            text-shadow: var(--glow);
-        }
-
-        /* Sections */
-        .section {
-            display: none;
-            animation: fadeIn 0.5s ease;
-            background-color: var(--section-bg);
-            padding: 2rem;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 255, 0, 0.1);
-            margin-bottom: 2rem;
-        }
-
-        .section.active {
-            display: block;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .section-title {
-            font-size: 1.8rem;
-            margin-bottom: 1.5rem;
-            color: var(--primary);
-            text-shadow: var(--glow);
+            margin: 0 auto calc(var(--quantum-unit) * 4) auto;
             position: relative;
-            display: inline-block;
+            overflow: hidden;
+            border: 3px solid var(--quantum-core);
+            box-shadow: var(--hud-glow);
         }
 
-        .section-title::after {
+        .avatar-matrix::before {
             content: '';
             position: absolute;
-            bottom: -5px;
+            top: 0;
             left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                linear-gradient(45deg, transparent 45%, rgba(0, 247, 255, 0.1) 50%, transparent 55%),
+                linear-gradient(-45deg, transparent 45%, rgba(0, 247, 255, 0.1) 50%, transparent 55%);
+            background-size: 10px 10px;
+            animation: matrix-scan 10s linear infinite;
+        }
+
+        @keyframes matrix-scan {
+            0% { background-position: 0 0; }
+            100% { background-position: 0 200px; }
+        }
+
+        .avatar-img {
             width: 100%;
-            height: 2px;
-            background: linear-gradient(90deg, var(--primary), transparent);
-        }
-
-        /* About Section */
-        .about-text {
-            line-height: 1.6;
-            margin-bottom: 1.5rem;
-        }
-
-        .highlight {
-            color: var(--primary);
-            font-weight: bold;
-        }
-
-        /* Skills Section */
-        .skills-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-
-        .skill {
-            background-color: var(--darker-bg);
-            padding: 0.5rem 1rem;
-            border-radius: 5px;
-            border: 1px solid var(--primary);
-            color: var(--primary);
-            font-size: 0.9rem;
-            transition: all 0.3s ease;
-        }
-
-        .skill:hover {
-            background-color: var(--primary);
-            color: var(--dark-bg);
-            box-shadow: var(--glow);
-            transform: translateY(-3px);
-        }
-
-        /* Projects Section */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .project-card {
-            background-color: var(--darker-bg);
-            border-radius: 5px;
-            overflow: hidden;
-            border: 1px solid var(--primary);
-            transition: all 0.3s ease;
-        }
-
-        .project-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--glow);
-        }
-
-        .project-image {
-            width: 100%;
-            height: 180px;
+            height: 100%;
             object-fit: cover;
-            border-bottom: 1px solid var(--primary);
-        }
-
-        .project-info {
-            padding: 1rem;
-        }
-
-        .project-title {
-            font-size: 1.2rem;
-            margin-bottom: 0.5rem;
-            color: var(--primary);
-        }
-
-        .project-description {
-            font-size: 0.9rem;
-            margin-bottom: 1rem;
-            line-height: 1.5;
-        }
-
-        .project-links {
-            display: flex;
-            gap: 1rem;
-        }
-
-        .project-link {
-            color: var(--light-text);
-            text-decoration: none;
-            font-size: 0.8rem;
-            padding: 0.3rem 0.8rem;
-            border: 1px solid var(--primary);
-            border-radius: 3px;
-            transition: all 0.3s ease;
-        }
-
-        .project-link:hover {
-            background-color: var(--primary);
-            color: var(--dark-bg);
-        }
-
-        /* Resume Section */
-        .resume-item {
-            margin-bottom: 1.5rem;
-            padding-bottom: 1.5rem;
-            border-bottom: 1px dashed var(--primary);
-        }
-
-        .resume-item:last-child {
-            border-bottom: none;
-        }
-
-        .resume-title {
-            font-size: 1.2rem;
-            color: var(--primary);
-            margin-bottom: 0.5rem;
-        }
-
-        .resume-subtitle {
-            font-size: 1rem;
-            color: var(--accent);
-            margin-bottom: 0.5rem;
-        }
-
-        .resume-date {
-            font-size: 0.8rem;
-            color: var(--light-text);
-            opacity: 0.8;
-            margin-bottom: 0.5rem;
-        }
-
-        .resume-description {
-            font-size: 0.9rem;
-            line-height: 1.6;
-        }
-
-        .download-btn {
-            display: inline-block;
-            background-color: var(--primary);
-            color: var(--dark-bg);
-            padding: 0.7rem 1.5rem;
-            border-radius: 5px;
-            text-decoration: none;
-            font-weight: bold;
-            margin-top: 1rem;
-            transition: all 0.3s ease;
-            border: none;
-            font-family: 'Courier New', monospace;
-        }
-
-        .download-btn:hover {
-            box-shadow: var(--glow);
-            transform: translateY(-3px);
-        }
-
-        /* Testimonials Section */
-        .testimonials-container {
-            position: relative;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .testimonial {
-            background-color: var(--darker-bg);
-            padding: 1.5rem;
-            border-radius: 5px;
-            border: 1px solid var(--primary);
-            margin-bottom: 1rem;
-            display: none;
-        }
-
-        .testimonial.active {
-            display: block;
-            animation: fadeIn 0.5s ease;
-        }
-
-        .testimonial-text {
-            font-style: italic;
-            margin-bottom: 1rem;
-            line-height: 1.6;
-        }
-
-        .testimonial-author {
-            font-weight: bold;
-            color: var(--primary);
-        }
-
-        .testimonial-nav {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-
-        .testimonial-dot {
-            width: 12px;
-            height: 12px;
             border-radius: 50%;
-            background-color: var(--light-text);
-            opacity: 0.5;
-            cursor: pointer;
-            transition: all 0.3s ease;
+            position: relative;
+            z-index: 2;
+            filter: grayscale(30%) contrast(110%);
+            transition: all 0.5s ease;
         }
 
-        .testimonial-dot.active, .testimonial-dot:hover {
-            background-color: var(--primary);
-            opacity: 1;
-            transform: scale(1.2);
+        .avatar-img:hover {
+            filter: grayscale(0%) contrast(120%);
+            transform: scale(1.03);
         }
 
-        /* Contact Section */
-        .contact-form {
-            max-width: 500px;
-            margin: 0 auto;
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-label {
-            display: block;
-            margin-bottom: 0.5rem;
-            color: var(--primary);
-        }
-
-        .form-input, .form-textarea {
-            width: 100%;
-            padding: 0.8rem;
-            background-color: var(--darker-bg);
-            border: 1px solid var(--primary);
-            border-radius: 5px;
-            color: var(--light-text);
-            font-family: 'Courier New', monospace;
-            transition: all 0.3s ease;
-        }
-
-        .form-input:focus, .form-textarea:focus {
-            outline: none;
-            border-color: var(--accent);
-            box-shadow: 0 0 10px var(--primary);
-        }
-
-        .form-textarea {
-            min-height: 150px;
-            resize: vertical;
-        }
-
-        .submit-btn {
-            background-color: var(--primary);
-            color: var(--dark-bg);
-            padding: 0.8rem 1.5rem;
-            border: none;
-            border-radius: 5px;
-            font-family: 'Courier New', monospace;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .submit-btn:hover {
-            box-shadow: var(--glow);
-            transform: translateY(-3px);
-        }
-
-        .contact-info {
-            margin-top: 2rem;
-            text-align: center;
-        }
-
-        .contact-link {
-            color: var(--primary);
-            text-decoration: none;
-            margin: 0 0.5rem;
-            transition: all 0.3s ease;
-        }
-
-        .contact-link:hover {
-            text-shadow: var(--glow);
-        }
-
-        /* Custom Cursor */
-        .cursor {
+        /* Quantum Cursor System */
+        .quantum-cursor {
             position: fixed;
             width: 20px;
             height: 20px;
             border-radius: 50%;
-            background-color: var(--primary);
+            background-color: var(--quantum-core);
             mix-blend-mode: difference;
             pointer-events: none;
             z-index: 9999;
             transform: translate(-50%, -50%);
             transition: transform 0.1s ease;
-            opacity: 0.7;
+            opacity: 0.8;
         }
 
-        .cursor-follower {
+        .cursor-trail {
             position: fixed;
             width: 40px;
             height: 40px;
-            border: 1px solid var(--primary);
+            border: 1px solid var(--quantum-core);
             border-radius: 50%;
             pointer-events: none;
             z-index: 9998;
             transform: translate(-50%, -50%);
-            transition: transform 0.3s ease, opacity 0.3s ease;
+            transition: 
+                transform 0.3s cubic-bezier(0.05, 0.8, 0.2, 1),
+                opacity 0.3s ease;
             opacity: 0.5;
         }
 
-        /* Glitch Effect */
-        .glitch {
-            position: relative;
-        }
-
-        .glitch::before, .glitch::after {
-            content: attr(data-text);
+        /* Data Stream Effect */
+        .data-stream {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
+            z-index: 1;
+            opacity: 0.1;
+            overflow: hidden;
+        }
+
+        .stream-line {
+            position: absolute;
+            width: 1px;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent, var(--quantum-core), transparent);
+            animation: stream-flow 10s linear infinite;
+            opacity: 0.5;
+        }
+
+        @keyframes stream-flow {
+            0% { top: -100%; }
+            100% { top: 100%; }
+        }
+
+        /* === INTERFACE COMPONENTS === */
+        
+        /* Quantum Navigation */
+        .quantum-nav {
+            display: flex;
+            flex-direction: column;
+            gap: calc(var(--quantum-unit) * 2);
+            margin: calc(var(--quantum-unit) * 4) 0;
+        }
+
+        .nav-link {
+            color: var(--starlight);
+            text-decoration: none;
+            padding: calc(var(--quantum-unit) * 2);
+            position: relative;
+            overflow: hidden;
+            font-weight: 600;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 247, 255, 0.2), transparent);
+            transition: all 0.5s ease;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--quantum-core);
+            text-shadow: var(--hud-glow);
+        }
+
+        .nav-link:hover::before, .nav-link.active::before {
+            left: 100%;
+        }
+
+        .nav-icon {
+            margin-right: calc(var(--quantum-unit) * 2);
+            font-size: 1.2em;
+        }
+
+        /* Section Containers */
+        .quantum-section {
+            display: none;
+            animation: quantum-fade 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            margin-bottom: calc(var(--quantum-unit) * 6);
+        }
+
+        .quantum-section.active {
+            display: block;
+        }
+
+        @keyframes quantum-fade {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section-header {
+            margin-bottom: calc(var(--quantum-unit) * 4);
+            position: relative;
+            padding-bottom: calc(var(--quantum-unit) * 2);
+        }
+
+        .section-header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--quantum-core), transparent);
+        }
+
+        .section-title {
+            font-size: 2.5em;
+            font-weight: 700;
+            color: var(--quantum-core);
+            text-shadow: var(--hud-glow);
+            letter-spacing: 2px;
+            margin-bottom: calc(var(--quantum-unit) * 1);
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: attr(data-shadow);
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            color: transparent;
+            text-shadow: 0 0 15px var(--quantum-core);
+            z-index: -1;
+        }
+
+        .section-subtitle {
+            font-size: 1em;
+            color: var(--starlight);
+            opacity: 0.8;
+            font-weight: 400;
+        }
+
+        /* Quantum Bio */
+        .quantum-bio {
+            margin-bottom: calc(var(--quantum-unit) * 4);
+        }
+
+        .bio-text {
+            margin-bottom: calc(var(--quantum-unit) * 2);
+            line-height: 1.8;
+            position: relative;
+            padding-left: calc(var(--quantum-unit) * 3);
+        }
+
+        .bio-text::before {
+            content: '>';
+            position: absolute;
+            left: 0;
+            color: var(--quantum-core);
+            font-weight: bold;
+        }
+
+        /* Skills Matrix */
+        .skills-matrix {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: calc(var(--quantum-unit) * 3);
+            margin-top: calc(var(--quantum-unit) * 4);
+        }
+
+        .skill-node {
+            background: rgba(10, 10, 26, 0.5);
+            border: 1px solid var(--quantum-core);
+            box-shadow: var(--hud-glow);
+            padding: calc(var(--quantum-unit) * 3);
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-node::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, transparent 45%, rgba(0, 247, 255, 0.05) 50%, transparent 55%);
+            background-size: 10px 10px;
+            opacity: 0;
+            transition: all 0.5s ease;
+        }
+
+        .skill-node:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 247, 255, 0.2);
+        }
+
+        .skill-node:hover::before {
+            opacity: 1;
+            animation: matrix-scan 3s linear infinite;
+        }
+
+        .skill-name {
+            font-weight: 600;
+            color: var(--quantum-core);
+            margin-bottom: calc(var(--quantum-unit) * 1);
+            display: flex;
+            align-items: center;
+        }
+
+        .skill-icon {
+            margin-right: calc(var(--quantum-unit) * 2);
+            font-size: 1.2em;
+        }
+
+        .skill-level {
+            height: 4px;
+            background: rgba(0, 247, 255, 0.2);
+            border-radius: 2px;
+            margin-top: calc(var(--quantum-unit) * 2);
+            overflow: hidden;
+        }
+
+        .skill-progress {
+            height: 100%;
+            background: linear-gradient(90deg, var(--quantum-core), var(--cyber-purple));
+            border-radius: 2px;
+            transition: width 1s ease;
+        }
+
+        /* Project Grid */
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: calc(var(--quantum-unit) * 4);
+            margin-top: calc(var(--quantum-unit) * 4);
+        }
+
+        .project-card {
+            background: rgba(10, 10, 26, 0.5);
+            border: 1px solid var(--quantum-core);
+            box-shadow: var(--hud-glow);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 247, 255, 0.3);
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, transparent 45%, rgba(0, 247, 255, 0.05) 50%, transparent 55%);
+            background-size: 20px 20px;
+            opacity: 0;
+            transition: all 0.5s ease;
+        }
+
+        .project-card:hover::before {
+            opacity: 1;
+            animation: matrix-scan 5s linear infinite;
+        }
+
+        .project-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-bottom: 1px solid var(--quantum-core);
+        }
+
+        .project-content {
+            padding: calc(var(--quantum-unit) * 3);
+        }
+
+        .project-title {
+            font-size: 1.5em;
+            font-weight: 600;
+            color: var(--quantum-core);
+            margin-bottom: calc(var(--quantum-unit) * 2);
+        }
+
+        .project-description {
+            margin-bottom: calc(var(--quantum-unit) * 3);
+            opacity: 0.9;
+            line-height: 1.7;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: calc(var(--quantum-unit) * 1);
+            margin-bottom: calc(var(--quantum-unit) * 3);
+        }
+
+        .tech-tag {
+            background: rgba(0, 247, 255, 0.1);
+            color: var(--quantum-core);
+            padding: calc(var(--quantum-unit) * 0.5) calc(var(--quantum-unit) * 2);
+            border-radius: 20px;
+            font-size: 0.8em;
+            font-weight: 500;
+        }
+
+        .project-links {
+            display: flex;
+            gap: calc(var(--quantum-unit) * 2);
+        }
+
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            color: var(--starlight);
+            text-decoration: none;
+            padding: calc(var(--quantum-unit) * 1) calc(var(--quantum-unit) * 2);
+            border: 1px solid var(--quantum-core);
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .project-link:hover {
+            background: var(--quantum-core);
+            color: var(--void-black);
+            box-shadow: var(--hud-glow);
+        }
+
+        .link-icon {
+            margin-right: calc(var(--quantum-unit) * 1);
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            margin-top: calc(var(--quantum-unit) * 6);
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 20px;
+            height: 100%;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--quantum-core), transparent);
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: calc(var(--quantum-unit) * 6);
+            margin-bottom: calc(var(--quantum-unit) * 6);
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            top: 10px;
+            left: 16px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--quantum-core);
+            box-shadow: var(--hud-glow);
+        }
+
+        .timeline-date {
+            font-size: 0.9em;
+            color: var(--quantum-core);
+            margin-bottom: calc(var(--quantum-unit) * 1);
+            font-weight: 600;
+        }
+
+        .timeline-title {
+            font-size: 1.3em;
+            font-weight: 600;
+            margin-bottom: calc(var(--quantum-unit) * 1);
+        }
+
+        .timeline-subtitle {
+            font-size: 1em;
+            color: var(--starlight);
+            opacity: 0.8;
+            margin-bottom: calc(var(--quantum-unit) * 2);
+            font-weight: 500;
+        }
+
+        .timeline-description {
+            opacity: 0.9;
+            line-height: 1.8;
+        }
+
+        /* Testimonials */
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: calc(var(--quantum-unit) * 4);
+            margin-top: calc(var(--quantum-unit) * 4);
+        }
+
+        .testimonial-card {
+            background: rgba(10, 10, 26, 0.5);
+            border: 1px solid var(--quantum-core);
+            box-shadow: var(--hud-glow);
+            border-radius: 8px;
+            padding: calc(var(--quantum-unit) * 4);
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 247, 255, 0.2);
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: calc(var(--quantum-unit) * 3);
+            line-height: 1.8;
+            position: relative;
+        }
+
+        .testimonial-text::before,
+        .testimonial-text::after {
+            content: '"';
+            color: var(--quantum-core);
+            font-size: 2em;
+            line-height: 0;
+            position: absolute;
+            opacity: 0.5;
+        }
+
+        .testimonial-text::before {
+            top: 0;
+            left: -15px;
+        }
+
+        .testimonial-text::after {
+            bottom: -20px;
+            right: -15px;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+
+        .author-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: calc(var(--quantum-unit) * 2);
+            border: 1px solid var(--quantum-core);
+        }
+
+        .author-info {
+            flex: 1;
+        }
+
+        .author-name {
+            font-weight: 600;
+            color: var(--quantum-core);
+        }
+
+        .author-title {
+            font-size: 0.8em;
             opacity: 0.8;
         }
 
-        .glitch::before {
-            color: #0ff;
-            z-index: -1;
-            animation: glitch-effect 3s infinite;
+        /* Contact Form */
+        .contact-form {
+            max-width: 600px;
+            margin-top: calc(var(--quantum-unit) * 4);
         }
 
-        .glitch::after {
-            color: #f0f;
-            z-index: -2;
-            animation: glitch-effect 2s infinite reverse;
+        .form-group {
+            margin-bottom: calc(var(--quantum-unit) * 3);
         }
 
-        @keyframes glitch-effect {
-            0% { transform: translate(0); }
-            20% { transform: translate(-3px, 3px); }
-            40% { transform: translate(-3px, -3px); }
-            60% { transform: translate(3px, 3px); }
-            80% { transform: translate(3px, -3px); }
-            100% { transform: translate(0); }
+        .form-label {
+            display: block;
+            margin-bottom: calc(var(--quantum-unit) * 1);
+            color: var(--quantum-core);
+            font-weight: 500;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: calc(var(--quantum-unit) * 2) calc(var(--quantum-unit) * 3);
+            background: rgba(10, 10, 26, 0.5);
+            border: 1px solid var(--quantum-core);
+            border-radius: 4px;
+            color: var(--starlight);
+            font-family: var(--main-font);
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus {
+            outline: none;
+            box-shadow: var(--hud-glow);
+            border-color: var(--neon-pink);
+        }
+
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            background: var(--quantum-core);
+            color: var(--void-black);
+            border: none;
+            padding: calc(var(--quantum-unit) * 2) calc(var(--quantum-unit) * 4);
+            border-radius: 4px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .submit-btn:hover {
+            background: var(--neon-pink);
+            box-shadow: var(--danger-glow);
+            transform: translateY(-3px);
+        }
+
+        .btn-icon {
+            margin-right: calc(var(--quantum-unit) * 2);
+        }
+
+        /* Social Links */
+        .social-links {
+            display: flex;
+            gap: calc(var(--quantum-unit) * 3);
+            margin-top: calc(var(--quantum-unit) * 4);
+        }
+
+        .social-link {
+            color: var(--starlight);
+            font-size: 1.5em;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            color: var(--quantum-core);
+            transform: translateY(-3px);
+            text-shadow: var(--hud-glow);
+        }
+
+        /* Theme Toggle */
+        .theme-toggle {
+            background: transparent;
+            border: 1px solid var(--quantum-core);
+            color: var(--quantum-core);
+            padding: calc(var(--quantum-unit) * 1.5) calc(var(--quantum-unit) * 3);
+            border-radius: 4px;
+            font-family: var(--main-font);
+            font-weight: 500;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            margin-top: calc(var(--quantum-unit) * 4);
+        }
+
+        .theme-toggle:hover {
+            background: var(--quantum-core);
+            color: var(--void-black);
+            box-shadow: var(--hud-glow);
+        }
+
+        .toggle-icon {
+            margin-right: calc(var(--quantum-unit) * 2);
         }
 
         /* Footer */
-        .footer {
+        .quantum-footer {
             text-align: center;
-            padding: 1rem;
-            font-size: 0.8rem;
-            color: var(--light-text);
-            opacity: 0.7;
+            padding: calc(var(--quantum-unit) * 4) 0;
+            margin-top: calc(var(--quantum-unit) * 6);
+            border-top: 1px solid rgba(0, 247, 255, 0.2);
         }
 
-        /* Responsive Design */
+        .footer-text {
+            opacity: 0.7;
+            font-size: 0.9em;
+        }
+
+        /* === RESPONSIVE ADJUSTMENTS === */
         @media (max-width: 768px) {
-            .container {
-                flex-direction: column;
+            .quantum-grid {
+                grid-template-columns: 1fr;
             }
 
-            .profile {
-                width: 100%;
-                border-left: none;
-                border-bottom: 1px solid var(--primary);
-                padding: 1rem;
+            .sidecore {
+                border-right: none;
+                border-bottom: var(--hud-thickness) solid var(--quantum-core);
             }
 
-            .content {
-                padding: 1rem;
+            .section-title {
+                font-size: 2em;
             }
 
-            .profile-pic {
-                width: 150px;
-                height: 150px;
+            .skills-matrix {
+                grid-template-columns: 1fr;
             }
 
-            .nav {
-                flex-direction: row;
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-
-            .nav-item {
-                border-left: none;
-                border-bottom: 3px solid transparent;
-            }
-
-            .nav-item:hover, .nav-item.active {
-                border-left: none;
-                border-bottom: 3px solid var(--primary);
-            }
-
-            .projects-grid {
+            .project-grid {
                 grid-template-columns: 1fr;
             }
         }
 
-        /* Animations */
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-            100% { transform: translateY(0px); }
+        /* === ANIMATIONS === */
+        @keyframes quantum-pulse {
+            0% { opacity: 0.5; }
+            50% { opacity: 1; }
+            100% { opacity: 0.5; }
         }
 
-        .floating {
-            animation: float 3s ease-in-out infinite;
+        @keyframes quantum-float {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0); }
         }
+
+        .quantum-float {
+            animation: quantum-float 6s ease-in-out infinite;
+        }
+
+        /* === UTILITY CLASSES === */
+        .text-gradient {
+            background: linear-gradient(90deg, var(--quantum-core), var(--neon-pink));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .mb-1 { margin-bottom: var(--quantum-unit); }
+        .mb-2 { margin-bottom: calc(var(--quantum-unit) * 2); }
+        .mb-3 { margin-bottom: calc(var(--quantum-unit) * 3); }
+        .mb-4 { margin-bottom: calc(var(--quantum-unit) * 4); }
+        .mb-5 { margin-bottom: calc(var(--quantum-unit) * 5); }
+        .mb-6 { margin-bottom: calc(var(--quantum-unit) * 6); }
+
+        .mt-1 { margin-top: var(--quantum-unit); }
+        .mt-2 { margin-top: calc(var(--quantum-unit) * 2); }
+        .mt-3 { margin-top: calc(var(--quantum-unit) * 3); }
+        .mt-4 { margin-top: calc(var(--quantum-unit) * 4); }
+        .mt-5 { margin-top: calc(var(--quantum-unit) * 5); }
+        .mt-6 { margin-top: calc(var(--quantum-unit) * 6); }
     </style>
 </head>
 <body>
-    <!-- Matrix Rain Background -->
-    <canvas id="matrix"></canvas>
-    
-    <!-- Particle Background -->
-    <div id="particles"></div>
-    
-    <!-- Custom Cursor -->
-    <div class="cursor"></div>
-    <div class="cursor-follower"></div>
-    
-    <div class="container">
-        <!-- Left Content Area -->
-        <div class="content">
-            <!-- Home/About Section -->
-            <section id="home" class="section active">
-                <h2 class="section-title glitch" data-text="About Me">About Me</h2>
-                <p class="about-text">
-                    <span class="highlight">Hello, world!</span> I'm <span class="highlight">NeonDev</span>, a cyberpunk-inspired full-stack developer with a passion for creating immersive digital experiences. I specialize in building responsive, performant web applications with cutting-edge technologies.
-                </p>
-                <p class="about-text">
-                    My journey began in the neon-lit streets of the digital underground, where I honed my skills in <span class="highlight">JavaScript</span>, <span class="highlight">React</span>, and <span class="highlight">Node.js</span>. Now, I bring that same rebellious spirit to crafting elegant solutions for complex problems.
-                </p>
-                <p class="about-text">
-                    When I'm not coding, you can find me exploring the latest in <span class="highlight">cybersecurity</span>, contributing to <span class="highlight">open-source</span> projects, or immersed in cyberpunk literature and cinema.
-                </p>
-            </section>
-            
-            <!-- Skills Section -->
-            <section id="skills" class="section">
-                <h2 class="section-title glitch" data-text="My Skills">My Skills</h2>
-                <div class="skills-container">
-                    <div class="skill">JavaScript</div>
-                    <div class="skill">TypeScript</div>
-                    <div class="skill">React</div>
-                    <div class="skill">Node.js</div>
-                    <div class="skill">Python</div>
-                    <div class="skill">HTML5</div>
-                    <div class="skill">CSS3</div>
-                    <div class="skill">SASS</div>
-                    <div class="skill">MongoDB</div>
-                    <div class="skill">PostgreSQL</div>
-                    <div class="skill">GraphQL</div>
-                    <div class="skill">REST APIs</div>
-                    <div class="skill">Docker</div>
-                    <div class="skill">Git</div>
-                    <div class="skill">AWS</div>
-                    <div class="skill">Cybersecurity</div>
-                    <div class="skill">Blockchain</div>
-                    <div class="skill">Web3</div>
+    <!-- Quantum Cursor System -->
+    <div class="quantum-cursor"></div>
+    <div class="cursor-trail"></div>
+
+    <!-- Data Stream Background -->
+    <div class="data-stream" id="dataStream"></div>
+
+    <!-- Main Quantum Grid -->
+    <div class="quantum-grid">
+        <!-- Sidecore Processor Unit -->
+        <div class="sidecore">
+            <div class="processor-unit">
+                <!-- Avatar Matrix -->
+                <div class="avatar-matrix quantum-float">
+                    <img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Quantum Developer" class="avatar-img">
                 </div>
-            </section>
-            
-            <!-- Projects Section -->
-            <section id="projects" class="section">
-                <h2 class="section-title glitch" data-text="My Projects">My Projects</h2>
-                <div class="projects-grid">
-                    <div class="project-card">
-                        <img src="https://via.placeholder.com/300x180/0a0a0a/00ff00?text=NeonNet" alt="NeonNet" class="project-image">
-                        <div class="project-info">
-                            <h3 class="project-title">NeonNet Social</h3>
-                            <p class="project-description">A decentralized social media platform with end-to-end encryption and blockchain-based identity verification.</p>
-                            <div class="project-links">
-                                <a href="#" class="project-link">Live Demo</a>
-                                <a href="#" class="project-link">GitHub</a>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="project-card">
-                        <img src="https://via.placeholder.com/300x180/0a0a0a/00ff00?text=CryptoDash" alt="CryptoDash" class="project-image">
-                        <div class="project-info">
-                            <h3 class="project-title">CryptoDash</h3>
-                            <p class="project-description">Real-time cryptocurrency dashboard with price tracking, portfolio management, and predictive analytics.</p>
-                            <div class="project-links">
-                                <a href="#" class="project-link">Live Demo</a>
-                                <a href="#" class="project-link">GitHub</a>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="project-card">
-                        <img src="https://via.placeholder.com/300x180/0a0a0a/00ff00?text=CyberTerm" alt="CyberTerm" class="project-image">
-                        <div class="project-info">
-                            <h3 class="project-title">CyberTerm</h3>
-                            <p class="project-description">A browser-based terminal emulator with built-in cybersecurity tools and hacking challenges.</p>
-                            <div class="project-links">
-                                <a href="#" class="project-link">Live Demo</a>
-                                <a href="#" class="project-link">GitHub</a>
-                            </div>
-                        </div>
-                    </div>
+
+                <!-- Quantum Identity -->
+                <h1 class="name hud-text text-gradient">QUANTUM_DEV</h1>
+                <p class="title hud-text">Full-Stack Quantum Developer</p>
+
+                <!-- Social Links -->
+                <div class="social-links">
+                    <a href="#" class="social-link">GitHub</a>
+                    <a href="#" class="social-link">LinkedIn</a>
+                    <a href="#" class="social-link">Twitter</a>
+                    <a href="#" class="social-link">CodePen</a>
                 </div>
-            </section>
-            
-            <!-- Resume Section -->
-            <section id="resume" class="section">
-                <h2 class="section-title glitch" data-text="My Resume">My Resume</h2>
-                
-                <div class="resume-item">
-                    <h3 class="resume-title">Senior Full-Stack Developer</h3>
-                    <h4 class="resume-subtitle">NeonCorp Technologies</h4>
-                    <p class="resume-date">2021 - Present</p>
-                    <p class="resume-description">
-                        Lead development of decentralized applications using React, Node.js, and blockchain technologies. Implemented security protocols that reduced system vulnerabilities by 75%. Mentored junior developers in cybersecurity best practices.
-                    </p>
-                </div>
-                
-                <div class="resume-item">
-                    <h3 class="resume-title">Frontend Developer</h3>
-                    <h4 class="resume-subtitle">CyberDyne Systems</h4>
-                    <p class="resume-date">2018 - 2021</p>
-                    <p class="resume-description">
-                        Developed responsive user interfaces for enterprise cybersecurity dashboards. Optimized frontend performance, reducing load times by 40%. Collaborated with design team to create accessible, user-friendly interfaces.
-                    </p>
-                </div>
-                
-                <div class="resume-item">
-                    <h3 class="resume-title">Education</h3>
-                    <h4 class="resume-subtitle">Neon University</h4>
-                    <p class="resume-date">2014 - 2018</p>
-                    <p class="resume-description">
-                        Bachelor of Science in Computer Science with focus on Cybersecurity and Artificial Intelligence. Graduated with honors. Published research on neural network vulnerabilities in peer-reviewed journal.
-                    </p>
-                </div>
-                
-                <a href="#" class="download-btn">Download Full Resume</a>
-            </section>
-            
-            <!-- Testimonials Section -->
-            <section id="testimonials" class="section">
-                <h2 class="section-title glitch" data-text="Testimonials">Testimonials</h2>
-                
-                <div class="testimonials-container">
-                    <div class="testimonial active">
-                        <p class="testimonial-text">
-                            "NeonDev transformed our cybersecurity dashboard with their innovative approach. The system they built not only looks incredible but has withstood every penetration test we've thrown at it. Their attention to detail is unmatched."
-                        </p>
-                        <p class="testimonial-author">— Sarah K., CTO at NeonCorp</p>
-                    </div>
-                    
-                    <div class="testimonial">
-                        <p class="testimonial-text">
-                            "Working with NeonDev was a game-changer for our project. They implemented blockchain solutions we hadn't even considered and delivered ahead of schedule. Their cyberpunk aesthetic perfectly matched our brand vision."
-                        </p>
-                        <p class="testimonial-author">— Mark T., CEO at CyberDyne</p>
-                    </div>
-                    
-                    <div class="testimonial">
-                        <p class="testimonial-text">
-                            "NeonDev's code is as clean as their designs are striking. They brought our decentralized app to life with flawless functionality and an interface that users can't stop raving about. Simply outstanding work."
-                        </p>
-                        <p class="testimonial-author">— Lisa M., Product Manager at BlockChain Innovations</p>
-                    </div>
-                    
-                    <div class="testimonial-nav">
-                        <div class="testimonial-dot active" data-index="0"></div>
-                        <div class="testimonial-dot" data-index="1"></div>
-                        <div class="testimonial-dot" data-index="2"></div>
-                    </div>
-                </div>
-            </section>
-            
-            <!-- Contact Section -->
-            <section id="contact" class="section">
-                <h2 class="section-title glitch" data-text="Contact Me">Contact Me</h2>
-                
-                <form class="contact-form">
-                    <div class="form-group">
-                        <label for="name" class="form-label">Name</label>
-                        <input type="text" id="name" class="form-input" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="email" class="form-label">Email</label>
-                        <input type="email" id="email" class="form-input" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="message" class="form-label">Message</label>
-                        <textarea id="message" class="form-textarea" required></textarea>
-                    </div>
-                    
-                    <button type="submit" class="submit-btn">Send Message</button>
-                </form>
-                
-                <div class="contact-info">
-                    <p>Or reach out directly:</p>
-                    <a href="mailto:neondev@cybermail.io" class="contact-link">neondev@cybermail.io</a>
-                    <a href="https://github.com/neondev" class="contact-link">GitHub</a>
-                    <a href="https://linkedin.com/in/neondev" class="contact-link">LinkedIn</a>
-                </div>
-            </section>
-            
-            <footer class="footer">
-                <p>© 2023 NeonDev | Cyberpunk Developer Portfolio</p>
-            </footer>
-        </div>
-        
-        <!-- Right Profile Area -->
-        <div class="profile">
-            <img src="https://via.placeholder.com/200x200/0a0a0a/00ff00?text=NEON" alt="NeonDev" class="profile-pic floating">
-            <h1 class="name">NEONDEV</h1>
-            <p class="title">Full-Stack Developer | Cybersecurity Specialist</p>
-            
-            <div class="social-links">
-                <a href="#" class="social-link">GitHub</a>
-                <a href="#" class="social-link">LinkedIn</a>
-                <a href="#" class="social-link">Twitter</a>
-                <a href="#" class="social-link">CodePen</a>
+
+                <!-- Theme Toggle -->
+                <button class="theme-toggle" id="themeToggle">
+                    <span class="toggle-icon">☀️</span>
+                    <span>Light Mode</span>
+                </button>
+
+                <!-- Quantum Navigation -->
+                <nav class="quantum-nav">
+                    <a href="#home" class="nav-link active">
+                        <span class="nav-icon">⌂</span>
+                        <span>Home Terminal</span>
+                    </a>
+                    <a href="#skills" class="nav-link">
+                        <span class="nav-icon">⚙️</span>
+                        <span>Skills Matrix</span>
+                    </a>
+                    <a href="#projects" class="nav-link">
+                        <span class="nav-icon">🖥️</span>
+                        <span>Project Hub</span>
+                    </a>
+                    <a href="#experience" class="nav-link">
+                        <span class="nav-icon">📈</span>
+                        <span>Experience Log</span>
+                    </a>
+                    <a href="#testimonials" class="nav-link">
+                        <span class="nav-icon">💬</span>
+                        <span>Client Feedback</span>
+                    </a>
+                    <a href="#contact" class="nav-link">
+                        <span class="nav-icon">✉️</span>
+                        <span>Contact Node</span>
+                    </a>
+                </nav>
             </div>
-            
-            <button class="theme-toggle" id="themeToggle">Toggle Theme</button>
-            
-            <nav class="nav">
-                <a href="#home" class="nav-item active">Home</a>
-                <a href="#skills" class="nav-item">Skills</a>
-                <a href="#projects" class="nav-item">Projects</a>
-                <a href="#resume" class="nav-item">Resume</a>
-                <a href="#testimonials" class="nav-item">Testimonials</a>
-                <a href="#contact" class="nav-item">Contact</a>
-            </nav>
+        </div>
+
+        <!-- Mainframe Display -->
+        <div class="mainframe">
+            <div class="terminal-output">
+                <!-- Home Terminal -->
+                <section id="home" class="quantum-section active">
+                    <div class="section-header">
+                        <h1 class="section-title" data-shadow="Home Terminal">Home Terminal</h1>
+                        <p class="section-subtitle">System initialization complete. Welcome to the quantum interface.</p>
+                    </div>
+
+                    <div class="quantum-bio">
+                        <p class="bio-text">
+                            <span class="hud-accent">System:</span> Quantum developer interface online. All systems nominal.
+                        </p>
+                        <p class="bio-text">
+                            <span class="hud-accent">User:</span> I specialize in creating high-performance quantum web applications that push the boundaries of modern technology.
+                        </p>
+                        <p class="bio-text">
+                            <span class="hud-accent">Expertise:</span> Full-stack development with focus on React, Node.js, and blockchain integration.
+                        </p>
+                        <p class="bio-text">
+                            <span class="hud-accent">Mission:</span> To build the next generation of immersive web experiences with cutting-edge technology.
+                        </p>
+                    </div>
+
+                    <div class="hud-border" style="padding: calc(var(--quantum-unit) * 3); margin-top: calc(var(--quantum-unit) * 6);">
+                        <h3 class="hud-text mb-2">System Status</h3>
+                        <div class="skills-matrix">
+                            <div class="skill-node">
+                                <div class="skill-name">
+                                    <span class="skill-icon">🔋</span>
+                                    <span>Power Level</span>
+                                </div>
+                                <div class="skill-level">
+                                    <div class="skill-progress" style="width: 95%"></div>
+                                </div>
+                            </div>
+                            <div class="skill-node">
+                                <div class="skill-name">
+                                    <span class="skill-icon">⚡</span>
+                                    <span>Processing Speed</span>
+                                </div>
+                                <div class="skill-level">
+                                    <div class="skill-progress" style="width: 90%"></div>
+                                </div>
+                            </div>
+                            <div class="skill-node">
+                                <div class="skill-name">
+                                    <span class="skill-icon">🛡️</span>
+                                    <span>Security Protocol</span>
+                                </div>
+                                <div class="skill-level">
+                                    <div class="skill-progress" style="width: 98%"></div>
+                                </div>
+                            </div>
+                            <div class="skill-node">
+                                <div class="skill-name">
+                                    <span class="skill-icon">🧠</span>
+                                    <span>Neural Network</span>
+                                </div>
+                                <div class="skill-level">
+                                    <div class="skill-progress" style="width: 88%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Skills Matrix -->
+                <section id="skills" class="quantum-section">
+                    <div class="section-header">
+                        <h1 class="section-title" data-shadow="Skills Matrix">Skills Matrix</h1>
+                        <p class="section-subtitle">Technical proficiency analysis and capability assessment</p>
+                    </div>
+
+                    <div class="skills-matrix">
+                        <div class="skill-node">
+                            <div class="skill-name">
+                                <span class="skill-icon">🌐</span>
+                                <span>Frontend Development</span>
+                            </div>
+                            <div class="skill-level">
+                                <div class="skill-progress" style="width: 95%"></div>
+                            </div>
+                            <p class="skill-description">React, Vue, Angular, TypeScript, GraphQL</p>
+                        </div>
+                        <div class="skill-node">
+                            <div class="skill-name">
+                                <span class="skill-icon">🔌</span>
+                                <span>Backend Development</span>
+                            </div>
+                            <div class="skill-level">
+                                <div class="skill-progress" style="width: 90%"></div>
+                            </div>
+                            <p class="skill-description">Node.js, Express, Django, Flask, REST APIs</p>
+                        </div>
+                        <div class="skill-node">
+                            <div class="skill-name">
+                                <span class="skill-icon">🛢️</span>
+                                <span>Database Systems</span>
+                            </div>
+                            <div class="skill-level">
+                                <div class="skill-progress" style="width: 85%"></div>
+                            </div>
+                            <p class="skill-description">MongoDB, PostgreSQL, Firebase, Redis</p>
+                        </div>
+                        <div class="skill-node">
+                            <div class="skill-name">
+                                <span class="skill-icon">🔗</span>
+                                <span>Blockchain</span>
+                            </div>
+                            <div class="skill-level">
+                                <div class="skill-progress" style="width: 80%"></div>
+                            </div>
+                            <p class="skill-description">Solidity, Web3.js, Ethereum, Smart Contracts</p>
+                        </div>
+                        <div class="skill-node">
+                            <div class="skill-name">
+                                <span class="skill-icon">🎨</span>
+                                <span>UI/UX Design</span>
+                            </div>
+                            <div class="skill-level">
+                                <div class="skill-progress" style="width: 75%"></div>
+                            </div>
+                            <p class="skill-description">Figma, Adobe XD, User Research, Prototyping</p>
+                        </div>
+                        <div class="skill-node">
+                            <div class="skill-name">
+                                <span class="skill-icon">🤖</span>
+                                <span>AI/ML</span>
+                            </div>
+                            <div class="skill-level">
+                                <div class="skill-progress" style="width: 70%"></div>
+                            </div>
+                            <p class="skill-description">TensorFlow, PyTorch, NLP, Computer Vision</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Project Hub -->
+                <section id="projects" class="quantum-section">
+                    <div class="section-header">
+                        <h1 class="section-title" data-shadow="Project Hub">Project Hub</h1>
+                        <p class="section-subtitle">Recent quantum development initiatives and case studies</p>
+                    </div>
+
+                    <div class="project-grid">
+                        <div class="project-card">
+                            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Quantum Analytics Dashboard" class="project-image">
+                            <div class="project-content">
+                                <h3 class="project-title">Quantum Analytics</h3>
+                                <p class="project-description">
+                                    A real-time data visualization dashboard for quantum computing metrics with AI-powered predictive analytics.
+                                </p>
+                                <div class="project-tech">
+                                    <span class="tech-tag">React</span>
+                                    <span class="tech-tag">D3.js</span>
+                                    <span class="tech-tag">Node.js</span>
+                                    <span class="tech-tag">TensorFlow</span>
+                                </div>
+                                <div class="project-links">
+                                    <a href="#" class="project-link">
+                                        <span class="link-icon">🌐</span>
+                                        <span>Live Demo</span>
+                                    </a>
+                                    <a href="#" class="project-link">
+                                        <span class="link-icon">💻</span>
+                                        <span>Source Code</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="project-card">
+                            <img src="https://images.unsplash.com/photo-1639762681057-408e52192e55?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Neural Network Interface" class="project-image">
+                            <div class="project-content">
+                                <h3 class="project-title">Neural Interface</h3>
+                                <p class="project-description">
+                                    Web-based neural network playground with interactive visualization of machine learning models.
+                                </p>
+                                <div class="project-tech">
+                                    <span class="tech-tag">TypeScript</span>
+                                    <span class="tech-tag">TensorFlow.js</span>
+                                    <span class="tech-tag">WebGL</span>
+                                    <span class="tech-tag">Web Workers</span>
+                                </div>
+                                <div class="project-links">
+                                    <a href="#" class="project-link">
+                                        <span class="link-icon">🌐</span>
+                                        <span>Live Demo</span>
+                                    </a>
+                                    <a href="#" class="project-link">
+                                        <span class="link-icon">💻</span>
+                                        <span>Source Code</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="project-card">
+                            <img src="https://images.unsplash.com/photo-1639762681485-07430a5d0e6a?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Blockchain Explorer" class="project-image">
+                            <div class="project-content">
+                                <h3 class="project-title">Block Explorer</h3>
+                                <p class="project-description">
+                                    Decentralized blockchain explorer with real-time transaction monitoring and smart contract analysis.
+                                </p>
+                                <div class="project-tech">
+                                    <span class="tech-tag">Ethereum</span>
+                                    <span class="tech-tag">Web3.js</span>
+                                    <span class="tech-tag">IPFS</span>
+                                    <span class="tech-tag">Solidity</span>
+                                </div>
+                                <div class="project-links">
+                                    <a href="#" class="project-link">
+                                        <span class="link-icon">🌐</span>
+                                        <span>Live Demo</span>
+                                    </a>
+                                    <a href="#" class="project-link">
+                                        <span class="link-icon">💻</span>
+                                        <span>Source Code</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Experience Log -->
+                <section id="experience" class="quantum-section">
+                    <div class="section-header">
+                        <h1 class="section-title" data-shadow="Experience Log">Experience Log</h1>
+                        <p class="section-subtitle">Professional trajectory and quantum development milestones</p>
+                    </div>
+
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-date">2022 - Present</div>
+                            <h3 class="timeline-title">Quantum Developer</h3>
+                            <h4 class="timeline-subtitle">Nexus Technologies</h4>
+                            <p class="timeline-description">
+                                Lead developer for quantum computing interface projects. Designed and implemented the frontend architecture for the company's flagship quantum simulation platform.
+                            </p>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-date">2019 - 2022</div>
+                            <h3 class="timeline-title">Senior Full-Stack Engineer</h3>
+                            <h4 class="timeline-subtitle">Cyberdyne Systems</h4>
+                            <p class="timeline-description">
+                                Developed blockchain-based solutions for secure data transmission. Led a team of 5 developers to create a decentralized identity verification system.
+                            </p>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-date">2016 - 2019</div>
+                            <h3 class="timeline-title">Frontend Architect</h3>
+                            <h4 class="timeline-subtitle">Neon Networks</h4>
+                            <p class="timeline-description">
+                                Created immersive data visualization dashboards for AI analytics. Optimized rendering performance by 300% through WebGL and canvas optimizations.
+                            </p>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-date">2012 - 2016</div>
+                            <h3 class="timeline-title">Quantum Computing Researcher</h3>
+                            <h4 class="timeline-subtitle">MIT CSAIL</h4>
+                            <p class="timeline-description">
+                                Researched quantum algorithms and developed simulation tools for quantum circuit visualization. Published 3 papers on quantum machine learning.
+                            </p>
+                        </div>
+                    </div>
+
+                    <button class="download-btn">
+                        <span class="btn-icon">📄</span>
+                        <span>Download Full Resume</span>
+                    </button>
+                </section>
+
+                <!-- Client Feedback -->
+                <section id="testimonials" class="quantum-section">
+                    <div class="section-header">
+                        <h1 class="section-title" data-shadow="Client Feedback">Client Feedback</h1>
+                        <p class="section-subtitle">Validation from quantum development partners</p>
+                    </div>
+
+                    <div class="testimonial-grid">
+                        <div class="testimonial-card">
+                            <p class="testimonial-text">
+                                Quantum_Dev transformed our quantum simulation interface with their innovative approach. The system they built not only looks incredible but has become our competitive advantage in the market.
+                            </p>
+                            <div class="testimonial-author">
+                                <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Sarah K." class="author-avatar">
+                                <div class="author-info">
+                                    <div class="author-name">Sarah K.</div>
+                                    <div class="author-title">CTO, Nexus Technologies</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="testimonial-card">
+                            <p class="testimonial-text">
+                                Working with Quantum_Dev was a game-changer for our blockchain project. They implemented solutions we hadn't even considered and delivered ahead of schedule. Their technical expertise is matched only by their creative vision.
+                            </p>
+                            <div class="testimonial-author">
+                                <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Mark T." class="author-avatar">
+                                <div class="author-info">
+                                    <div class="author-name">Mark T.</div>
+                                    <div class="author-title">CEO, Cyberdyne Systems</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="testimonial-card">
+                            <p class="testimonial-text">
+                                Quantum_Dev's work on our AI visualization platform set a new standard for interactive data exploration. Their ability to translate complex concepts into intuitive interfaces is unparalleled.
+                            </p>
+                            <div class="testimonial-author">
+                                <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Lisa M." class="author-avatar">
+                                <div class="author-info">
+                                    <div class="author-name">Lisa M.</div>
+                                    <div class="author-title">Director of AI, Neon Networks</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Contact Node -->
+                <section id="contact" class="quantum-section">
+                    <div class="section-header">
+                        <h1 class="section-title" data-shadow="Contact Node">Contact Node</h1>
+                        <p class="section-subtitle">Initiate quantum communication protocol</p>
+                    </div>
+
+                    <form class="contact-form">
+                        <div class="form-group">
+                            <label for="name" class="form-label">Designation</label>
+                            <input type="text" id="name" class="form-control" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email" class="form-label">Quantum Frequency</label>
+                            <input type="email" id="email" class="form-control" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message" class="form-label">Transmission</label>
+                            <textarea id="message" class="form-control" required></textarea>
+                        </div>
+
+                        <button type="submit" class="submit-btn">
+                            <span class="btn-icon">🚀</span>
+                            <span>Initiate Transmission</span>
+                        </button>
+                    </form>
+
+                    <div class="mt-6">
+                        <h3 class="hud-text mb-3">Direct Quantum Links</h3>
+                        <div class="social-links">
+                            <a href="mailto:quantum@cybernexus.dev" class="social-link">quantum@cybernexus.dev</a>
+                            <a href="tel:+1234567890" class="social-link">+1 (234) 567-890</a>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Quantum Footer -->
+                <footer class="quantum-footer">
+                    <p class="footer-text">© 2023 CYBERNEXUS | Quantum Developer Interface</p>
+                    <p class="footer-text">All systems operational. Transmission secured.</p>
+                </footer>
+            </div>
         </div>
     </div>
 
     <script>
-        // Matrix Rain Effect
-        const canvas = document.getElementById('matrix');
-        const ctx = canvas.getContext('2d');
-        
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-        
-        const katakana = 'アァカサタナハマヤャラワガザダバパイィキシチニヒミリヰギジヂビピウゥクスツヌフムユュルグズブヅプエェケセテネヘメレヱゲゼデベペオォコソトノホモヨョロヲゴゾドボポヴッン';
-        const latin = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-        const nums = '0123456789';
-        const symbols = '!"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~';
-        
-        const alphabet = katakana + latin + nums + symbols;
-        
-        const fontSize = 16;
-        const columns = canvas.width / fontSize;
-        
-        const rainDrops = [];
-        
-        for (let x = 0; x < columns; x++) {
-            rainDrops[x] = 1;
+        // Quantum Initialization Sequence
+        document.addEventListener('DOMContentLoaded', () => {
+            // Initialize Data Stream
+            initDataStream();
+            
+            // Initialize Quantum Cursor
+            initQuantumCursor();
+            
+            // Initialize Theme Toggle
+            initThemeToggle();
+            
+            // Initialize Navigation
+            initQuantumNavigation();
+            
+            // Initialize Testimonials
+            initTestimonials();
+            
+            // Initialize Contact Form
+            initContactForm();
+            
+            // System Check
+            console.log('%cQUANTUM INTERFACE ONLINE', 'color: #00f7ff; font-size: 24px; font-weight: bold; text-shadow: 0 0 10px #00f7ff;');
+            console.log('%cAll systems operational', 'color: #00ff2a;');
+        });
+
+        // Data Stream Effect
+        function initDataStream() {
+            const dataStream = document.getElementById('dataStream');
+            const lineCount = Math.floor(window.innerWidth / 50);
+            
+            for (let i = 0; i < lineCount; i++) {
+                const line = document.createElement('div');
+                line.className = 'stream-line';
+                line.style.left = `${Math.random() * 100}%`;
+                line.style.animationDelay = `${Math.random() * 10}s`;
+                line.style.animationDuration = `${5 + Math.random() * 10}s`;
+                line.style.height = `${50 + Math.random() * 200}%`;
+                line.style.opacity = `${0.1 + Math.random() * 0.2}`;
+                dataStream.appendChild(line);
+            }
         }
-        
-        const draw = () => {
-            ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        // Quantum Cursor System
+        function initQuantumCursor() {
+            const cursor = document.querySelector('.quantum-cursor');
+            const cursorTrail = document.querySelector('.cursor-trail');
             
-            ctx.fillStyle = '#0f0';
-            ctx.font = fontSize + 'px monospace';
-            
-            for (let i = 0; i < rainDrops.length; i++) {
-                const text = alphabet.charAt(Math.floor(Math.random() * alphabet.length));
-                ctx.fillText(text, i * fontSize, rainDrops[i] * fontSize);
+            document.addEventListener('mousemove', (e) => {
+                cursor.style.left = `${e.clientX}px`;
+                cursor.style.top = `${e.clientY}px`;
                 
-                if (rainDrops[i] * fontSize > canvas.height && Math.random() > 0.975) {
-                    rainDrops[i] = 0;
-                }
-                rainDrops[i]++;
-            }
-        };
-        
-        setInterval(draw, 30);
-        
-        // Particle Effect
-        const particlesContainer = document.getElementById('particles');
-        const particleCount = 50;
-        
-        for (let i = 0; i < particleCount; i++) {
-            const particle = document.createElement('div');
-            particle.classList.add('particle');
+                setTimeout(() => {
+                    cursorTrail.style.left = `${e.clientX}px`;
+                    cursorTrail.style.top = `${e.clientY}px`;
+                }, 100);
+            });
             
-            const size = Math.random() * 5 + 1;
-            const posX = Math.random() * window.innerWidth;
-            const posY = Math.random() * window.innerHeight;
-            const delay = Math.random() * 5;
-            const duration = Math.random() * 10 + 10;
+            document.addEventListener('mouseenter', () => {
+                cursor.style.opacity = '0.8';
+                cursorTrail.style.opacity = '0.5';
+            });
             
-            particle.style.width = `${size}px`;
-            particle.style.height = `${size}px`;
-            particle.style.left = `${posX}px`;
-            particle.style.top = `${posY}px`;
-            particle.style.animationDelay = `${delay}s`;
-            particle.style.animationDuration = `${duration}s`;
+            document.addEventListener('mouseleave', () => {
+                cursor.style.opacity = '0';
+                cursorTrail.style.opacity = '0';
+            });
             
-            particlesContainer.appendChild(particle);
+            // Interactive elements effect
+            const interactiveElements = document.querySelectorAll('a, button, .project-card, .skill-node, .nav-link');
+            
+            interactiveElements.forEach(el => {
+                el.addEventListener('mouseenter', () => {
+                    cursor.style.transform = 'translate(-50%, -50%) scale(1.5)';
+                    cursor.style.backgroundColor = '#ff00f7';
+                    cursorTrail.style.borderColor = '#ff00f7';
+                    cursorTrail.style.transform = 'translate(-50%, -50%) scale(1.2)';
+                });
+                
+                el.addEventListener('mouseleave', () => {
+                    cursor.style.transform = 'translate(-50%, -50%) scale(1)';
+                    cursor.style.backgroundColor = '#00f7ff';
+                    cursorTrail.style.borderColor = '#00f7ff';
+                    cursorTrail.style.transform = 'translate(-50%, -50%) scale(1)';
+                });
+            });
         }
-        
-        // Custom Cursor
-        const cursor = document.querySelector('.cursor');
-        const cursorFollower = document.querySelector('.cursor-follower');
-        
-        document.addEventListener('mousemove', (e) => {
-            cursor.style.left = e.clientX + 'px';
-            cursor.style.top = e.clientY + 'px';
-            
-            setTimeout(() => {
-                cursorFollower.style.left = e.clientX + 'px';
-                cursorFollower.style.top = e.clientY + 'px';
-            }, 100);
-        });
-        
-        document.addEventListener('mouseenter', () => {
-            cursor.style.opacity = '0.7';
-            cursorFollower.style.opacity = '0.5';
-        });
-        
-        document.addEventListener('mouseleave', () => {
-            cursor.style.opacity = '0';
-            cursorFollower.style.opacity = '0';
-        });
-        
+
         // Theme Toggle
-        const themeToggle = document.getElementById('themeToggle');
-        let currentTheme = 'dark';
-        
-        themeToggle.addEventListener('click', () => {
-            if (currentTheme === 'dark') {
-                document.documentElement.setAttribute('data-theme', 'light');
-                currentTheme = 'light';
-                themeToggle.textContent = 'Dark Mode';
-            } else {
-                document.documentElement.setAttribute('data-theme', 'dark');
-                currentTheme = 'dark';
-                themeToggle.textContent = 'Light Mode';
+        function initThemeToggle() {
+            const themeToggle = document.getElementById('themeToggle');
+            let currentTheme = 'dark';
+            
+            themeToggle.addEventListener('click', () => {
+                if (currentTheme === 'dark') {
+                    document.documentElement.setAttribute('data-theme', 'light');
+                    currentTheme = 'light';
+                    themeToggle.innerHTML = '<span class="toggle-icon">🌙</span><span>Dark Mode</span>';
+                } else {
+                    document.documentElement.setAttribute('data-theme', 'dark');
+                    currentTheme = 'dark';
+                    themeToggle.innerHTML = '<span class="toggle-icon">☀️</span><span>Light Mode</span>';
+                }
+            });
+        }
+
+        // Quantum Navigation
+        function initQuantumNavigation() {
+            const navLinks = document.querySelectorAll('.nav-link');
+            const sections = document.querySelectorAll('.quantum-section');
+            
+            navLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    
+                    // Remove active class from all links and sections
+                    navLinks.forEach(navLink => navLink.classList.remove('active'));
+                    sections.forEach(section => section.classList.remove('active'));
+                    
+                    // Add active class to clicked link
+                    link.classList.add('active');
+                    
+                    // Show corresponding section
+                    const target = link.getAttribute('href');
+                    document.querySelector(target).classList.add('active');
+                    
+                    // Quantum transition effect
+                    document.querySelector('.terminal-output').style.opacity = '0';
+                    setTimeout(() => {
+                        document.querySelector('.terminal-output').style.opacity = '1';
+                    }, 300);
+                });
+            });
+        }
+
+        // Testimonials System
+        function initTestimonials() {
+            const testimonials = document.querySelectorAll('.testimonial-card');
+            let currentTestimonial = 0;
+            
+            function showNextTestimonial() {
+                testimonials.forEach((testimonial, index) => {
+                    testimonial.style.transform = `translateX(${100 * (index - currentTestimonial)}%)`;
+                });
+                
+                currentTestimonial = (currentTestimonial + 1) % testimonials.length;
+                setTimeout(showNextTestimonial, 5000);
             }
-        });
-        
-        // Navigation
-        const navItems = document.querySelectorAll('.nav-item');
-        const sections = document.querySelectorAll('.section');
-        
-        navItems.forEach(item => {
-            item.addEventListener('click', (e) => {
+            
+            // Initial positioning
+            testimonials.forEach((testimonial, index) => {
+                testimonial.style.transform = `translateX(${100 * index}%)`;
+                testimonial.style.transition = 'transform 0.5s ease';
+            });
+            
+            // Start rotation
+            setTimeout(showNextTestimonial, 5000);
+        }
+
+        // Contact Form
+        function initContactForm() {
+            const contactForm = document.querySelector('.contact-form');
+            
+            contactForm.addEventListener('submit', (e) => {
                 e.preventDefault();
                 
-                // Remove active class from all nav items and sections
-                navItems.forEach(navItem => navItem.classList.remove('active'));
-                sections.forEach(section => section.classList.remove('active'));
+                // Get form values
+                const name = document.getElementById('name').value;
+                const email = document.getElementById('email').value;
+                const message = document.getElementById('message').value;
                 
-                // Add active class to clicked nav item
-                item.classList.add('active');
+                // Quantum transmission effect
+                contactForm.style.opacity = '0.5';
+                contactForm.style.transform = 'translateY(10px)';
+                contactForm.style.transition = 'all 0.3s ease';
                 
-                // Show corresponding section
-                const target = item.getAttribute('href');
-                document.querySelector(target).classList.add('active');
+                setTimeout(() => {
+                    // In a real app, you would send the data to a server here
+                    console.log('Quantum transmission:', { name, email, message });
+                    
+                    // Reset form
+                    contactForm.reset();
+                    contactForm.style.opacity = '1';
+                    contactForm.style.transform = 'translateY(0)';
+                    
+                    // Show confirmation
+                    alert('Transmission successful. Quantum link established.');
+                }, 1000);
             });
-        });
-        
-        // Testimonials Carousel
-        const testimonials = document.querySelectorAll('.testimonial');
-        const testimonialDots = document.querySelectorAll('.testimonial-dot');
-        let currentTestimonial = 0;
-        
-        function showTestimonial(index) {
-            testimonials.forEach(testimonial => testimonial.classList.remove('active'));
-            testimonialDots.forEach(dot => dot.classList.remove('active'));
-            
-            testimonials[index].classList.add('active');
-            testimonialDots[index].classList.add('active');
-            currentTestimonial = index;
         }
-        
-        testimonialDots.forEach(dot => {
-            dot.addEventListener('click', () => {
-                const index = parseInt(dot.getAttribute('data-index'));
-                showTestimonial(index);
-            });
-        });
-        
-        // Auto-rotate testimonials
-        setInterval(() => {
-            let nextTestimonial = currentTestimonial + 1;
-            if (nextTestimonial >= testimonials.length) {
-                nextTestimonial = 0;
-            }
-            showTestimonial(nextTestimonial);
-        }, 5000);
-        
-        // Form Submission
-        const contactForm = document.querySelector('.contact-form');
-        
-        contactForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            
-            // Get form values
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const message = document.getElementById('message').value;
-            
-            // Here you would typically send the form data to a server
-            console.log('Form submitted:', { name, email, message });
-            
-            // Show a confirmation (in a real app, you might want to do something more sophisticated)
-            alert('Message sent! I\'ll get back to you soon.');
-            
-            // Reset the form
-            contactForm.reset();
-        });
-        
+
         // Responsive adjustments
         window.addEventListener('resize', () => {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
+            // Reinitialize data stream on resize
+            const dataStream = document.getElementById('dataStream');
+            dataStream.innerHTML = '';
+            initDataStream();
         });
     </script>
 </body>

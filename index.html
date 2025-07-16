@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dark</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@300;400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Custom Cursor -->
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+
+    <!-- Loading Animation -->
+    <div class="loading-overlay">
+        <div class="loading-circle"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navigation">
+        <ul>
+            <li><a href="#" data-page="home" class="nav-link active">home</a></li>
+            <li><a href="#" data-page="about" class="nav-link">about</a></li>
+            <li><a href="#" data-page="projects" class="nav-link">projects</a></li>
+            <li><a href="#" data-page="contact" class="nav-link">contact</a></li>
+        </ul>
+        <!-- Theme Toggle -->
+        <button class="theme-toggle" aria-label="Toggle theme">
+            <span class="theme-icon">◐</span>
+        </button>
+    </nav>
+
+    <!-- Page Container -->
+    <main class="page-container">
+        <div id="page-content"></div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

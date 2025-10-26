@@ -1,179 +1,566 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>MD ISMAIL FORAJI — Portfolio</title>
-  <link rel="stylesheet" href="styles.css" />
-  <meta name="description" content="MD ISMAIL FORAJI — Filmmaker & hacker. Projects, films, and contact." />
-</head>
-<body>
-  <header class="site-header">
-    <div class="brand">
-      <div class="logo-code">&lt;MF&gt;</div>
-      <div class="name">MD ISMAIL FORAJI</div>
-      <div class="tag">filmmaker · storyteller · hacker</div>
-    </div>
 
-    <nav class="nav">
-      <button id="themeToggle" aria-label="Toggle theme">Theme</button>
-      <a href="#projects">Projects</a>
-      <a href="#about">About</a>
-      <a href="#contact">Contact</a>
-    </nav>
-  </header>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>✿ㅤMʙɪㅤDᴀʀᴋ - Portfolio</title>
+
+  <!--
+    - favicon (currently not available)
+  -->
+
+  <!--
+    - custom css link
+  -->
+  <link rel="stylesheet" href="./style.css">
+
+  <!--
+    - google font link
+  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+  <canvas id="matrix-canvas"></canvas>
+
+  <div class="custom-cursor"></div>
+
+  <button class="scroll-to-top" aria-label="Scroll to top">
+    <ion-icon name="arrow-up-outline"></ion-icon>
+  </button>
+
+  <div class="loader-overlay active">
+    <div class="loader-content">
+      <div class="logo-container">
+        <h1 class="loader-logo">✿ㅤMʙɪㅤDᴀʀᴋ</h1>
+      </div>
+      <div class="loader-spinner"></div>
+      <p class="loader-tap-text">Tap anywhere to continue</p>
+    </div>
+  </div>
+
+  <!--
+    - #MAIN
+  -->
 
   <main>
-    <!-- Hero -->
-    <section id="hero" class="hero">
-      <div class="hero-inner">
-        <h1 class="hero-title">I make films that feel like code — precise, layered, memorable.</h1>
-        <p class="hero-sub">Short films • Storyboards • UX for cinematic games</p>
 
-        <div class="hero-cta">
-          <a href="#projects" class="btn">See projects</a>
-          <a href="#contact" class="btn btn-outline">Get in touch</a>
+    <!--
+      - #SIDEBAR
+    -->
+
+    <aside class="sidebar" data-sidebar>
+
+      <div class="sidebar-info">
+
+        <figure class="avatar-box">
+          <img src="https://i.postimg.cc/Rh4B24Dk/Mbi-dark.png" alt="✿ㅤMʙɪㅤDᴀʀᴋ" width="80">
+        </figure>
+
+        <div class="info-content">
+          <h1 class="name" title="✿ㅤMʙɪㅤDᴀʀᴋ">✿ㅤMʙɪㅤDᴀʀᴋ</h1>
+
+          <p class="title">WebDesigner</p>
+          <p class="title">Flim Maker</p>
+          <p class="title">StoryTailer</p>
+          <p class="title">VideoGrapher</p>
         </div>
 
-        <div class="hero-meta">
-          <span>Channel: <a target="_blank" rel="noopener" href="https://www.youtube.com">বেকার গল্প</a></span>
-          <span>Based in: Bangladesh</span>
-        </div>
+        <button class="info_more-btn" data-sidebar-btn>
+          <span>Show Contacts</span>
+
+          <ion-icon name="chevron-down"></ion-icon>
+        </button>
+
       </div>
 
-      <div class="hero-bg"></div>
-    </section>
+      <div class="sidebar-info_more">
 
-    <!-- About -->
-    <section id="about" class="panel about-panel">
-      <div class="container">
-        <h2>About Me</h2>
-        <p>I'm a filmmaker and hacker hybrid — I approach storytelling with both cinematic craft and systems thinking. I make short films, direct scenes, edit, and prototype interactive film experiences. I also build tools and small web projects that support my films (storyboard viewers, teaser micro-sites, etc.).</p>
+        <div class="separator"></div>
 
-        <div class="skills">
-          <div class="skill">
-            <h4>Filmmaking</h4>
-            <p>Directing, cinematography, editing, storyboarding</p>
-          </div>
-          <div class="skill">
-            <h4>Hacking & tooling</h4>
-            <p>HTML/CSS/JS, lightweight tooling, automation for shoots</p>
-          </div>
-          <div class="skill">
-            <h4>Voice & tone</h4>
-            <p>Dark, mysterious, emotional — with a dash of humor where it fits</p>
-          </div>
-        </div>
-      </div>
-    </section>
+        <ul class="contacts-list">
 
-    <!-- Projects -->
-    <section id="projects" class="panel projects-panel">
-      <div class="container">
-        <h2>Projects / Films / Works</h2>
+          <li class="contact-item">
 
-        <div class="projects-grid">
-          <article class="project-card">
-            <div class="project-media placeholder">Video thumbnail</div>
-            <div class="project-body">
-              <h3>ভুল ছিল অতীত</h3>
-              <p>Short film exploring friendship, lost love and growth. Rural setting, emotional tone. (10–15 min)</p>
-              <div class="project-tags">Short film • Drama • Rural</div>
-              <div class="project-links">
-                <a href="#" aria-label="Open project">Details</a>
-              </div>
+            <div class="icon-box">
+              <ion-icon name="mail-outline"></ion-icon>
             </div>
-          </article>
 
-          <article class="project-card">
-            <div class="project-media placeholder">Poster / storyboard</div>
-            <div class="project-body">
-              <h3>গাছ সব দেখে</h3>
-              <p>A mysterious forest story blending horror and humor. ~12 min. Uses gradual reveal and character-driven mystery.</p>
-              <div class="project-tags">Horror • Short • Mystery</div>
-              <div class="project-links">
-                <a href="#">Details</a>
-              </div>
+            <div class="contact-info">
+              <p class="contact-title">Email</p>
+
+              <a href="mailto:ooismailforajioo@gmail.com" class="contact-link">ooismailforajioo@gmail.com</a>
             </div>
-          </article>
 
-          <article class="project-card">
-            <div class="project-media placeholder">Behind-the-scenes</div>
-            <div class="project-body">
-              <h3>একদিনের শৈশব</h3>
-              <p>A nostalgic slice-of-life set in 2005. Plays like a short documentary of childhood games and mischief.</p>
-              <div class="project-tags">Nostalgia • Short • 2005</div>
-              <div class="project-links">
-                <a href="#">Details</a>
-              </div>
+          </li>
+
+          <li class="contact-item">
+
+            <div class="icon-box">
+              <ion-icon name="phone-portrait-outline"></ion-icon>
             </div>
-          </article>
-        </div>
+
+            <div class="contact-info">
+              <p class="contact-title">Phone</p>
+
+              <a href="tel:+880 1317-460865" class="contact-link">+880 1317-460865</a>
+            </div>
+
+          </li>
+
+          <li class="contact-item">
+
+            <div class="icon-box">
+              <ion-icon name="calendar-outline"></ion-icon>
+            </div>
+
+            <div class="contact-info">
+              <p class="contact-title">Birthday</p>
+
+              <time datetime="2005-01-10">January 10, 2005</time>
+            </div>
+
+          </li>
+
+          <li class="contact-item">
+
+            <div class="icon-box">
+              <ion-icon name="location-outline"></ion-icon>
+            </div>
+
+            <div class="contact-info">
+              <p class="contact-title">Location</p>
+
+              <address>Gazipur, Dhaka, Bangladesh</address>
+            </div>
+
+          </li>
+
+        </ul>
+
+        <div class="separator"></div>
+
+        <ul class="social-list">
+
+          <li class="social-item">
+            <a href="https://www.facebook.com/mbiboss.1" class="social-link">
+              <ion-icon name="logo-facebook"></ion-icon>
+            </a>
+          </li>
+
+          <li class="social-item">
+            <a href="https://www.youtube.com/@Bekar_Golpo" class="social-link">
+              <ion-icon name="logo-youtube"></ion-icon>
+            </a>
+          </li>
+
+          <li class="social-item">
+            <a href="https://discord.com/users/731544517542674443" class="social-link">
+              <ion-icon name="logo-discord"></ion-icon>
+            </a>
+          </li>
+
+        </ul>
+
       </div>
-    </section>
 
-    <!-- Hacker corner -->
-    <section class="panel hacker-panel">
-      <div class="container">
-        <h2>Hacker Corner</h2>
-        <p>Small demos and tools I use for production: CLI-style release notes, automated shot lists, and storyboard hosts.</p>
+    </aside>
 
-        <pre class="code-sample"><code>// quick shot list exporter (node pseudo)
-const shots = [{id:1, scene:'Garden', duration:12}];
-console.log(JSON.stringify(shots, null, 2));</code></pre>
-      </div>
-    </section>
 
-    <!-- Contact -->
-    <section id="contact" class="panel contact-panel">
-      <div class="container contact-grid">
-        <div>
-          <h2>Contact</h2>
-          <p>Available for short films, collaboration, and small web/tech tooling for productions.</p>
 
-          <ul class="contact-info">
-            <li>Email: <a href="mailto:your.email@example.com">your.email@example.com</a></li>
-            <li>YouTube: <a target="_blank" rel="noopener" href="https://www.youtube.com">বেকার গল্প</a></li>
-            <li>GitHub: <a target="_blank" rel="noopener" href="https://github.com">github.com/yourname</a></li>
+
+
+    <!--
+      - #main-content
+    -->
+
+    <div class="main-content">
+
+      <!--
+        - #NAVBAR
+      -->
+
+      <nav class="navbar">
+
+        <ul class="navbar-list">
+
+          <li class="navbar-item">
+            <button class="navbar-link  active" data-nav-link>About</button>
+          </li>
+
+          <li class="navbar-item">
+            <button class="navbar-link" data-nav-link>Projects</button>
+          </li>
+
+          <li class="navbar-item">
+            <button class="navbar-link" data-nav-link>Contact</button>
+          </li>
+
+          <li class="navbar-item">
+            <a href="#" class="cv-btn-nav" download>
+              <ion-icon name="download-outline"></ion-icon>
+              <span>CV</span>
+            </a>
+          </li>
+
+          <li class="navbar-item">
+            <button class="theme-btn" aria-label="Change theme">
+              <ion-icon name="color-palette-outline"></ion-icon>
+            </button>
+          </li>
+
+        </ul>
+
+      </nav>
+
+
+
+
+
+      <!--
+        - #ABOUT
+      -->
+
+      <article class="about  active" data-page="about">
+
+        <header>
+          <h2 class="h2 article-title">About me</h2>
+        </header>
+
+        <section class="about-hero">
+          <div class="hero-content">
+            <div class="glitch-wrapper">
+              <h1 class="hero-name" data-text="MD Ismail Foraji">MD Ismail Foraji</h1>
+            </div>
+            <div class="typing-container">
+              <span class="typing-text"></span>
+              <span class="cursor-blink">|</span>
+            </div>
+          </div>
+          
+          <div class="about-grid">
+            <div class="about-card" data-card="1">
+              <div class="card-icon">
+                <ion-icon name="code-slash-outline"></ion-icon>
+              </div>
+              <h3>Creator & Developer</h3>
+              <p>I transform simple ideas into reality through code, blending creativity with logic to build games, web experiments, and digital experiences.</p>
+            </div>
+            
+            <div class="about-card" data-card="2">
+              <div class="card-icon">
+                <ion-icon name="film-outline"></ion-icon>
+              </div>
+              <h3>Storyteller & Filmmaker</h3>
+              <p>Crafting stories and short films that challenge perspectives and make people think. Every frame tells a story, every edit has purpose.</p>
+            </div>
+            
+            <div class="about-card" data-card="3">
+              <div class="card-icon">
+                <ion-icon name="bulb-outline"></ion-icon>
+              </div>
+              <h3>Innovator & Thinker</h3>
+              <p>Constantly exploring new ways to tell stories differently — sketching ideas, experimenting with mediums, and pushing creative boundaries.</p>
+            </div>
+          </div>
+          
+          <div class="about-footer">
+            <div class="footer-line"></div>
+            <p class="footer-text">This is my corner of the internet — where creativity meets code, and ideas become reality.</p>
+            <div class="footer-line"></div>
+          </div>
+        </section>
+
+
+        <!--
+          - service
+        -->
+
+        <section class="service">
+
+          <h3 class="h3 service-title">What i'm doing</h3>
+
+          <ul class="service-list">
+
+            <li class="service-item">
+
+              <div class="service-icon-box">
+                <ion-icon name="color-palette-outline" style="font-size: 40px;"></ion-icon>
+              </div>
+
+              <div class="service-content-box">
+                <h4 class="h4 service-item-title">Web design</h4>
+
+                <p class="service-item-text">
+                  The most modern and high-quality design made at a professional level.
+                </p>
+              </div>
+
+            </li>
+
+            <li class="service-item">
+
+              <div class="service-icon-box">
+                <ion-icon name="film-outline" style="font-size: 40px;"></ion-icon>
+              </div>
+
+              <div class="service-content-box">
+                <h4 class="h4 service-item-title">Flim Making</h4>
+
+                <p class="service-item-text">
+                  Making high-quality videos at a professional level.
+                </p>
+              </div>
+
+            </li>
+
+            <li class="service-item">
+
+              <div class="service-icon-box">
+                <ion-icon name="book-outline" style="font-size: 40px;""></ion-icon>
+              </div>
+
+              <div class="service-content-box">
+                <h4 class="h4 service-item-title">Story Tailer</h4>
+
+                <p class="service-item-text">
+                  Creative Story Tailing at a professional level.
+                </p>
+              </div>
+
+            </li>
+
+            <li class="service-item">
+
+              <div class="service-icon-box">
+                <ion-icon name="videocam-outline" style="font-size: 40px;"></ion-icon>
+              </div>
+
+              <div class="service-content-box">
+                <h4 class="h4 service-item-title">videography</h4>
+
+                <p class="service-item-text">
+                  I shoot high-quality videos at a professional level.
+                </p>
+              </div>
+
+            </li>
+
           </ul>
-        </div>
 
-        <form id="contactForm" class="contact-form" onsubmit="return sendForm(event);">
-          <label>
-            Your name
-            <input name="name" required />
-          </label>
-          <label>
-            Your email
-            <input name="email" type="email" required />
-          </label>
-          <label>
-            Message
-            <textarea name="message" rows="5" required></textarea>
-          </label>
+        </section>
 
-          <div class="form-actions">
-            <button type="submit" class="btn">Send message</button>
-            <button type="button" class="btn btn-outline" onclick="openMail()">Email me</button>
+      </article>
+
+
+
+
+
+      <!--
+        - #PROJECTS
+      -->
+
+      <article class="projects" data-page="projects">
+
+        <header>
+          <h2 class="h2 article-title">Projects</h2>
+        </header>
+
+        <section class="projects">
+
+          <ul class="filter-list">
+
+            <li class="filter-item">
+              <button class="active" data-filter-btn>All</button>
+            </li>
+
+            <li class="filter-item">
+              <button data-filter-btn>Websites</button>
+            </li>
+
+            <li class="filter-item">
+              <button data-filter-btn>YouTube</button>
+            </li>
+
+            <li class="filter-item">
+              <button data-filter-btn>Storys</button>
+            </li>
+
+          </ul>
+
+          <div class="filter-select-box">
+
+            <button class="filter-select" data-select>
+
+              <div class="select-value" data-selecct-value>Select category</div>
+
+              <div class="select-icon">
+                <ion-icon name="chevron-down"></ion-icon>
+              </div>
+
+            </button>
+
+            <ul class="select-list">
+
+              <li class="select-item">
+                <button data-select-item>All</button>
+              </li>
+
+              <li class="select-item">
+                <button data-select-item>Websites</button>
+              </li>
+
+              <li class="select-item">
+                <button data-select-item>YouTube</button>
+              </li>
+
+              <li class="select-item">
+                <button data-select-item>Storys</button>
+              </li>
+
+            </ul>
+
           </div>
 
-          <div id="formResult" class="form-result" aria-live="polite"></div>
-        </form>
-      </div>
-    </section>
+          <ul class="project-list">
+            <!-- Projects will be loaded dynamically from projects.json -->
+          </ul>
+
+        </section>
+
+      </article>
+
+
+
+
+
+      <!--
+        - #CONTACT
+      -->
+
+      <article class="contact" data-page="contact">
+
+        <header>
+          <h2 class="h2 article-title">Get In Touch</h2>
+          <p class="contact-subtitle">Have a question or want to work together? Send me a message!</p>
+        </header>
+
+        <div class="contact-grid">
+          
+          <section class="contact-info-section">
+            <h3 class="h3 section-title">Contact Information</h3>
+            
+            <div class="contact-info-cards">
+              <div class="contact-info-card">
+                <div class="contact-card-icon">
+                  <ion-icon name="mail-outline"></ion-icon>
+                </div>
+                <h4>Email</h4>
+                <a href="mailto:ooismailforajioo@gmail.com">ooismailforajioo@gmail.com</a>
+              </div>
+
+              <div class="contact-info-card">
+                <div class="contact-card-icon">
+                  <ion-icon name="call-outline"></ion-icon>
+                </div>
+                <h4>Phone</h4>
+                <a href="tel:+8801317460865">+880 1317-460865</a>
+              </div>
+
+              <div class="contact-info-card">
+                <div class="contact-card-icon">
+                  <ion-icon name="location-outline"></ion-icon>
+                </div>
+                <h4>Location</h4>
+                <p>Gazipur, Dhaka<br>Bangladesh</p>
+              </div>
+
+              <div class="contact-info-card">
+                <div class="contact-card-icon whatsapp-icon">
+                  <ion-icon name="logo-whatsapp"></ion-icon>
+                </div>
+                <h4>WhatsApp</h4>
+                <a href="https://wa.me/8801317460865" target="_blank">Chat on WhatsApp</a>
+              </div>
+            </div>
+
+            <div class="mapbox" data-mapbox>
+              <figure>
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14578.083956453851!2d90.3654215!3d24.012686549999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755dde5113ef7bf%3A0x4b1bfc7238771a06!2z4Kas4Ka-4KaH4Ka24Ka-4KawIOCmn-Cnh-CmlQ!5e0!3m2!1sbn!2sbd!4v1761453802707!5m2!1sbn!2sbd"
+                  width="400" height="300" loading="lazy"></iframe>
+              </figure>
+            </div>
+          </section>
+
+          <section class="contact-form-section">
+            <h3 class="h3 form-title">Send Message via WhatsApp</h3>
+            <p class="form-description">Fill the form and click send to open WhatsApp with your message</p>
+
+            <form id="whatsapp-contact-form" class="form" data-form>
+
+              <div class="form-group">
+                <label for="contact-name">
+                  <ion-icon name="person-outline"></ion-icon>
+                  Full Name
+                </label>
+                <input type="text" id="contact-name" name="fullname" class="form-input" placeholder="Enter your name" required data-form-input>
+              </div>
+
+              <div class="form-group">
+                <label for="contact-email">
+                  <ion-icon name="mail-outline"></ion-icon>
+                  Email Address
+                </label>
+                <input type="email" id="contact-email" name="email" class="form-input" placeholder="Enter your email" required data-form-input>
+              </div>
+
+              <div class="form-group">
+                <label for="contact-message">
+                  <ion-icon name="chatbubble-outline"></ion-icon>
+                  Your Message
+                </label>
+                <textarea id="contact-message" name="message" class="form-input" rows="6" placeholder="Write your message here..." required data-form-input></textarea>
+              </div>
+
+              <button class="form-btn whatsapp-btn" type="submit" data-form-btn>
+                <ion-icon name="logo-whatsapp"></ion-icon>
+                <span>Send via WhatsApp</span>
+                <div class="btn-shine"></div>
+              </button>
+
+            </form>
+          </section>
+
+        </div>
+
+      </article>
+
+    </div>
+
   </main>
 
-  <footer class="site-footer">
-    <div class="container footer-grid">
-      <div>© <span id="year"></span> MD ISMAIL FORAJI</div>
-      <div class="social">
-        <a target="_blank" rel="noopener" href="https://www.youtube.com">YouTube: বেকার গল্প</a>
-        <a target="_blank" rel="noopener" href="https://github.com">GitHub</a>
-        <a target="_blank" rel="noopener" href="https://twitter.com">X</a>
-      </div>
-    </div>
-  </footer>
 
-  <script src="script.js"></script>
+
+
+
+
+  <!--
+    - custom js link
+  -->
+  <script src="./script.js"></script>
+
+  <!--
+    - ionicon link
+  -->
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
 </body>
+
 </html>

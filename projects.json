@@ -1,0 +1,65 @@
+[
+  {
+    "title": "React Library",
+    "category": "websites",
+    "image": "https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/react/react.png",
+    "link": "https://github.com/facebook/react",
+    "description": "A powerful JavaScript library for building dynamic user interfaces with component-based architecture and virtual DOM for optimal performance."
+  },
+  {
+    "title": "Vue.js Framework",
+    "category": "websites",
+    "image": "https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/vue/vue.png",
+    "link": "https://github.com/vuejs/vue",
+    "description": "Progressive JavaScript framework for building modern web applications with reactive data binding and composable components."
+  },
+  {
+    "title": "Bootstrap CSS",
+    "category": "youtube",
+    "image": "https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/bootstrap/bootstrap.png",
+    "link": "https://github.com/twbs/bootstrap",
+    "description": "The world's most popular front-end framework for responsive, mobile-first web development with extensive pre-built components."
+  },
+  {
+    "title": "Electron Apps",
+    "category": "storys",
+    "image": "https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/electron/electron.png",
+    "link": "https://github.com/electron/electron",
+    "description": "Build cross-platform desktop applications using web technologies. Create native experiences with JavaScript, HTML, and CSS."
+  },
+  {
+    "title": "Tailwind CSS",
+    "category": "youtube",
+    "image": "https://avatars.githubusercontent.com/u/67109815?s=200&v=4",
+    "link": "https://github.com/tailwindlabs/tailwindcss",
+    "description": "A utility-first CSS framework for rapidly building custom designs without leaving your HTML. Highly customizable and production-ready."
+  },
+  {
+    "title": "Animate.css",
+    "category": "youtube",
+    "image": "https://raw.githubusercontent.com/animate-css/animate.css/main/docs/logo.png",
+    "link": "https://github.com/animate-css/animate.css",
+    "description": "Just-add-water CSS animations library with smooth, attention-grabbing effects ready to use in your web projects instantly."
+  },
+  {
+    "title": "Node.js Runtime",
+    "category": "websites",
+    "image": "https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/nodejs/nodejs.png",
+    "link": "https://github.com/nodejs/node",
+    "description": "JavaScript runtime built on Chrome's V8 engine. Powers scalable network applications with event-driven, non-blocking I/O."
+  },
+  {
+    "title": "Next.js Framework",
+    "category": "storys",
+    "image": "https://assets.vercel.com/image/upload/v1662130559/nextjs/Icon_dark_background.png",
+    "link": "https://github.com/vercel/next.js",
+    "description": "The React framework for production with hybrid static and server rendering, TypeScript support, and smart bundling."
+  },
+  {
+    "title": "Angular Framework",
+    "category": "websites",
+    "image": "https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/angular/angular.png",
+    "link": "https://github.com/angular/angular",
+    "description": "Platform for building mobile and desktop web applications with TypeScript. Complete solution with powerful CLI and testing tools."
+  }
+]

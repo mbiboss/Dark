@@ -11,9 +11,17 @@ const elementToggleFunc = function (elem) { elem.classList.toggle("active"); }
 // Only activate on physical mouse presence, not touch devices
 
 const cursor = document.querySelector('.custom-cursor');
+const cursorDot = document.getElementById('cursorDot');
+const cursorOutline = document.getElementById('cursorOutline');
 let hasPhysicalMouse = false;
-let cursorX = 0;
-let cursorY = 0;
+let mouseX = 0;
+let mouseY = 0;
+let outlineX = 0;
+let outlineY = 0;
+const speed = 0.18;
+
+const cursorTrails = [];
+const maxTrails = 15;
 
 // Detect touch device
 const isTouchDevice = () => {
@@ -22,43 +30,91 @@ const isTouchDevice = () => {
          (navigator.msMaxTouchPoints > 0);
 };
 
-// Only initialize cursor if not a touch device and cursor element exists
-if (!isTouchDevice() && cursor) {
-  // Detect physical mouse movement (not touch simulation)
-  let isFirstMove = true;
-  
-  document.addEventListener('mousemove', (e) => {
-    // Activate cursor on first real mouse movement
-    if (isFirstMove && (e.movementX !== 0 || e.movementY !== 0)) {
-      isFirstMove = false;
-      hasPhysicalMouse = true;
-      document.body.classList.add('has-mouse');
+// Create ripple effect
+function createRipple(x, y) {
+  const ripple = document.createElement('div');
+  ripple.className = 'cursor-ripple';
+  ripple.style.left = x + 'px';
+  ripple.style.top = y + 'px';
+  document.body.appendChild(ripple);
+
+  setTimeout(() => ripple.remove(), 800);
+}
+
+// Create cursor trail
+function createTrailParticle(x, y) {
+  const trail = document.createElement('div');
+  trail.className = 'cursor-trail';
+  trail.style.left = x + 'px';
+  trail.style.top = y + 'px';
+  document.body.appendChild(trail);
+
+  cursorTrails.push(trail);
+
+  if (cursorTrails.length > maxTrails) {
+    const oldTrail = cursorTrails.shift();
+    if (oldTrail && oldTrail.parentNode) {
+      oldTrail.remove();
     }
-    
-    // Always update cursor position
-    cursorX = e.clientX;
-    cursorY = e.clientY;
-    cursor.style.left = cursorX + 'px';
-    cursor.style.top = cursorY + 'px';
-  }, { passive: true });
+  }
 
-  // Click animation
-  document.addEventListener('mousedown', () => {
-    cursor.classList.add('click');
-  }, { passive: true });
+  setTimeout(() => {
+    if (trail.parentNode) trail.remove();
+  }, 600);
+}
 
-  document.addEventListener('mouseup', () => {
-    cursor.classList.remove('click');
-  }, { passive: true });
-  
-  // Initialize hover effects
-  initCursorHoverEffects();
-} else if (isTouchDevice()) {
-  // Ensure cursor stays hidden on touch devices
-  document.addEventListener('touchstart', () => {
-    hasPhysicalMouse = false;
-    document.body.classList.remove('has-mouse');
-  }, { once: true, passive: true });
+// Initialize custom cursor after DOM is ready
+function initCustomCursor() {
+  // Only initialize cursor if not a touch device and cursor element exists
+  if (!isTouchDevice() && cursor && cursorDot && cursorOutline) {
+    // Activate cursor immediately on desktop
+    document.body.classList.add('has-mouse');
+    hasPhysicalMouse = true;
+
+    let trailCounter = 0;
+
+    document.addEventListener('mousemove', (e) => {
+      // Update mouse position
+      mouseX = e.pageX;
+      mouseY = e.pageY;
+
+      // Update cursor container position
+      cursor.style.left = mouseX + 'px';
+      cursor.style.top = mouseY + 'px';
+
+      // Create trail effect
+      trailCounter++;
+      if (trailCounter % 2 === 0) {
+        createTrailParticle(mouseX, mouseY);
+      }
+    }, { passive: true });
+
+    // Click animation with ripple
+    document.addEventListener('mousedown', (e) => {
+      cursor.classList.add('click');
+      createRipple(e.pageX, e.pageY);
+    }, { passive: true });
+
+    document.addEventListener('mouseup', () => {
+      cursor.classList.remove('click');
+    }, { passive: true });
+
+    // Initialize hover effects with event delegation
+    initCursorHoverEffects();
+  } else if (isTouchDevice()) {
+    // Ensure cursor stays hidden on touch devices
+    document.addEventListener('touchstart', () => {
+      hasPhysicalMouse = false;
+      document.body.classList.remove('has-mouse');
+    }, { once: true, passive: true });
+  }
+}
+
+// Wait for DOM to be ready before initializing cursor
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initCustomCursor);
+} else {
+  initCustomCursor();
 }
 
 // Typing animation for About section
@@ -77,9 +133,9 @@ let typingSpeed = 100;
 function typeEffect() {
   const typingElement = document.querySelector('.typing-text');
   if (!typingElement) return;
-  
+
   const currentText = typingTexts[textIndex];
-  
+
   if (isDeleting) {
     typingElement.textContent = currentText.substring(0, charIndex - 1);
     charIndex--;
@@ -89,7 +145,7 @@ function typeEffect() {
     charIndex++;
     typingSpeed = 100;
   }
-  
+
   if (!isDeleting && charIndex === currentText.length) {
     isDeleting = true;
     typingSpeed = 2000;
@@ -97,7 +153,7 @@ function typeEffect() {
     isDeleting = false;
     textIndex = (textIndex + 1) % typingTexts.length;
   }
-  
+
   setTimeout(typeEffect, typingSpeed);
 }
 
@@ -108,48 +164,40 @@ setTimeout(() => {
   }
 }, 1000);
 
-// Initialize cursor hover effects
+// Initialize cursor hover effects with event delegation
 function initCursorHoverEffects() {
   if (!cursor) return;
-  
-  const addHoverEffects = () => {
-    const interactiveElements = document.querySelectorAll(
+
+  // Use event delegation for better performance and dynamic content
+  document.addEventListener('mouseover', (e) => {
+    const target = e.target.closest(
       'a, button, input, textarea, select, ' +
       '.service-item, .project-item, .testimonials-item, ' +
       '.cv-btn-nav, .theme-btn, .navbar-link, ' +
       '.info_more-btn, .social-link, .contact-link, ' +
-      '.filter-item button, .modal-close-btn'
+      '.filter-item button, .modal-close-btn, ' +
+      '.project-item > a, .project-img'
     );
-    
-    interactiveElements.forEach(el => {
-      el.addEventListener('mouseenter', () => {
-        cursor.classList.add('hover');
-      }, { passive: true });
-      
-      el.addEventListener('mouseleave', () => {
-        cursor.classList.remove('hover');
-      }, { passive: true });
-    });
-  };
 
-  // Wait for DOM to be ready, then add hover effects
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', addHoverEffects);
-  } else {
-    addHoverEffects();
-  }
-  
-  // Re-add hover effects after dynamic content loads
-  let mutationTimeout;
-  const observer = new MutationObserver(() => {
-    clearTimeout(mutationTimeout);
-    mutationTimeout = setTimeout(addHoverEffects, 200);
-  });
-  
-  observer.observe(document.body, {
-    childList: true,
-    subtree: true
-  });
+    if (target && hasPhysicalMouse) {
+      cursor.classList.add('hover');
+    }
+  }, { passive: true });
+
+  document.addEventListener('mouseout', (e) => {
+    const target = e.target.closest(
+      'a, button, input, textarea, select, ' +
+      '.service-item, .project-item, .testimonials-item, ' +
+      '.cv-btn-nav, .theme-btn, .navbar-link, ' +
+      '.info_more-btn, .social-link, .contact-link, ' +
+      '.filter-item button, .modal-close-btn, ' +
+      '.project-item > a, .project-img'
+    );
+
+    if (target && hasPhysicalMouse) {
+      cursor.classList.remove('hover');
+    }
+  }, { passive: true });
 }
 
 
@@ -163,13 +211,13 @@ if (themeBtn) {
   themeBtn.addEventListener('click', () => {
     currentThemeIndex = (currentThemeIndex + 1) % themes.length;
     const newTheme = themes[currentThemeIndex];
-    
+
     if (newTheme === 'default') {
       document.documentElement.removeAttribute('data-theme');
     } else {
       document.documentElement.setAttribute('data-theme', newTheme);
     }
-    
+
     localStorage.setItem('portfolio-theme', newTheme);
   });
 }
@@ -189,13 +237,13 @@ const ctx = canvas ? canvas.getContext('2d') : null;
 
 function initMatrixRain() {
   if (!canvas || !ctx) return;
-  
+
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
 
   const columns = Math.floor(canvas.width / 20);
   const drops = [];
-  
+
   for (let i = 0; i < columns; i++) {
     drops[i] = Math.random() * canvas.height;
   }
@@ -203,33 +251,33 @@ function initMatrixRain() {
   const characters = '01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン';
   let lastTime = 0;
   const frameDelay = 50;
-  
+
   function draw(currentTime) {
     if (currentTime - lastTime >= frameDelay) {
       ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
-      
+
       // Get current theme color
       const computedStyle = getComputedStyle(document.documentElement);
       const themeColor = computedStyle.getPropertyValue('--theme-color-primary').trim();
-      
+
       ctx.fillStyle = themeColor;
       ctx.font = '15px monospace';
-      
+
       for (let i = 0; i < drops.length; i++) {
         const text = characters.charAt(Math.floor(Math.random() * characters.length));
         ctx.fillText(text, i * 20, drops[i]);
-        
+
         if (drops[i] > canvas.height && Math.random() > 0.975) {
           drops[i] = 0;
         }
-        
+
         drops[i] += 20;
       }
-      
+
       lastTime = currentTime;
     }
-    
+
     requestAnimationFrame(draw);
   }
 
@@ -250,6 +298,227 @@ window.addEventListener('resize', () => {
 if (canvas) {
   initMatrixRain();
 }
+
+// Enhanced Floating particles with magnetic effect
+function createFloatingParticles() {
+  const particleContainer = document.createElement('div');
+  particleContainer.className = 'particles-container';
+  particleContainer.style.cssText = `
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+  `;
+
+  const particles = [];
+
+  for (let i = 0; i < 50; i++) {
+    const particle = document.createElement('div');
+    const size = Math.random() * 4 + 1;
+    const startX = Math.random() * 100;
+    const startY = Math.random() * 100;
+
+    particle.style.cssText = `
+      position: absolute;
+      width: ${size}px;
+      height: ${size}px;
+      background: var(--theme-color-primary);
+      border-radius: 50%;
+      left: ${startX}%;
+      top: ${startY}%;
+      opacity: ${Math.random() * 0.6 + 0.3};
+      animation: float ${Math.random() * 15 + 20}s linear infinite;
+      animation-delay: ${Math.random() * 5}s;
+      box-shadow: 0 0 ${Math.random() * 30 + 15}px var(--theme-color-primary);
+      filter: blur(${Math.random() * 0.5}px);
+    `;
+
+    particles.push({ element: particle, baseX: startX, baseY: startY });
+    particleContainer.appendChild(particle);
+  }
+
+  document.body.insertBefore(particleContainer, document.body.firstChild);
+
+  // Magnetic effect - particles react to cursor (optimized with RAF)
+  if (!isTouchDevice()) {
+    let mouseXPercent = 50;
+    let mouseYPercent = 50;
+    let rafId = null;
+
+    document.addEventListener('mousemove', (e) => {
+      mouseXPercent = (e.clientX / window.innerWidth) * 100;
+      mouseYPercent = (e.clientY / window.innerHeight) * 100;
+
+      if (!rafId) {
+        rafId = requestAnimationFrame(() => {
+          particles.forEach((p) => {
+            const dx = mouseXPercent - parseFloat(p.element.style.left);
+            const dy = mouseYPercent - parseFloat(p.element.style.top);
+            const distance = Math.sqrt(dx * dx + dy * dy);
+
+            if (distance < 20) {
+              const force = (20 - distance) / 20;
+              const offsetX = dx * force * 2;
+              const offsetY = dy * force * 2;
+
+              p.element.style.transform = `translate(${offsetX}px, ${offsetY}px) scale(${1 + force * 0.5})`;
+            } else {
+              p.element.style.transform = 'translate(0, 0) scale(1)';
+            }
+          });
+          rafId = null;
+        });
+      }
+    }, { passive: true });
+  }
+
+  // Add animation
+  const style = document.createElement('style');
+  style.textContent = `
+    @keyframes float {
+      0%, 100% {
+        transform: translate(0, 0) rotate(0deg);
+      }
+      25% {
+        transform: translate(${Math.random() * 150 - 75}px, ${Math.random() * 150 - 75}px) rotate(90deg);
+      }
+      50% {
+        transform: translate(${Math.random() * 150 - 75}px, ${Math.random() * 150 - 75}px) rotate(180deg);
+      }
+      75% {
+        transform: translate(${Math.random() * 150 - 75}px, ${Math.random() * 150 - 75}px) rotate(270deg);
+      }
+    }
+  `;
+  document.head.appendChild(style);
+}
+
+// Scroll-triggered reveal animations
+function initScrollAnimations() {
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('revealed');
+      }
+    });
+  }, observerOptions);
+
+  // Observe all animatable elements
+  const animatables = document.querySelectorAll(
+    '.service-item, .about-card, .project-item, .contact-info-card, article section'
+  );
+
+  animatables.forEach(el => {
+    el.classList.add('reveal-element');
+    observer.observe(el);
+  });
+}
+
+// Liquid hover effect - track mouse position on cards
+function initLiquidHoverEffect() {
+  const cards = document.querySelectorAll(
+    '.service-item, .about-card, .project-item > a, .contact-info-card'
+  );
+
+  cards.forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = ((e.clientX - rect.left) / rect.width) * 100;
+      const y = ((e.clientY - rect.top) / rect.height) * 100;
+
+      card.style.setProperty('--mouse-x', `${x}%`);
+      card.style.setProperty('--mouse-y', `${y}%`);
+
+      // Add 3D tilt effect for project cards
+      if (card.closest('.project-item')) {
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        const mouseX = e.clientX - rect.left;
+        const mouseY = e.clientY - rect.top;
+
+        const rotateX = ((mouseY - centerY) / centerY) * 8;
+        const rotateY = ((mouseX - centerX) / centerX) * -8;
+
+        card.style.transform = `translateY(-20px) translateZ(30px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.03)`;
+      }
+    });
+
+    // Reset transform on mouse leave for project cards
+    card.addEventListener('mouseleave', () => {
+      if (card.closest('.project-item')) {
+        card.style.transform = '';
+      }
+    });
+  });
+}
+
+// Initialize particles and animations after page load
+window.addEventListener('load', () => {
+  createFloatingParticles();
+  initScrollAnimations();
+  initLiquidHoverEffect();
+});
+
+// Sound effects system
+let soundEnabled = true;
+const soundBtn = document.querySelector('.sound-btn');
+
+function playSound(frequency, duration = 50) {
+  if (!soundEnabled) return;
+
+  try {
+    const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+    const oscillator = audioContext.createOscillator();
+    const gainNode = audioContext.createGain();
+
+    oscillator.connect(gainNode);
+    gainNode.connect(audioContext.destination);
+
+    oscillator.frequency.value = frequency;
+    oscillator.type = 'sine';
+
+    gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
+    gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + duration / 1000);
+
+    oscillator.start(audioContext.currentTime);
+    oscillator.stop(audioContext.currentTime + duration / 1000);
+  } catch (e) {
+    // Audio context not supported
+  }
+}
+
+if (soundBtn) {
+  soundBtn.addEventListener('click', () => {
+    soundEnabled = !soundEnabled;
+    soundBtn.classList.toggle('muted');
+    const icon = soundBtn.querySelector('ion-icon');
+    icon.setAttribute('name', soundEnabled ? 'volume-medium-outline' : 'volume-mute-outline');
+    playSound(800, 100);
+  });
+}
+
+// Add hover sounds to interactive elements
+document.addEventListener('mouseover', (e) => {
+  if (e.target.closest('button, a, .navbar-link, .project-item, .service-item')) {
+    playSound(400, 30);
+  }
+}, true);
+
+// Add click sounds
+document.addEventListener('click', (e) => {
+  if (e.target.closest('button, a')) {
+    playSound(600, 50);
+  }
+}, true);
 
 
 // Prevent browser scroll restoration
@@ -310,7 +579,7 @@ if (loader) {
   loader.addEventListener('click', () => {
     loader.classList.remove('active');
   });
-  
+
   // Also allow any key press
   document.addEventListener('keydown', (e) => {
     if (loader.classList.contains('active')) {
@@ -446,7 +715,7 @@ const whatsappForm = document.getElementById('whatsapp-contact-form');
 if (whatsappForm) {
   const formInputs = whatsappForm.querySelectorAll("[data-form-input]");
   const formBtn = whatsappForm.querySelector("[data-form-btn]");
-  
+
   // Enable/disable submit button based on form validation
   formInputs.forEach(input => {
     input.addEventListener("input", function () {
@@ -461,12 +730,12 @@ if (whatsappForm) {
   // Handle form submission
   whatsappForm.addEventListener('submit', function(e) {
     e.preventDefault();
-    
+
     // Get form values
     const name = document.getElementById('contact-name').value;
     const email = document.getElementById('contact-email').value;
     const message = document.getElementById('contact-message').value;
-    
+
     // Build WhatsApp message with formatting
     const whatsappMessage = `🔔 *New Contact Request*
 
@@ -476,21 +745,21 @@ if (whatsappForm) {
 💬 *Message:*
 ${message}
 
-_Sent from Dark_`;
-    
+_Sent from Portfolio Website_`;
+
     // URL encode the message
     const encodedMessage = encodeURIComponent(whatsappMessage);
-    
+
     // Your WhatsApp number (international format without + or spaces)
     // Format: country code + number
     const whatsappNumber = '8801317460865'; // Bangladesh: 880 + 1317460865
-    
+
     // Build WhatsApp URL
     const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
-    
+
     // Open WhatsApp in new tab
     window.open(whatsappURL, '_blank');
-    
+
     // Optional: Clear form after sending
     setTimeout(() => {
       whatsappForm.reset();
@@ -507,7 +776,7 @@ async function loadProjects() {
     const response = await fetch('projects.json');
     const projects = await response.json();
     const projectList = document.querySelector('.project-list');
-    
+
     if (projectList) {
       projectList.innerHTML = projects.map(project => `
         <li class="project-item active" data-filter-item data-category="${project.category}">
@@ -526,10 +795,10 @@ async function loadProjects() {
           </a>
         </li>
       `).join('');
-      
+
       // Initialize filter controls after projects are loaded
       initializeFilters();
-      
+
       // Set all projects as active initially
       filterFunc("all");
     }
@@ -559,7 +828,7 @@ for (let i = 0; i < navigationLinks.length; i++) {
         pages[j].classList.add("active");
         navigationLinks[i].classList.add("active");
         window.scrollTo(0, 0);
-        
+
         // Reset animations when switching to About page
         if (pages[j].dataset.page === 'about') {
           const aboutCards = pages[j].querySelectorAll('.about-card');
@@ -569,7 +838,7 @@ for (let i = 0; i < navigationLinks.length; i++) {
               card.style.animation = '';
             }, 10);
           });
-          
+
           // Restart typing animation
           setTimeout(() => {
             textIndex = 0;

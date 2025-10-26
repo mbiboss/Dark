@@ -28,7 +28,10 @@
 
   <canvas id="matrix-canvas"></canvas>
 
-  <div class="custom-cursor"></div>
+  <div class="custom-cursor">
+    <div class="cursor-outline" id="cursorOutline"></div>
+    <div class="cursor-dot" id="cursorDot"></div>
+  </div>
 
   <button class="scroll-to-top" aria-label="Scroll to top">
     <ion-icon name="arrow-up-outline"></ion-icon>
@@ -65,10 +68,24 @@
         <div class="info-content">
           <h1 class="name" title="✿ㅤMʙɪㅤDᴀʀᴋ">✿ㅤMʙɪㅤDᴀʀᴋ</h1>
 
-          <p class="title">WebDesigner</p>
-          <p class="title">Flim Maker</p>
-          <p class="title">StoryTailer</p>
-          <p class="title">VideoGrapher</p>
+          <div class="title-carousel">
+            <p class="title animated-title" data-title="1">
+              <span class="title-icon">🎨</span>
+              <span class="title-text">WebDesigner</span>
+            </p>
+            <p class="title animated-title" data-title="2">
+              <span class="title-icon">🎬</span>
+              <span class="title-text">Film Maker</span>
+            </p>
+            <p class="title animated-title" data-title="3">
+              <span class="title-icon">📖</span>
+              <span class="title-text">StoryTeller</span>
+            </p>
+            <p class="title animated-title" data-title="4">
+              <span class="title-icon">📹</span>
+              <span class="title-text">VideoGrapher</span>
+            </p>
+          </div>
         </div>
 
         <button class="info_more-btn" data-sidebar-btn>
@@ -202,7 +219,7 @@
           </li>
 
           <li class="navbar-item">
-            <a href="CV_MD_Ismail_Hossen.pdf" class="cv-btn-nav" download>
+            <a href="#" class="cv-btn-nav" download>
               <ion-icon name="download-outline"></ion-icon>
               <span>CV</span>
             </a>
@@ -211,6 +228,12 @@
           <li class="navbar-item">
             <button class="theme-btn" aria-label="Change theme">
               <ion-icon name="color-palette-outline"></ion-icon>
+            </button>
+          </li>
+
+          <li class="navbar-item">
+            <button class="sound-btn" aria-label="Toggle sound effects">
+              <ion-icon name="volume-medium-outline"></ion-icon>
             </button>
           </li>
 
@@ -234,44 +257,60 @@
 
         <section class="about-hero">
           <div class="hero-content">
+            <div class="hero-particles">
+              <span class="particle" style="--delay: 0s; --x: -100px; --y: -80px;"></span>
+              <span class="particle" style="--delay: 0.5s; --x: 120px; --y: -60px;"></span>
+              <span class="particle" style="--delay: 1s; --x: -80px; --y: 70px;"></span>
+              <span class="particle" style="--delay: 1.5s; --x: 100px; --y: 90px;"></span>
+              <span class="particle" style="--delay: 2s; --x: 0px; --y: -100px;"></span>
+              <span class="particle" style="--delay: 2.5s; --x: -120px; --y: 50px;"></span>
+            </div>
             <div class="glitch-wrapper">
               <h1 class="hero-name" data-text="MD Ismail Foraji">MD Ismail Foraji</h1>
             </div>
             <div class="typing-container">
-              <span class="typing-text"></span>
-              <span class="cursor-blink">|</span>
+              <div class="typing-wrapper">
+                <span class="typing-prefix">I am a</span>
+                <span class="typing-text"></span>
+                <span class="cursor-blink">|</span>
+              </div>
+              <div class="typing-wave"></div>
             </div>
           </div>
-          
+
           <div class="about-grid">
             <div class="about-card" data-card="1">
               <div class="card-icon">
                 <ion-icon name="code-slash-outline"></ion-icon>
               </div>
               <h3>Creator & Developer</h3>
-              <p>I transform simple ideas into reality through code, blending creativity with logic to build games, web experiments, and digital experiences.</p>
+              <p>I transform simple ideas into reality through code, blending creativity with logic to build games, web
+                experiments, and digital experiences.</p>
             </div>
-            
+
             <div class="about-card" data-card="2">
               <div class="card-icon">
                 <ion-icon name="film-outline"></ion-icon>
               </div>
               <h3>Storyteller & Filmmaker</h3>
-              <p>Crafting stories and short films that challenge perspectives and make people think. Every frame tells a story, every edit has purpose.</p>
+              <p>Crafting stories and short films that challenge perspectives and make people think. Every frame tells a
+                story, every edit has purpose.</p>
             </div>
-            
+
             <div class="about-card" data-card="3">
               <div class="card-icon">
                 <ion-icon name="bulb-outline"></ion-icon>
               </div>
               <h3>Innovator & Thinker</h3>
-              <p>Constantly exploring new ways to tell stories differently — sketching ideas, experimenting with mediums, and pushing creative boundaries.</p>
+              <p>Constantly exploring new ways to tell stories differently — sketching ideas, experimenting with
+                mediums, and pushing creative boundaries.</p>
             </div>
           </div>
-          
+
           <div class="about-footer">
             <div class="footer-line"></div>
-            <p class="footer-text">This is my corner of the internet — where creativity meets code, and ideas become reality.</p>
+            <p class="footer-text">This is my corner of the internet — where creativity meets code, and ideas become
+              reality.</p>
             <div class="footer-line"></div>
           </div>
         </section>
@@ -325,12 +364,12 @@
                 <ion-icon name="book-outline" style="font-size: 40px;""></ion-icon>
               </div>
 
-              <div class="service-content-box">
-                <h4 class="h4 service-item-title">Story Tailer</h4>
+              <div class=" service-content-box">
+                  <h4 class="h4 service-item-title">Story Tailer</h4>
 
-                <p class="service-item-text">
-                  Creative Story Tailing at a professional level.
-                </p>
+                  <p class="service-item-text">
+                    Creative Story Tailing at a professional level.
+                  </p>
               </div>
 
             </li>
@@ -451,10 +490,10 @@
         </header>
 
         <div class="contact-grid">
-          
+
           <section class="contact-info-section">
             <h3 class="h3 section-title">Contact Information</h3>
-            
+
             <div class="contact-info-cards">
               <div class="contact-info-card">
                 <div class="contact-card-icon">
@@ -509,7 +548,8 @@
                   <ion-icon name="person-outline"></ion-icon>
                   Full Name
                 </label>
-                <input type="text" id="contact-name" name="fullname" class="form-input" placeholder="Enter your name" required data-form-input>
+                <input type="text" id="contact-name" name="fullname" class="form-input" placeholder="Enter your name"
+                  required data-form-input>
               </div>
 
               <div class="form-group">
@@ -517,7 +557,8 @@
                   <ion-icon name="mail-outline"></ion-icon>
                   Email Address
                 </label>
-                <input type="email" id="contact-email" name="email" class="form-input" placeholder="Enter your email" required data-form-input>
+                <input type="email" id="contact-email" name="email" class="form-input" placeholder="Enter your email"
+                  required data-form-input>
               </div>
 
               <div class="form-group">
@@ -525,7 +566,8 @@
                   <ion-icon name="chatbubble-outline"></ion-icon>
                   Your Message
                 </label>
-                <textarea id="contact-message" name="message" class="form-input" rows="6" placeholder="Write your message here..." required data-form-input></textarea>
+                <textarea id="contact-message" name="message" class="form-input" rows="6"
+                  placeholder="Write your message here..." required data-form-input></textarea>
               </div>
 
               <button class="form-btn whatsapp-btn" type="submit" data-form-btn>

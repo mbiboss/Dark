@@ -745,7 +745,7 @@ if (whatsappForm) {
 💬 *Message:*
 ${message}
 
-_Sent from Portfolio Website_`;
+_Sent from Dark_`;
 
     // URL encode the message
     const encodedMessage = encodeURIComponent(whatsappMessage);

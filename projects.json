@@ -19,5 +19,26 @@
     "image": "https://i.postimg.cc/SRhxGb8L/Bissash-wide.png",
     "link": "https://mbiboss.github.io/Golpo/?story=bissash",
     "description": "A story about trust and faith."
-  }
+  },
+  {
+    "title": "Bekar Golpo",
+    "category": "youtube",
+    "image": "https://i.postimg.cc/W4hLc6BN/Bekar-Golpo.jpg",
+    "link": "https://www.youtube.com/@Bekar_Golpo",
+    "description": "Our Youtube Channel"
+  },
+  {
+    "title": "MBI_BOSS",
+    "category": "youtube",
+    "image": "https://i.postimg.cc/rF6jbHTC/mbiboss.jpg",
+    "link": "https://www.youtube.com/@mbi_boss",
+    "description": "MY Youtube Channel"
+  },
+  {
+    "title": "Dark_CLC",
+    "category": "websites",
+    "image": "https://i.postimg.cc/rwGztcsR/Dark-CLC.png",
+    "link": "https://mbiboss.github.io/Dark-CLC/",
+    "description": "Professional Calculator"
+  },
 ]

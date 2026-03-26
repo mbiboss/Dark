@@ -59,4 +59,14 @@
     "role": "Designer & Developer",
     "year": "2023"
   }
+  {
+    "title": "Flip Clock",
+    "category": "websites",
+    "img": "https://i.postimg.cc/q7BsPktW/Flip_clock.jpg",
+    "link": "https://mbiboss.github.io/clock/",
+    "desc": "A professional 3D, Smooth Flip Clock",
+    "tags": ["Web App", "Dark UI", "JavaScript"],
+    "role": "Designer & Developer",
+    "year": "2026"
+  }
 ]

@@ -2,43 +2,43 @@
   {
     "title": "Golpo",
     "category": "websites",
-    "image": "https://i.postimg.cc/qvNPRB49/Golpo.jpg",
+    "img": "https://i.postimg.cc/qvNPRB49/Golpo.jpg",
     "link": "https://mbiboss.github.io/Golpo/",
-    "description": "A Storytelling website by MBI Dark."
+    "desc": "A Storytelling website by MBI Dark."
   },
   {
     "title": "Chaya",
     "category": "youtube",
-    "image": "https://i.postimg.cc/brF6cbDd/Chaya.jpg",
-    "link": "https://youtu.be/AyaMDqDxkII?si=ovuPLd_XFkw6RX3G",
-    "description": "A Ghost series on YouTube."
+    "img": "https://i.postimg.cc/brF6cbDd/Chaya.jpg",
+    "link": "https://youtu.be/AyaMDqDxkII",
+    "desc": "A Ghost series on YouTube."
   },
   {
     "title": "Bissash",
-    "category": "storys",
-    "image": "https://i.postimg.cc/SRhxGb8L/Bissash-wide.png",
+    "category": "stories",
+    "img": "https://i.postimg.cc/SRhxGb8L/Bissash-wide.png",
     "link": "https://mbiboss.github.io/Golpo/?story=bissash",
-    "description": "A story about trust and faith."
+    "desc": "A story about trust and faith."
   },
   {
     "title": "Bekar Golpo",
     "category": "youtube",
-    "image": "https://i.postimg.cc/W4hLc6BN/Bekar-Golpo.jpg",
+    "img": "https://i.postimg.cc/W4hLc6BN/Bekar-Golpo.jpg",
     "link": "https://www.youtube.com/@Bekar_Golpo",
-    "description": "Our Youtube Channel"
+    "desc": "Our YouTube Channel."
   },
   {
     "title": "MBI_BOSS",
     "category": "youtube",
-    "image": "https://i.postimg.cc/rF6jbHTC/mbiboss.jpg",
+    "img": "https://i.postimg.cc/rF6jbHTC/mbiboss.jpg",
     "link": "https://www.youtube.com/@mbi_boss",
-    "description": "MY Youtube Channel"
+    "desc": "MY YouTube Channel."
   },
   {
     "title": "Dark_CLC",
     "category": "websites",
-    "image": "https://i.postimg.cc/rwGztcsR/Dark-CLC.png",
+    "img": "https://i.postimg.cc/rwGztcsR/Dark-CLC.png",
     "link": "https://mbiboss.github.io/Dark-CLC/",
-    "description": "Professional Calculator"
+    "desc": "Professional Calculator."
   }
 ]

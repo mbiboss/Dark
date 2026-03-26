@@ -3,10 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MBI Dark — MD Ismail Foraji · Portfolio</title>
-  <meta name="description" content="Portfolio of MD Ismail Foraji (MBI Dark) — Web Designer, Film Maker, Storyteller, Videographer from Gazipur, Bangladesh." />
-  <meta property="og:title" content="MBI Dark Portfolio" />
-  <meta property="og:description" content="Ultra-premium portfolio of MD Ismail Foraji" />
+  <title>Projects — MBI Dark · MD Ismail Foraji</title>
+  <meta name="description" content="Selected works and projects by MD Ismail Foraji (MBI Dark) — websites, YouTube, and stories." />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -22,24 +20,6 @@
   <div id="cursor-ring"></div>
   <div id="cursor-dot"></div>
 
-  <!-- ===== PRELOADER ===== -->
-  <div id="preloader">
-    <div class="preloader-grid"></div>
-    <div class="preloader-glow"></div>
-    <div class="preloader-content">
-      <div class="preloader-flower">✿</div>
-      <div class="glitch-wrapper">
-        <h1 class="glitch" data-text='✿ㅤ"MʙɪㅤDᴀʀᴋ"'>✿ㅤ"MʙɪㅤDᴀʀᴋ"</h1>
-      </div>
-      <div class="preloader-bar-wrap">
-        <div class="preloader-bar" id="preloader-bar"></div>
-      </div>
-      <div class="preloader-pct">
-        <span id="preloader-num">0</span>% <span class="preloader-label">INITIALIZING</span>
-      </div>
-    </div>
-  </div>
-
   <!-- ===== PARTICLE CANVAS ===== -->
   <canvas id="particle-canvas"></canvas>
 
@@ -54,7 +34,7 @@
       </a>
       <nav class="nav-links">
         <a href="/about.html" class="nav-link">About</a>
-        <a href="/projects.html" class="nav-link">Projects</a>
+        <a href="/projects.html" class="nav-link active-page">Projects</a>
         <a href="/contact.html" class="nav-link">Contact</a>
       </nav>
       <a href="/CV_MD_Ismail_Hossen.pdf" class="nav-cv" download target="_blank">
@@ -81,51 +61,32 @@
   <!-- ===== MAIN ===== -->
   <main>
 
-    <!-- HERO -->
-    <section id="home" class="hero">
+    <!-- PAGE HERO -->
+    <section class="page-hero">
       <div class="hero-radial-cyan"></div>
       <div class="hero-radial-violet"></div>
-      <div class="hero-grid"></div>
-
-      <!-- Orbit rings -->
-      <div class="orbit" style="--w:500px;--dur:25s;--op:0.08"></div>
-      <div class="orbit" style="--w:700px;--dur:40s;--op:0.05;animation-direction:reverse"></div>
-      <div class="orbit" style="--w:920px;--dur:65s;--op:0.03"></div>
-
-      <div class="hero-content reveal-hero">
-        <div class="hero-badge">
-          <span class="badge-dot"></span>
-          Available for Freelance
-        </div>
-        <div class="glitch-wrapper hero-glitch">
-          <h1 class="glitch hero-name" data-text='✿ "Mʙɪ Dᴀʀᴋ"'>✿ "Mʙɪ Dᴀʀᴋ"</h1>
-        </div>
-        <p class="hero-subname">MD ISMAIL FORAJI</p>
-        <div class="hero-typing">
-          I am a <span id="typed-text"></span><span class="type-cursor">|</span>
-        </div>
-        <p class="hero-desc">
-          Transforming simple ideas into cinematic digital realities through code, lens, and storytelling.
-        </p>
-        <div class="hero-btns">
-          <a href="/projects.html" class="btn-primary magnetic">View My Work</a>
-          <a href="/CV_MD_Ismail_Hossen.pdf" class="btn-outline magnetic" download target="_blank">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-            Download CV
-          </a>
-        </div>
-        <div class="hero-socials">
-          <a href="https://www.facebook.com/mbiboss.1" target="_blank" class="social-tag">FB</a>
-          <a href="https://www.youtube.com/@Bekar_Golpo" target="_blank" class="social-tag">YT</a>
-          <a href="https://discord.com/users/731544517542674443" target="_blank" class="social-tag">DC</a>
-          <a href="https://wa.me/8801317460865" target="_blank" class="social-tag">WA</a>
-        </div>
+      <div class="page-hero-content reveal-hero">
+        <span class="section-tag">Portfolio</span>
+        <h1 class="page-hero-title">Selected <span class="grad">Works</span></h1>
       </div>
+    </section>
 
-      <button class="scroll-down" onclick="window.location='/about.html'">
-        <span>SCROLL</span>
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
-      </button>
+    <!-- PROJECTS -->
+    <section id="projects" class="section projects-section">
+      <div class="container">
+
+        <div class="filter-btns reveal" style="justify-content:center; margin-bottom:2.5rem;">
+          <button class="filter-btn active" data-filter="all">All</button>
+          <button class="filter-btn" data-filter="websites">Websites</button>
+          <button class="filter-btn" data-filter="youtube">YouTube</button>
+          <button class="filter-btn" data-filter="stories">Stories</button>
+        </div>
+
+        <div class="projects-grid" id="projects-grid">
+          <!-- Injected by JS -->
+        </div>
+
+      </div>
     </section>
 
   </main>

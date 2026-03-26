@@ -4,41 +4,59 @@
     "category": "websites",
     "img": "https://i.postimg.cc/qvNPRB49/Golpo.jpg",
     "link": "https://mbiboss.github.io/Golpo/",
-    "desc": "A Storytelling website by MBI Dark."
+    "desc": "An immersive storytelling platform where each story unfolds like a cinematic experience — built with hand-crafted animations and dark aesthetic.",
+    "tags": ["UI Design", "Storytelling", "Animation"],
+    "role": "Designer & Developer",
+    "year": "2024"
   },
   {
     "title": "Chaya",
     "category": "youtube",
     "img": "https://i.postimg.cc/brF6cbDd/Chaya.jpg",
     "link": "https://youtu.be/AyaMDqDxkII",
-    "desc": "A Ghost series on YouTube."
+    "desc": "A spine-chilling ghost series on YouTube exploring the supernatural through masterful cinematography and immersive storytelling.",
+    "tags": ["Film Making", "Horror", "Cinematography"],
+    "role": "Director & Editor",
+    "year": "2024"
   },
   {
     "title": "Bissash",
     "category": "stories",
     "img": "https://i.postimg.cc/SRhxGb8L/Bissash-wide.png",
     "link": "https://mbiboss.github.io/Golpo/?story=bissash",
-    "desc": "A story about trust and faith."
+    "desc": "A deeply emotional narrative about trust, faith, and the bonds that hold us together — told through vivid, poetic prose.",
+    "tags": ["Fiction", "Drama", "Bengali Literature"],
+    "role": "Author & Art Director",
+    "year": "2023"
   },
   {
     "title": "Bekar Golpo",
     "category": "youtube",
     "img": "https://i.postimg.cc/W4hLc6BN/Bekar-Golpo.jpg",
     "link": "https://www.youtube.com/@Bekar_Golpo",
-    "desc": "Our YouTube Channel."
+    "desc": "A collaborative YouTube channel delivering creative short films, sketches, and stories that resonate with the everyday Bengali audience.",
+    "tags": ["YouTube", "Short Film", "Comedy"],
+    "role": "Co-Creator & Director",
+    "year": "2023"
   },
   {
     "title": "MBI_BOSS",
     "category": "youtube",
     "img": "https://i.postimg.cc/rF6jbHTC/mbiboss.jpg",
     "link": "https://www.youtube.com/@mbi_boss",
-    "desc": "MY YouTube Channel."
+    "desc": "My personal YouTube channel — a creative canvas for experimental videos, vlogs, and unfiltered expressions of art and imagination.",
+    "tags": ["Vlog", "Creative", "Personal Brand"],
+    "role": "Creator & Videographer",
+    "year": "2022"
   },
   {
-    "title": "Dark_CLC",
+    "title": "Dark CLC",
     "category": "websites",
     "img": "https://i.postimg.cc/rwGztcsR/Dark-CLC.png",
     "link": "https://mbiboss.github.io/Dark-CLC/",
-    "desc": "Professional Calculator."
+    "desc": "A sleek, professional calculator web app with a dark aesthetic, smooth interactions, and precision engineering for everyday computation.",
+    "tags": ["Web App", "Dark UI", "JavaScript"],
+    "role": "Designer & Developer",
+    "year": "2023"
   }
 ]

@@ -270,6 +270,21 @@ $$('a[href^="#"]').forEach(a => {
   });
 })();
 
+/* ===== SKILL BARS ===== */
+(function initSkillBars() {
+  const fills = $$('.skill-fill');
+  if (!fills.length) return;
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('animated');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.3 });
+  fills.forEach(el => io.observe(el));
+})();
+
 /* ===== MAGNETIC BUTTONS ===== */
 (function initMagnetic() {
   $$('.magnetic').forEach(btn => {
@@ -294,30 +309,46 @@ $$('a[href^="#"]').forEach(a => {
 
   let allProjects = [];
 
-  function cardHTML(p) {
-    const label = { websites: 'Website', youtube: 'YouTube', stories: 'Story' }[p.category] || p.category;
-    const icon  = p.category === 'youtube'
-      ? `<svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58zM9.75 15.02V8.98L15.5 12l-5.75 3.02z"/></svg>`
-      : `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="24" height="24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>`;
+  function cardHTML(p, idx) {
+    const catMap = { websites: 'Website', youtube: 'YouTube', stories: 'Story' };
+    const label  = catMap[p.category] || p.category;
+    const num    = String(idx + 1).padStart(2, '0');
+    const tags   = (p.tags || []).map(t => `<span class="pc-tag">${t}</span>`).join('');
+    const ytIcon = `<svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58zM9.75 15.02V8.98L15.5 12l-5.75 3.02z"/></svg>`;
+    const extIcon = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="18" height="18"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>`;
+    const arrowIcon = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="16" height="16"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>`;
+    const linkIcon = p.category === 'youtube' ? ytIcon : extIcon;
     return `
       <div class="project-card glass tilt-card reveal showing" data-cat="${p.category}">
-        <div class="project-img-wrap">
+        <div class="pc-img-wrap">
           <img src="${p.img}" alt="${p.title}" loading="lazy" />
-          <div class="project-overlay">
-            <a href="${p.link}" target="_blank" rel="noreferrer" class="project-visit">${icon}</a>
+          <div class="pc-img-overlay"></div>
+          <span class="pc-num">${num}</span>
+          <span class="pc-badge pc-badge--${p.category}">${label}</span>
+          <a href="${p.link}" target="_blank" rel="noreferrer" class="pc-quick-link" aria-label="Open ${p.title}">${linkIcon}</a>
+        </div>
+        <div class="pc-body">
+          <h4 class="pc-title">${p.title}</h4>
+          <p class="pc-desc">${p.desc}</p>
+          <div class="pc-tags">${tags}</div>
+          <div class="pc-footer">
+            <div class="pc-meta">
+              <span class="pc-role">${p.role || 'Creator'}</span>
+              <span class="pc-dot">·</span>
+              <span class="pc-year">${p.year || ''}</span>
+            </div>
+            <a href="${p.link}" target="_blank" rel="noreferrer" class="pc-cta">
+              View ${arrowIcon}
+            </a>
           </div>
         </div>
-        <div class="project-body">
-          <span class="project-cat">${label}</span>
-          <h4>${p.title}</h4>
-          <p>${p.desc}</p>
-        </div>
+        <div class="pc-glow-border"></div>
       </div>`;
   }
 
   function render(filter) {
     const filtered = filter === 'all' ? allProjects : allProjects.filter(p => p.category === filter);
-    grid.innerHTML = filtered.map(cardHTML).join('');
+    grid.innerHTML = filtered.map((p, i) => cardHTML(p, i)).join('');
 
     $$('.tilt-card', grid).forEach(card => {
       card.addEventListener('mousemove', (e) => {

@@ -1,417 +1,639 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>About — MBI Dark · MD Ismail Hossen</title>
-  <meta name="description" content="Learn about MD Ismail Hossen (MBI Dark) — Electrical Technician, Multimedia Editor, Filmmaker and Web Developer from Gazipur, Bangladesh." />
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About — MBI Dark · MD Ismail Hossen</title>
+    <meta
+      name="description"
+      content="Learn about MD Ismail Hossen (MBI Dark) — Electrical Technician, Multimedia Editor, Filmmaker and Web Developer from Gazipur, Bangladesh."
+    />
 
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css" />
-</head>
-<body>
+    <link rel="icon" type="image/jpeg" href="logo.jpg" />
+    <link rel="apple-touch-icon" href="logo.jpg" />
+    <link rel="manifest" href="manifest.json" />
+    <meta name="theme-color" content="#00d4ff" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    />
+    <meta name="apple-mobile-web-app-title" content="MBI Dark" />
 
-  <!-- ===== SCROLL PROGRESS ===== -->
-  <div id="scroll-progress"></div>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- ===== SCROLL PROGRESS ===== -->
+    <div id="scroll-progress"></div>
 
-  <!-- ===== CURSOR ===== -->
-  <div id="cursor-ring"></div>
-  <div id="cursor-dot"></div>
+    <!-- ===== CURSOR ===== -->
+    <div id="cursor-ring"></div>
+    <div id="cursor-dot"></div>
 
-  <!-- ===== PARTICLE CANVAS ===== -->
-  <canvas id="particle-canvas"></canvas>
+    <!-- ===== PARTICLE CANVAS ===== -->
+    <canvas id="particle-canvas"></canvas>
 
-  <!-- ===== NOISE TEXTURE ===== -->
-  <div class="bg-noise"></div>
+    <!-- ===== NOISE TEXTURE ===== -->
+    <div class="bg-noise"></div>
 
-  <!-- ===== NAVBAR ===== -->
-  <header id="navbar">
-    <div class="nav-inner">
-      <a href="index.html" class="nav-logo">
-        <span class="logo-flower">✿</span>"MʙɪㅤDᴀʀᴋ"
-      </a>
-      <nav class="nav-links">
-        <a href="about.html" class="nav-link active-page">About</a>
-        <a href="projects.html" class="nav-link">Projects</a>
-        <a href="contact.html" class="nav-link">Contact</a>
-      </nav>
-      <a href="CV_MD_Ismail_Hossen.pdf" class="nav-cv" download target="_blank">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-        CV
-      </a>
-      <button class="nav-hamburger" id="nav-hamburger" aria-label="Menu">
-        <span></span><span></span><span></span>
-      </button>
-    </div>
-  </header>
-
-  <!-- ===== MOBILE MENU ===== -->
-  <div class="mobile-menu" id="mobile-menu">
-    <button class="mobile-close" id="mobile-close">✕</button>
-    <nav class="mobile-nav">
-      <a href="about.html" class="mobile-link">About</a>
-      <a href="projects.html" class="mobile-link">Projects</a>
-      <a href="contact.html" class="mobile-link">Contact</a>
-      <a href="CV_MD_Ismail_Hossen.pdf" class="mobile-cv" download>Download CV</a>
-    </nav>
-  </div>
-
-  <!-- ===== MAIN ===== -->
-  <main>
-
-    <!-- PAGE HERO -->
-    <section class="page-hero">
-      <div class="hero-radial-cyan"></div>
-      <div class="hero-radial-violet"></div>
-      <div class="page-hero-content reveal-hero">
-        <span class="section-tag">Discover</span>
-        <h1 class="page-hero-title">About <span class="grad">Me</span></h1>
-      </div>
-    </section>
-
-    <!-- ===== ABOUT ===== -->
-    <section id="about" class="section">
-      <div class="container">
-
-        <div class="about-grid">
-
-          <!-- Profile card -->
-          <div class="profile-card glass tilt-card reveal">
-            <div class="avatar-wrap">
-              <div class="avatar-ring"></div>
-              <img src="https://i.postimg.cc/k5Q7yNDK/Ismail-Foraji.png" alt="MD Ismail Hossen" class="avatar-img" />
-              <span class="avatar-status"></span>
-            </div>
-            <h3 class="profile-name">MD Ismail Hossen</h3>
-            <p class="profile-alias">MBI Dark</p>
-
-            <!-- Personal details table -->
-            <div class="profile-details-grid">
-              <div class="pd-row">
-                <span class="pd-label">Father</span>
-                <span class="pd-value">MD Kawser Hossen</span>
-              </div>
-              <div class="pd-row">
-                <span class="pd-label">Mother</span>
-                <span class="pd-value">Rehena Pervin</span>
-              </div>
-              <div class="pd-row">
-                <span class="pd-label">Date of Birth</span>
-                <span class="pd-value">10 January 2005</span>
-              </div>
-              <div class="pd-row">
-                <span class="pd-label">Religion</span>
-                <span class="pd-value">Islam</span>
-              </div>
-              <div class="pd-row">
-                <span class="pd-label">Marital Status</span>
-                <span class="pd-value">Unmarried</span>
-              </div>
-              <div class="pd-row">
-                <span class="pd-label">Height</span>
-                <span class="pd-value">5 Feet 4 Inch</span>
-              </div>
-            </div>
-
-            <div class="profile-info" style="margin-top:1rem;">
-              <div class="info-row">
-                <svg class="info-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                <span>Kathora, Shalna, Gazipur — 1703</span>
-              </div>
-              <div class="info-row">
-                <svg class="info-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-                <a href="mailto:ooismailforajioo@gmail.com">ooismailforajioo@gmail.com</a>
-              </div>
-              <div class="info-row">
-                <svg class="info-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.72 19.79 19.79 0 0 1 1.61 5.18 2 2 0 0 1 3.59 3h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 10.91a16 16 0 0 0 6 6l.92-.92a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.73 18.27"/></svg>
-                <a href="tel:+8801317460865">+880 1317-460865</a>
-              </div>
-            </div>
-
-            <a href="CV_MD_Ismail_Hossen.pdf" class="profile-cv-btn" download>
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-              Download CV
-            </a>
-          </div>
-
-          <!-- Journey + stats -->
-          <div class="about-right">
-            <div class="journey-card glass tilt-card reveal">
-              <span class="card-tag">About Me</span>
-              <h3 class="journey-title">Electrical Technician, Filmmaker &amp; Digital Creator</h3>
-              <p class="journey-text">
-                Skilled Electrical Technician with strong experience in wiring, repair, and maintenance.
-                Also experienced in multimedia editing and basic programming. Fast learner and hardworking.
-              </p>
-              <p class="journey-sub">
-                Based in Gazipur, Bangladesh — working across electrical services, creative media production,
-                and web development. I take on challenges others wouldn't, and I get them done right.
-              </p>
-            </div>
-
-            <div class="stats-grid">
-              <div class="stat-card glass reveal" data-target="8" data-suffix="+">
-                <span class="stat-num" data-count="8">0+</span>
-                <span class="stat-label">Years Active</span>
-              </div>
-              <div class="stat-card glass reveal" data-target="3" data-suffix="">
-                <span class="stat-num" data-count="3">0</span>
-                <span class="stat-label">Disciplines</span>
-              </div>
-              <div class="stat-card glass reveal" data-target="2" data-suffix="">
-                <span class="stat-num" data-count="2">0</span>
-                <span class="stat-label">Certificates</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- ===== EXPERIENCE ===== -->
-        <div class="cv-section reveal">
-          <div class="section-header">
-            <span class="section-tag" style="color:var(--cyan)">Career</span>
-            <h3 class="section-title sm">Work <span class="grad">Experience</span></h3>
-          </div>
-          <div class="exp-timeline">
-
-            <div class="exp-item glass reveal">
-              <div class="exp-icon-wrap cyan-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-              </div>
-              <div class="exp-content">
-                <div class="exp-header">
-                  <div>
-                    <h4 class="exp-title">Electrical Technician</h4>
-                    <p class="exp-org">Local Electronic Services · Self-employed</p>
-                  </div>
-                  <span class="exp-period">2020 — Present</span>
-                </div>
-                <p class="exp-desc">Handled electrical installation, wiring, troubleshooting, and repair with a strong focus on safety and efficiency. Managed residential and commercial jobs independently.</p>
-              </div>
-            </div>
-
-            <div class="exp-item glass reveal">
-              <div class="exp-icon-wrap violet-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-              </div>
-              <div class="exp-content">
-                <div class="exp-header">
-                  <div>
-                    <h4 class="exp-title">Sales & Customer Representative</h4>
-                    <p class="exp-org">James Collection's · Cloth Store</p>
-                  </div>
-                  <span class="exp-period">2019 — Present</span>
-                </div>
-                <p class="exp-desc">Assisted in sales, customer handling, billing, and stock management in a cloth store while maintaining smooth daily operations and building strong customer relationships.</p>
-              </div>
-            </div>
-
-            <div class="exp-item glass reveal">
-              <div class="exp-icon-wrap gold-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
-              </div>
-              <div class="exp-content">
-                <div class="exp-header">
-                  <div>
-                    <h4 class="exp-title">Multimedia Editor</h4>
-                    <p class="exp-org">Freelance · Part-time</p>
-                  </div>
-                  <span class="exp-period">2018 — Present</span>
-                </div>
-                <p class="exp-desc">Edited video, audio, and photos for a variety of projects. Handled cutting, sound cleaning, color grading, and basic effects to create clean and engaging content for clients and personal channels.</p>
-              </div>
-            </div>
-
-          </div>
-        </div>
-
-        <!-- ===== EDUCATION ===== -->
-        <div class="cv-section reveal">
-          <div class="section-header">
-            <span class="section-tag" style="color:var(--violet)">Background</span>
-            <h3 class="section-title sm">Edu<span class="grad">cation</span></h3>
-          </div>
-          <div class="edu-grid">
-
-            <div class="edu-card glass tilt-card reveal">
-              <div class="edu-year-badge">2021</div>
-              <div class="edu-body">
-                <h4 class="edu-title">Junior School Certificate (JSC)</h4>
-                <p class="edu-inst">Bhawal Ideal School</p>
-                <div class="edu-meta">
-                  <span class="edu-chip edu-chip--green">GPA 5.00</span>
-                  <span class="edu-chip">Passing Year: 2021</span>
-                </div>
-              </div>
-            </div>
-
-            <div class="edu-card glass tilt-card reveal">
-              <div class="edu-year-badge" style="background:rgba(124,58,237,0.18);border-color:rgba(124,58,237,0.45);color:#a78bfa;">2025</div>
-              <div class="edu-body">
-                <h4 class="edu-title">USEP TBIP (EIM)</h4>
-                <p class="edu-inst">USEP · Trade: Electrical Installation &amp; Maintenance</p>
-                <div class="edu-meta">
-                  <span class="edu-chip edu-chip--violet">Compliant</span>
-                  <span class="edu-chip">Passing Year: 2025</span>
-                </div>
-              </div>
-            </div>
-
-          </div>
-        </div>
-
-        <!-- ===== SKILLS & STRENGTHS ===== -->
-        <div class="skills-strengths-grid reveal">
-
-          <!-- Skills -->
-          <div class="skills-card glass reveal">
-            <span class="section-tag" style="color:var(--cyan); margin-bottom:1rem; display:block;">Capabilities</span>
-            <h3 class="section-title sm" style="margin-bottom:1.5rem;">My <span class="grad">Skills</span></h3>
-            <div class="skill-list">
-              <div class="skill-item">
-                <div class="skill-info">
-                  <span class="skill-name">Electrical Wiring &amp; Installation</span>
-                  <span class="skill-pct">90%</span>
-                </div>
-                <div class="skill-bar"><div class="skill-fill cyan-fill" style="--w:90%"></div></div>
-              </div>
-              <div class="skill-item">
-                <div class="skill-info">
-                  <span class="skill-name">Maintenance &amp; Repair</span>
-                  <span class="skill-pct">85%</span>
-                </div>
-                <div class="skill-bar"><div class="skill-fill cyan-fill" style="--w:85%"></div></div>
-              </div>
-              <div class="skill-item">
-                <div class="skill-info">
-                  <span class="skill-name">Video, Audio &amp; Photo Editing</span>
-                  <span class="skill-pct">95%</span>
-                </div>
-                <div class="skill-bar"><div class="skill-fill violet-fill" style="--w:95%"></div></div>
-              </div>
-              <div class="skill-item">
-                <div class="skill-info">
-                  <span class="skill-name">HTML &amp; Basic Programming</span>
-                  <span class="skill-pct">75%</span>
-                </div>
-                <div class="skill-bar"><div class="skill-fill violet-fill" style="--w:75%"></div></div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Strengths -->
-          <div class="strengths-card glass reveal">
-            <span class="section-tag" style="color:var(--violet); margin-bottom:1rem; display:block;">Character</span>
-            <h3 class="section-title sm" style="margin-bottom:1.5rem;">My <span class="grad">Strengths</span></h3>
-            <ul class="strength-list">
-              <li class="strength-item">
-                <span class="strength-icon">◈</span>
-                <span>Able to manage and coordinate small teams effectively</span>
-              </li>
-              <li class="strength-item">
-                <span class="strength-icon">◈</span>
-                <span>Highly hardworking and focused on completing tasks properly</span>
-              </li>
-              <li class="strength-item">
-                <span class="strength-icon">◈</span>
-                <span>Strong problem-solving mindset in both technical and creative fields</span>
-              </li>
-              <li class="strength-item">
-                <span class="strength-icon">◈</span>
-                <span>Fast learner and able to teach others easily</span>
-              </li>
-              <li class="strength-item">
-                <span class="strength-icon">◈</span>
-                <span>Can work under pressure and handle multiple responsibilities</span>
-              </li>
-            </ul>
-          </div>
-
-        </div>
-
-        <!-- ===== SERVICES ===== -->
-        <div class="services-section">
-          <div class="section-header reveal">
-            <span class="section-tag" style="color:var(--violet)">Expertise</span>
-            <h3 class="section-title sm">What I <span class="grad">Do</span></h3>
-          </div>
-          <div class="services-grid">
-            <div class="service-card glass tilt-card reveal">
-              <div class="service-icon cyan-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-              </div>
-              <h4>Electrical Work</h4>
-              <p>Wiring, installation, troubleshooting and repair done safely and efficiently — from residential setups to complex technical systems.</p>
-            </div>
-            <div class="service-card glass tilt-card reveal">
-              <div class="service-icon violet-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"/><line x1="7" y1="2" x2="7" y2="22"/><line x1="17" y1="2" x2="17" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/><line x1="2" y1="7" x2="7" y2="7"/><line x1="2" y1="17" x2="7" y2="17"/><line x1="17" y1="17" x2="22" y2="17"/><line x1="17" y1="7" x2="22" y2="7"/></svg>
-              </div>
-              <h4>Film &amp; Video Editing</h4>
-              <p>Crafting cinematic short films, YouTube content, and edited videos — cutting, color grading, and sound design done right.</p>
-            </div>
-            <div class="service-card glass tilt-card reveal">
-              <div class="service-icon gold-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
-              </div>
-              <h4>Storytelling &amp; Writing</h4>
-              <p>Creative narratives that captivate audiences — told through words, visuals, and every medium available to evoke real emotion.</p>
-            </div>
-            <div class="service-card glass tilt-card reveal">
-              <div class="service-icon cyan-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
-              </div>
-              <h4>Web Development</h4>
-              <p>Building dark, immersive web experiences using HTML, CSS, and JavaScript — from portfolio sites to interactive storytelling platforms.</p>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-  </main>
-
-  <!-- ===== FOOTER ===== -->
-  <footer class="footer">
-    <div class="container footer-inner">
-      <a href="index.html" class="footer-logo">
-        <span class="logo-flower">✿</span>ㅤ"MʙɪㅤDᴀʀᴋ"
-      </a>
-      <p class="footer-copy">© <span id="year"></span> MD Ismail Hossen · Crafted with passion from Bangladesh</p>
-      <div class="footer-socials">
-        <a href="https://www.facebook.com/mbidark" target="_blank" class="foot-social" aria-label="Facebook">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+    <!-- ===== NAVBAR ===== -->
+    <header id="navbar">
+      <div class="nav-inner">
+        <a href="index.html" class="nav-logo">
+          <span class="logo-flower">✿</span>"MʙɪㅤDᴀʀᴋ"
         </a>
-        <a href="https://www.youtube.com/@Bekar_Golpo" target="_blank" class="foot-social" aria-label="YouTube">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58zM9.75 15.02V8.98L15.5 12l-5.75 3.02z"/></svg>
-        </a>
-        <a href="https://discord.com/users/731544517542674443" target="_blank" class="foot-social" aria-label="Discord">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057c.002.021.012.042.029.054a19.9 19.9 0 0 0 5.993 3.03.077.077 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
-        </a>
-        <a href="https://wa.me/8801317460865" target="_blank" class="foot-social" aria-label="WhatsApp">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+        <nav class="nav-links">
+          <a href="about.html" class="nav-link active-page">About</a>
+          <a href="projects.html" class="nav-link">Projects</a>
+          <a href="contact.html" class="nav-link">Contact</a>
+        </nav>
+        <a
+          href="CV_MD_Ismail_Hossen.pdf"
+          class="nav-cv"
+          download
+          target="_blank"
+        >
+          <svg
+            width="14"
+            height="14"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+          >
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+            <polyline points="7 10 12 15 17 10" />
+            <line x1="12" y1="15" x2="12" y2="3" />
+          </svg>
+          CV
         </a>
       </div>
+    </header>
+
+    <!-- ===== MAIN ===== -->
+    <main>
+      <!-- PAGE HERO -->
+      <section class="page-hero">
+        <div class="hero-radial-cyan"></div>
+        <div class="hero-radial-violet"></div>
+        <div class="page-hero-content reveal-hero">
+          <span class="section-tag">Discover</span>
+          <h1 class="page-hero-title">About <span class="grad">Me</span></h1>
+        </div>
+      </section>
+
+      <!-- ===== ABOUT ===== -->
+      <section id="about" class="section">
+        <div class="container">
+          <div class="about-grid">
+            <!-- Profile card -->
+            <div class="profile-card glass tilt-card reveal">
+              <div class="avatar-wrap">
+                <div class="avatar-ring"></div>
+                <img
+                  src="https://i.postimg.cc/wxLhy2GW/MBI.jpg"
+                  alt="MD Ismail Hossen"
+                  class="avatar-img"
+                />
+                <span class="avatar-status"></span>
+              </div>
+              <h3 class="profile-name">MD Ismail Hossen</h3>
+              <p class="profile-alias">MBI Dark</p>
+
+              <!-- Personal details table -->
+              <div class="profile-details-grid">
+                <div class="pd-row">
+                  <span class="pd-label">Father</span>
+                  <span class="pd-value">MD Kawser Hossen</span>
+                </div>
+                <div class="pd-row">
+                  <span class="pd-label">Mother</span>
+                  <span class="pd-value">Rehena Pervin</span>
+                </div>
+                <div class="pd-row">
+                  <span class="pd-label">Date of Birth</span>
+                  <span class="pd-value">10 January 2005</span>
+                </div>
+                <div class="pd-row">
+                  <span class="pd-label">Religion</span>
+                  <span class="pd-value">Islam</span>
+                </div>
+                <div class="pd-row">
+                  <span class="pd-label">Marital Status</span>
+                  <span class="pd-value">Unmarried</span>
+                </div>
+                <div class="pd-row">
+                  <span class="pd-label">Height</span>
+                  <span class="pd-value">5 Feet 4 Inch</span>
+                </div>
+              </div>
+
+              <div class="profile-info" style="margin-top: 1rem">
+                <div class="info-row">
+                  <svg
+                    class="info-icon"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                    <circle cx="12" cy="10" r="3" />
+                  </svg>
+                  <span>Kathora, Shalna, Gazipur — 1703</span>
+                </div>
+                <div class="info-row">
+                  <svg
+                    class="info-icon"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path
+                      d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+                    />
+                    <polyline points="22,6 12,13 2,6" />
+                  </svg>
+                  <a href="mailto:ooismailforajioo@gmail.com"
+                    >ooismailforajioo@gmail.com</a
+                  >
+                </div>
+                <div class="info-row">
+                  <svg
+                    class="info-icon"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path
+                      d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.72 19.79 19.79 0 0 1 1.61 5.18 2 2 0 0 1 3.59 3h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 10.91a16 16 0 0 0 6 6l.92-.92a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.73 18.27"
+                    />
+                  </svg>
+                  <a href="tel:+8801317460865">+880 1317-460865</a>
+                </div>
+              </div>
+
+              <a href="CV_MD_Ismail_Hossen.pdf" class="profile-cv-btn" download>
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.5"
+                >
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                  <polyline points="7 10 12 15 17 10" />
+                  <line x1="12" y1="15" x2="12" y2="3" />
+                </svg>
+                Download CV
+              </a>
+            </div>
+
+            <!-- Journey + stats -->
+            <div class="about-right">
+              <div class="journey-card glass tilt-card reveal">
+                <span class="card-tag">About Me</span>
+                <h3 class="journey-title">
+                  Electrical Technician, Filmmaker &amp; Digital Creator
+                </h3>
+                <p class="journey-text">
+                  Skilled Electrical Technician with strong experience in
+                  wiring, repair, and maintenance. Also experienced in
+                  multimedia editing and basic programming. Fast learner and
+                  hardworking.
+                </p>
+                <p class="journey-sub">
+                  Based in Gazipur, Bangladesh — working across electrical
+                  services, creative media production, and web development. I
+                  take on challenges others wouldn't, and I get them done right.
+                </p>
+              </div>
+
+              <div class="stats-grid">
+                <div
+                  class="stat-card glass reveal"
+                  data-target="8"
+                  data-suffix="+"
+                >
+                  <span class="stat-num" data-count="8">0+</span>
+                  <span class="stat-label">Years Active</span>
+                </div>
+                <div
+                  class="stat-card glass reveal"
+                  data-target="3"
+                  data-suffix=""
+                >
+                  <span class="stat-num" data-count="3">0</span>
+                  <span class="stat-label">Disciplines</span>
+                </div>
+                <div
+                  class="stat-card glass reveal"
+                  data-target="2"
+                  data-suffix=""
+                >
+                  <span class="stat-num" data-count="2">0</span>
+                  <span class="stat-label">Certificates</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ===== EXPERIENCE ===== -->
+          <div class="cv-section reveal">
+            <div class="section-header">
+              <span class="section-tag" style="color: var(--cyan)">Career</span>
+              <h3 class="section-title sm">
+                Work <span class="grad">Experience</span>
+              </h3>
+            </div>
+            <div class="exp-timeline">
+              <div class="exp-item glass reveal">
+                <div class="exp-icon-wrap cyan-icon">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+                  </svg>
+                </div>
+                <div class="exp-content">
+                  <div class="exp-header">
+                    <div>
+                      <h4 class="exp-title">Electrical Technician</h4>
+                      <p class="exp-org">
+                        Local Electronic Services · Self-employed
+                      </p>
+                    </div>
+                    <span class="exp-period">2020 — Present</span>
+                  </div>
+                  <p class="exp-desc">
+                    Handled electrical installation, wiring, troubleshooting,
+                    and repair with a strong focus on safety and efficiency.
+                    Managed residential and commercial jobs independently.
+                  </p>
+                </div>
+              </div>
+
+              <div class="exp-item glass reveal">
+                <div class="exp-icon-wrap violet-icon">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path
+                      d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"
+                    />
+                    <line x1="3" y1="6" x2="21" y2="6" />
+                    <path d="M16 10a4 4 0 0 1-8 0" />
+                  </svg>
+                </div>
+                <div class="exp-content">
+                  <div class="exp-header">
+                    <div>
+                      <h4 class="exp-title">Sales & Customer Representative</h4>
+                      <p class="exp-org">James Collection's · Cloth Store</p>
+                    </div>
+                    <span class="exp-period">2019 — Present</span>
+                  </div>
+                  <p class="exp-desc">
+                    Assisted in sales, customer handling, billing, and stock
+                    management in a cloth store while maintaining smooth daily
+                    operations and building strong customer relationships.
+                  </p>
+                </div>
+              </div>
+
+              <div class="exp-item glass reveal">
+                <div class="exp-icon-wrap gold-icon">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <polygon points="23 7 16 12 23 17 23 7" />
+                    <rect x="1" y="5" width="15" height="14" rx="2" ry="2" />
+                  </svg>
+                </div>
+                <div class="exp-content">
+                  <div class="exp-header">
+                    <div>
+                      <h4 class="exp-title">Multimedia Editor</h4>
+                      <p class="exp-org">Freelance · Part-time</p>
+                    </div>
+                    <span class="exp-period">2018 — Present</span>
+                  </div>
+                  <p class="exp-desc">
+                    Edited video, audio, and photos for a variety of projects.
+                    Handled cutting, sound cleaning, color grading, and basic
+                    effects to create clean and engaging content for clients and
+                    personal channels.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ===== EDUCATION ===== -->
+          <div class="cv-section reveal">
+            <div class="section-header">
+              <span class="section-tag" style="color: var(--violet)"
+                >Background</span
+              >
+              <h3 class="section-title sm">
+                Edu<span class="grad">cation</span>
+              </h3>
+            </div>
+            <div class="edu-grid">
+              <div class="edu-card glass tilt-card reveal">
+                <div class="edu-year-badge">2020</div>
+                <div class="edu-body">
+                  <h4 class="edu-title">Junior School Certificate (JSC)</h4>
+                  <p class="edu-inst">Bhawal Ideal School</p>
+                  <div class="edu-meta">
+                    <span class="edu-chip edu-chip--green">GPA 5.00</span>
+                    <span class="edu-chip">Passing Year: 2020</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="edu-card glass tilt-card reveal">
+                <div
+                  class="edu-year-badge"
+                  style="
+                    background: rgba(124, 58, 237, 0.18);
+                    border-color: rgba(124, 58, 237, 0.45);
+                    color: #a78bfa;
+                  "
+                >
+                  2025
+                </div>
+                <div class="edu-body">
+                  <h4 class="edu-title">USEP TBIP (EIM)</h4>
+                  <p class="edu-inst">
+                    USEP · Trade: Electrical Installation &amp; Maintenance
+                  </p>
+                  <div class="edu-meta">
+                    <span class="edu-chip edu-chip--violet">Compliant</span>
+                    <span class="edu-chip">Passing Year: 2025</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ===== SKILLS & STRENGTHS ===== -->
+          <div class="skills-strengths-grid reveal">
+            <!-- Skills -->
+            <div class="skills-card glass reveal">
+              <span
+                class="section-tag"
+                style="color: var(--cyan); margin-bottom: 1rem; display: block"
+                >Capabilities</span
+              >
+              <h3 class="section-title sm" style="margin-bottom: 1.5rem">
+                My <span class="grad">Skills</span>
+              </h3>
+              <div class="skill-list">
+                <div class="skill-item">
+                  <div class="skill-info">
+                    <span class="skill-name"
+                      >Electrical Wiring &amp; Installation</span
+                    >
+                    <span class="skill-pct">90%</span>
+                  </div>
+                  <div class="skill-bar">
+                    <div class="skill-fill cyan-fill" style="--w: 90%"></div>
+                  </div>
+                </div>
+                <div class="skill-item">
+                  <div class="skill-info">
+                    <span class="skill-name">Maintenance &amp; Repair</span>
+                    <span class="skill-pct">85%</span>
+                  </div>
+                  <div class="skill-bar">
+                    <div class="skill-fill cyan-fill" style="--w: 85%"></div>
+                  </div>
+                </div>
+                <div class="skill-item">
+                  <div class="skill-info">
+                    <span class="skill-name"
+                      >Video, Audio &amp; Photo Editing</span
+                    >
+                    <span class="skill-pct">80%</span>
+                  </div>
+                  <div class="skill-bar">
+                    <div class="skill-fill violet-fill" style="--w: 80%"></div>
+                  </div>
+                </div>
+                <div class="skill-item">
+                  <div class="skill-info">
+                    <span class="skill-name">HTML &amp; Basic Programming</span>
+                    <span class="skill-pct">65%</span>
+                  </div>
+                  <div class="skill-bar">
+                    <div class="skill-fill violet-fill" style="--w: 65%"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Strengths -->
+            <div class="strengths-card glass reveal">
+              <span
+                class="section-tag"
+                style="
+                  color: var(--violet);
+                  margin-bottom: 1rem;
+                  display: block;
+                "
+                >Character</span
+              >
+              <h3 class="section-title sm" style="margin-bottom: 1.5rem">
+                My <span class="grad">Strengths</span>
+              </h3>
+              <ul class="strength-list">
+                <li class="strength-item">
+                  <span class="strength-icon">◈</span>
+                  <span
+                    >Able to manage and coordinate small teams effectively</span
+                  >
+                </li>
+                <li class="strength-item">
+                  <span class="strength-icon">◈</span>
+                  <span
+                    >Highly hardworking and focused on completing tasks
+                    properly</span
+                  >
+                </li>
+                <li class="strength-item">
+                  <span class="strength-icon">◈</span>
+                  <span
+                    >Strong problem-solving mindset in both technical and
+                    creative fields</span
+                  >
+                </li>
+                <li class="strength-item">
+                  <span class="strength-icon">◈</span>
+                  <span>Fast learner and able to teach others easily</span>
+                </li>
+                <li class="strength-item">
+                  <span class="strength-icon">◈</span>
+                  <span
+                    >Can work under pressure and handle multiple
+                    responsibilities</span
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- ===== SERVICES ===== -->
+          <div class="services-section">
+            <div class="section-header reveal">
+              <span class="section-tag" style="color: var(--violet)"
+                >Expertise</span
+              >
+              <h3 class="section-title sm">
+                What I <span class="grad">Do</span>
+              </h3>
+            </div>
+            <div class="services-grid">
+              <div class="service-card glass tilt-card reveal">
+                <div class="service-icon cyan-icon">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+                  </svg>
+                </div>
+                <h4>Electrical Work</h4>
+                <p>
+                  Wiring, installation, troubleshooting and repair done safely
+                  and efficiently — from residential setups to complex technical
+                  systems.
+                </p>
+              </div>
+              <div class="service-card glass tilt-card reveal">
+                <div class="service-icon violet-icon">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <rect
+                      x="2"
+                      y="2"
+                      width="20"
+                      height="20"
+                      rx="2.18"
+                      ry="2.18"
+                    />
+                    <line x1="7" y1="2" x2="7" y2="22" />
+                    <line x1="17" y1="2" x2="17" y2="22" />
+                    <line x1="2" y1="12" x2="22" y2="12" />
+                    <line x1="2" y1="7" x2="7" y2="7" />
+                    <line x1="2" y1="17" x2="7" y2="17" />
+                    <line x1="17" y1="17" x2="22" y2="17" />
+                    <line x1="17" y1="7" x2="22" y2="7" />
+                  </svg>
+                </div>
+                <h4>Film &amp; Video Editing</h4>
+                <p>
+                  Crafting cinematic short films, YouTube content, and edited
+                  videos — cutting, color grading, and sound design done right.
+                </p>
+              </div>
+              <div class="service-card glass tilt-card reveal">
+                <div class="service-icon gold-icon">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <line x1="8" y1="6" x2="21" y2="6" />
+                    <line x1="8" y1="12" x2="21" y2="12" />
+                    <line x1="8" y1="18" x2="21" y2="18" />
+                    <line x1="3" y1="6" x2="3.01" y2="6" />
+                    <line x1="3" y1="12" x2="3.01" y2="12" />
+                    <line x1="3" y1="18" x2="3.01" y2="18" />
+                  </svg>
+                </div>
+                <h4>Storytelling &amp; Writing</h4>
+                <p>
+                  Creative narratives that captivate audiences — told through
+                  words, visuals, and every medium available to evoke real
+                  emotion.
+                </p>
+              </div>
+              <div class="service-card glass tilt-card reveal">
+                <div class="service-icon cyan-icon">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <polyline points="16 18 22 12 16 6" />
+                    <polyline points="8 6 2 12 8 18" />
+                  </svg>
+                </div>
+                <h4>Web Development</h4>
+                <p>
+                  Building dark, immersive web experiences using HTML, CSS, and
+                  JavaScript — from portfolio sites to interactive storytelling
+                  platforms.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer" id="site-footer"></footer>
+
+    <!-- ===== BACK TO TOP ===== -->
+    <button id="back-top" aria-label="Back to top">
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2.5"
+      >
+        <polyline points="18 15 12 9 6 15" />
+      </svg>
+    </button>
+
+    <!-- ===== KONAMI OVERLAY ===== -->
+    <div id="konami-overlay">
+      <div class="konami-content">
+        <div class="konami-flower">✿</div>
+        <h2>KONAMI CODE!</h2>
+        <p>You found the secret!</p>
+      </div>
     </div>
-  </footer>
 
-  <!-- ===== BACK TO TOP ===== -->
-  <button id="back-top" aria-label="Back to top">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="18 15 12 9 6 15"/></svg>
-  </button>
-
-  <!-- ===== KONAMI OVERLAY ===== -->
-  <div id="konami-overlay">
-    <div class="konami-content">
-      <div class="konami-flower">✿</div>
-      <h2>KONAMI CODE!</h2>
-      <p>You found the secret!</p>
-    </div>
-  </div>
-
-  <script src="script.js"></script>
-</body>
+    <script src="script.js"></script>
+  </body>
 </html>
